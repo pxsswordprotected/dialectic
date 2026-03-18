@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs grep:*)",
+      "Bash(find /c/Everything/Programming/Code/Dialectic/dialectic/node_modules/@supabase/ssr/dist -name *.d.ts -type f)",
+      "Bash(find /c/Everything/Programming/Code/Dialectic/dialectic/node_modules/next/dist/docs -type f -name *.md)",
+      "Bash(find /c/Everything/Programming/Code/Dialectic/dialectic/node_modules/next/dist/docs/01-app/03-api-reference -type f -name *.md)"
+    ]
+  }
+}
