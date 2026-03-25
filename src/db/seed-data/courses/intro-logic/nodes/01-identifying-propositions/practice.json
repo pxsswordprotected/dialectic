@@ -1,112 +1,75 @@
 [
   {
     "type": "multiple_choice",
-    "prompt": "Identify the proposition among these sentences.",
+    "prompt": "Which of these is a proposition?",
     "options": [
-      {
-        "text": "Read the instructions carefully.",
-        "correct": false
-      },
-      {
-        "text": "Did the mail arrive today?",
-        "correct": false
-      },
-      {
-        "text": "The train departs at noon.",
-        "correct": true
-      },
-      {
-        "text": "What a beautiful painting!",
-        "correct": false
-      }
+      { "text": "Finish your homework.", "correct": false },
+      { "text": "The coffee is still hot.", "correct": true },
+      { "text": "How far is the airport?", "correct": false }
     ],
-    "explanation": "A proposition is a declarative sentence with a definite truth value. Commands, questions, and exclamations do not make verifiable claims about reality.",
+    "explanation": "\"The coffee is still hot\" is a declarative sentence with a definite truth value. The other two are a command and a question, neither of which asserts a fact about the world.",
     "difficulty": 1,
     "targets_slide": 2
   },
   {
     "type": "true_false",
     "prompt": "Evaluate this statement.",
-    "statement": "A logically false sentence cannot be classified as a proposition.",
+    "statement": "\"The Amazon River flows through Africa\" is not a proposition because it is false.",
     "answer": false,
-    "explanation": "A sentence merely needs the capacity to be judged true or false. Factually incorrect claims still possess a definite truth value and qualify as propositions.",
+    "explanation": "A false statement is still a proposition. It makes a factual claim that can be evaluated, and its truth value is False. Being incorrect does not disqualify a sentence from being a proposition.",
     "difficulty": 1,
     "targets_slide": 5
   },
   {
-    "type": "classify",
-    "prompt": "Sort each sentence into the correct category.",
-    "categories": ["Proposition", "Not a Proposition"],
-    "items": [
-      {
-        "text": "The capital of Japan is London.",
-        "category": "Proposition"
-      },
-      {
-        "text": "Turn off the oven.",
-        "category": "Not a Proposition"
-      },
-      {
-        "text": "A gold coin is buried under the oak tree.",
-        "category": "Proposition"
-      },
-      {
-        "text": "How many ounces are in a cup?",
-        "category": "Not a Proposition"
-      }
+    "type": "fill_in",
+    "prompt": "Complete the sentence: A proposition is a declarative sentence that is either _____ or _____, but not both.",
+    "acceptable_answers": [
+      "true or false",
+      "True or False",
+      "true/false",
+      "True/False",
+      "T or F"
     ],
-    "explanation": "Propositions are declarative sentences capable of being true or false. False statements and unverified claims still count. Commands and questions assert no verifiable facts.",
+    "explanation": "By definition, a proposition must have exactly one of two possible truth values: true or false. This is what separates propositions from commands, questions, and exclamations.",
     "difficulty": 2,
-    "targets_slide": 3
+    "targets_slide": 2
   },
   {
-    "type": "multiple_choice",
-    "prompt": "Apply the truth value test to the sentence \"Find the nearest exit.\" What is the result?",
-    "options": [
-      {
-        "text": "It is a proposition because it can be true or false.",
-        "correct": false
-      },
-      {
-        "text": "It is a proposition because \"It is true that find the nearest exit\" makes grammatical sense.",
-        "correct": false
-      },
-      {
-        "text": "It is not a proposition because \"It is true that find the nearest exit\" makes no grammatical sense.",
-        "correct": true
-      },
-      {
-        "text": "It is not a proposition because it contains a false claim.",
-        "correct": false
-      }
+    "type": "order",
+    "prompt": "Arrange the steps of the truth value test in the correct order.",
+    "sequence": [
+      "Start with the sentence you want to test.",
+      "Place \"It is true that\" at the beginning of the sentence.",
+      "Check whether the resulting statement is grammatically sensible.",
+      "If it sounds normal, the original sentence is a proposition."
     ],
-    "explanation": "Placing the phrase \"It is true that\" before a command results in a broken, ungrammatical sentence. This confirms the original sentence lacks a definite truth value.",
+    "explanation": "The truth value test works by prepending \"It is true that\" to a sentence. If the result reads as a complete, grammatical statement, the original sentence qualifies as a proposition. If it sounds broken, it does not.",
     "difficulty": 2,
     "targets_slide": 4
   },
   {
     "type": "multiple_choice",
-    "prompt": "Consider the sentence, \"There is an undiscovered planet in our solar system.\" Why does this qualify as a proposition?",
+    "prompt": "Apply the truth value test to \"Wow, what a sunset.\" What happens?",
     "options": [
       {
-        "text": "It asks a question about astronomy.",
+        "text": "\"It is true that wow, what a sunset\" makes grammatical sense, so it is a proposition.",
         "correct": false
       },
       {
-        "text": "It is a scientifically proven fact.",
-        "correct": false
-      },
-      {
-        "text": "It issues a command to search for planets.",
-        "correct": false
-      },
-      {
-        "text": "It makes a declarative claim that is definitely either true or false.",
+        "text": "\"It is true that wow, what a sunset\" sounds broken, so it is not a proposition.",
         "correct": true
+      },
+      {
+        "text": "The test does not apply to sentences about nature.",
+        "correct": false
+      },
+      {
+        "text": "It is a proposition because sunsets are real.",
+        "correct": false
       }
     ],
-    "explanation": "A proposition requires a definite truth value, but it does not require immediate human knowledge of that value. The claim about the planet either matches reality or it does not, making it a valid proposition.",
+    "explanation": "\"Wow, what a sunset\" is an exclamation. Prepending \"It is true that\" produces a broken sentence. Exclamations do not assert facts, so they are not propositions, regardless of the subject matter.",
     "difficulty": 3,
-    "targets_slide": 0
+    "targets_slide": 4
   }
 ]
