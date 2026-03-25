@@ -1,0 +1,459 @@
+[
+  {
+    "node_id": "BASICS_01",
+
+    "title": "Identifying Propositions",
+
+    "description": "Identify valid logical propositions from natural language sentences.",
+
+    "prerequisites": [],
+
+    "assessment_type": "Categorization",
+
+    "example_task": "Select the valid proposition: A) 'Close the door.' B) 'The door is closed.' C) 'Is the door closed?'"
+  },
+
+  {
+    "node_id": "BASICS_02",
+
+    "title": "Understanding Truth Values",
+
+    "description": "Assign the fundamental states of reality (True or False) to isolated atomic propositions.",
+
+    "prerequisites": ["BASICS_01"],
+
+    "assessment_type": "Multiple Choice",
+
+    "example_task": "If proposition P is 'Paris is the capital of France', what is the determinate truth value of P?"
+  },
+
+  {
+    "node_id": "BASICS_03",
+
+    "title": "The Negation Operator",
+
+    "description": "Apply the tilde (~) to a proposition to invert its truth value, recognizing it as a unary operator.",
+
+    "prerequisites": ["BASICS_02"],
+
+    "assessment_type": "Truth Value Assignment",
+
+    "example_task": "If proposition P is True, what is the exact truth value of ~P?"
+  },
+
+  {
+    "node_id": "BASICS_04",
+
+    "title": "The Conjunction Operator",
+
+    "description": "Evaluate the dot/wedge (and) operator, recognizing that a conjunction is only true when both component propositions are definitively true.",
+
+    "prerequisites": ["BASICS_02"],
+
+    "assessment_type": "Truth Value Assignment",
+
+    "example_task": "If P is True and Q is False, what is the truth value of the conjunction (P & Q)?"
+  },
+
+  {
+    "node_id": "BASICS_05",
+
+    "title": "The Disjunction Operator (Inclusive)",
+
+    "description": "Evaluate the wedge (inclusive or) operator, recognizing that a disjunction is true when at least one component proposition is true.",
+
+    "prerequisites": ["BASICS_02"],
+
+    "assessment_type": "Truth Value Assignment",
+
+    "example_task": "If P is False and Q is True, what is the truth value of the inclusive disjunction (P v Q)?"
+  },
+
+  {
+    "node_id": "BASICS_06",
+
+    "title": "The Conditional Operator",
+
+    "description": "Evaluate the horseshoe (if/then) operator, recognizing it is only false in the specific scenario where the antecedent is true and the consequent is false.",
+
+    "prerequisites": ["BASICS_02"],
+
+    "assessment_type": "Truth Value Assignment",
+
+    "example_task": "If P (antecedent) is True and Q (consequent) is False, what is the truth value of (P -> Q)?"
+  },
+
+  {
+    "node_id": "BASICS_07",
+
+    "title": "The Biconditional Operator",
+
+    "description": "Evaluate the triple-bar (if and only if) operator, recognizing it is true only when both propositions share the exact same truth value.",
+
+    "prerequisites": ["BASICS_02"],
+
+    "assessment_type": "Truth Value Assignment",
+
+    "example_task": "If P is False and Q is False, what is the truth value of the biconditional (P <-> Q)?"
+  },
+
+  {
+    "node_id": "BASICS_08",
+
+    "title": "Distinguishing Simple vs. Compound Statements",
+
+    "description": "Identify whether a given logical string contains multiple variables and operators (compound) or just a single atomic variable.",
+
+    "prerequisites": [
+      "BASICS_03",
+
+      "BASICS_04",
+
+      "BASICS_05",
+
+      "BASICS_06",
+
+      "BASICS_07"
+    ],
+
+    "assessment_type": "Categorization",
+
+    "example_task": "Categorize the following logical string as simple or compound: ~(P v Q)"
+  },
+
+  {
+    "node_id": "TRANS_01",
+
+    "title": "Assigning Propositional Variables",
+
+    "description": "Extract the core factual statements from natural English language and assign them capital letters.",
+
+    "prerequisites": ["BASICS_01"],
+
+    "assessment_type": "Formula Translation",
+
+    "example_task": "Assign distinct variables to the sentence: 'The sun is shining, but it is cold.' Answer: S = The sun is shining, C = It is cold."
+  },
+
+  {
+    "node_id": "TRANS_02",
+
+    "title": "Translating Standard Conjunctions and Faux Sens",
+
+    "description": "Map words like 'and', 'but', 'yet', and 'however' to the logical conjunction operator, ignoring English narrative contrast.",
+
+    "prerequisites": ["TRANS_01", "BASICS_04"],
+
+    "assessment_type": "Formula Translation",
+
+    "example_task": "Translate into precise logic: 'Alice went to the store, yet Bob stayed home.' (Let A = Alice went, B = Bob stayed)."
+  },
+
+  {
+    "node_id": "TRANS_03",
+
+    "title": "Translating Standard Disjunctions",
+
+    "description": "Map words like 'or' and 'either/or' to the logical inclusive disjunction operator.",
+
+    "prerequisites": ["TRANS_01", "BASICS_05"],
+
+    "assessment_type": "Formula Translation",
+
+    "example_task": "Translate into logic: 'Either it will rain or it will snow.' (Let R = Rain, S = Snow)."
+  },
+
+  {
+    "node_id": "TRANS_04",
+
+    "title": "Translating Standard Conditionals",
+
+    "description": "Map standard 'if... then' statements to the conditional operator, correctly identifying the antecedent and consequent chronologically.",
+
+    "prerequisites": ["TRANS_01", "BASICS_06"],
+
+    "assessment_type": "Formula Translation",
+
+    "example_task": "Translate into logic: 'If study, then will pass.' (Let S = Study, P = Pass)."
+  },
+
+  {
+    "node_id": "TRANS_05",
+
+    "title": "Identifying the Main Operator via Punctuation",
+
+    "description": "Analyze natural language punctuation (commas, semicolons) to determine which logical operator governs the entire compound sentence.",
+
+    "prerequisites": ["BASICS_08"],
+
+    "assessment_type": "Categorization",
+
+    "example_task": "Identify the main logical operator in the sentence: 'If Alice goes, and Bob goes, then Charlie stays.'"
+  },
+
+  {
+    "node_id": "TRANS_06",
+
+    "title": "Syntactic Bracketing and Grouping",
+
+    "description": "Apply parentheses to logical translations to accurately reflect the hierarchical grouping established by English punctuation.",
+
+    "prerequisites": ["TRANS_05"],
+
+    "assessment_type": "Formula Translation",
+
+    "example_task": "Translate: 'If it rains and it freezes, then the roads are dangerous.' Answer: (R & F) -> D."
+  },
+
+  {
+    "node_id": "TRANS_07",
+
+    "title": "Translating 'Not Both'",
+
+    "description": "Translate the phrase 'not both' into a negated conjunction, ensuring proper parenthesis placement to avoid distributing the negation.",
+
+    "prerequisites": ["TRANS_02", "BASICS_03"],
+
+    "assessment_type": "Formula Translation",
+
+    "example_task": "Translate: 'Cannot have both cake and ice cream.' Answer: ~(C & I)."
+  },
+
+  {
+    "node_id": "TRANS_08",
+
+    "title": "Translating 'Neither/Nor'",
+
+    "description": "Translate 'neither... nor' phrases into a negated disjunction or a conjunction of two independent negations.",
+
+    "prerequisites": ["TRANS_03", "BASICS_03"],
+
+    "assessment_type": "Formula Translation",
+
+    "example_task": "Translate: 'Neither the car nor the truck is working.' Answer: ~(C v T) or (~C & ~T)."
+  },
+
+  {
+    "node_id": "TRANS_09",
+
+    "title": "Translating 'Unless' (Disjunctive Method)",
+
+    "description": "Map the word 'unless' directly to a standard disjunction, replacing the word with the inclusive OR operator.",
+
+    "prerequisites": ["TRANS_03"],
+
+    "assessment_type": "Formula Translation",
+
+    "example_task": "Translate using the disjunctive method: 'The game will be played unless it rains.' Answer: G v R."
+  },
+
+  {
+    "node_id": "TRANS_10",
+
+    "title": "Translating 'Unless' (Conditional Method)",
+
+    "description": "Map the word 'unless' to an 'if not... then' conditional structure for advanced semantic mapping.",
+
+    "prerequisites": ["TRANS_04", "BASICS_03"],
+
+    "assessment_type": "Formula Translation",
+
+    "example_task": "Translate using the conditional method: 'The game will be played unless it rains.' Answer: ~R -> G."
+  },
+
+  {
+    "node_id": "TRANS_11",
+
+    "title": "Translating 'Only If' (Necessary Conditions)",
+
+    "description": "Map 'only if' to a conditional structure, recognizing that the phrase following 'only if' is the necessary condition and must serve as the consequent.",
+
+    "prerequisites": ["TRANS_04"],
+
+    "assessment_type": "Formula Translation",
+
+    "example_task": "Translate: 'Will graduate only if pass the final exam.' Answer: G -> P."
+  },
+
+  {
+    "node_id": "TRANS_12",
+
+    "title": "Translating Exclusive Or",
+
+    "description": "Identify context where 'or' means one or the other, but not both, and translate it into a strict formal syntax combining disjunction and negated conjunction.",
+
+    "prerequisites": ["TRANS_03", "TRANS_02", "BASICS_03"],
+
+    "assessment_type": "Formula Translation",
+
+    "example_task": "Translate the exclusive or: 'With dinner, may have soup or salad.' Answer: (S v L) & ~(S & L)."
+  },
+
+  {
+    "node_id": "TRANS_13",
+
+    "title": "Translating 'Provided That'",
+
+    "description": "Translate the phrase 'provided that' as a conditional (sufficient condition), while identifying contexts where it implies a biconditional.",
+
+    "prerequisites": ["TRANS_04", "BASICS_07"],
+
+    "assessment_type": "Formula Translation",
+
+    "example_task": "Translate into logic: 'May go to the party provided that finish homework.'"
+  },
+
+  {
+    "node_id": "WFF_01",
+
+    "title": "Identifying Well-Formed Formulas (WFFs)",
+
+    "description": "Determine if a string of logical symbols conforms to the strict grammatical syntax rules of propositional logic.",
+
+    "prerequisites": ["BASICS_08", "TRANS_06"],
+
+    "assessment_type": "Categorization",
+
+    "example_task": "Which of the following is a grammatically valid Well-Formed Formula? A) ~(P & Q) B) ~vP C) (P & v Q)"
+  },
+
+  {
+    "node_id": "EVAL_01",
+
+    "title": "Calculating Truth Table Dimensionality",
+
+    "description": "Calculate the necessary number of rows for a truth table by applying the 2^n formula based exclusively on unique propositional variables.",
+
+    "prerequisites": ["WFF_01"],
+
+    "assessment_type": "Multiple Choice",
+
+    "example_task": "How many rows are absolutely required for a truth table evaluating the compound statement (P v Q) -> R?"
+  },
+
+  {
+    "node_id": "EVAL_02",
+
+    "title": "Lexicographic Ordering for Base Variables",
+
+    "description": "Populate the initial columns of a truth table with a systematic, alternating pattern of True and False to ensure no combinations are missed.",
+
+    "prerequisites": ["EVAL_01"],
+
+    "assessment_type": "Truth Table Construction",
+
+    "example_task": "Fill in the correct initial T/F values for variables P, Q, and R in an 8-row truth table using lexicographic ordering."
+  },
+
+  {
+    "node_id": "EVAL_03",
+
+    "title": "Column Construction for Negated Base Variables",
+
+    "description": "Build an intermediary column to invert the truth values of any base propositions that have a direct unary negation applied to them.",
+
+    "prerequisites": ["EVAL_02", "BASICS_03"],
+
+    "assessment_type": "Truth Table Construction",
+
+    "example_task": "Given the base column P (T, T, F, F), correctly populate the adjacent operational column for ~P."
+  },
+
+  {
+    "node_id": "EVAL_04",
+
+    "title": "Evaluating Inner Parentheses",
+
+    "description": "Calculate truth values for the deepest nested expressions first, isolating their values into a dedicated operational column.",
+
+    "prerequisites": ["EVAL_02"],
+
+    "assessment_type": "Truth Table Construction",
+
+    "example_task": "In the formula ~(P & Q) v R, calculate the column specifically for the inner parenthesis (P & Q)."
+  },
+
+  {
+    "node_id": "EVAL_05",
+
+    "title": "Propagating Values to Outer Parentheses",
+
+    "description": "Use the algorithmic results of inner parentheses columns to evaluate the next hierarchical level of syntax outward.",
+
+    "prerequisites": ["EVAL_04"],
+
+    "assessment_type": "Truth Table Construction",
+
+    "example_task": "Using the pre-calculated column for (P & Q), now calculate the values for the negated column ~(P & Q)."
+  },
+
+  {
+    "node_id": "EVAL_06",
+
+    "title": "Evaluating the Main Operator",
+
+    "description": "Calculate the final column of the truth table representing the main logical connective, which governs the truth condition of the entire sentence.",
+
+    "prerequisites": ["EVAL_05"],
+
+    "assessment_type": "Truth Table Construction",
+
+    "example_task": "Using the column for ~(P & Q) and the base column for R, calculate the final column for ~(P & Q) v R."
+  },
+
+  {
+    "node_id": "EVAL_07",
+
+    "title": "Identifying Tautologies",
+
+    "description": "Analyze the main operator column to determine if the logical statement is definitively true under every possible condition.",
+
+    "prerequisites": ["EVAL_06"],
+
+    "assessment_type": "Categorization",
+
+    "example_task": "If the main operator column reads (T, T, T, T), mathematically classify the statement type."
+  },
+
+  {
+    "node_id": "EVAL_08",
+
+    "title": "Identifying Contradictions",
+
+    "description": "Analyze the main operator column to determine if the logical statement is inherently false under every possible condition.",
+
+    "prerequisites": ["EVAL_06"],
+
+    "assessment_type": "Categorization",
+
+    "example_task": "If the main operator column reads (F, F, F, F), mathematically classify the statement type."
+  },
+
+  {
+    "node_id": "EVAL_09",
+
+    "title": "Identifying Contingencies",
+
+    "description": "Analyze the main operator column to determine if the statement's truth value depends entirely on the state of reality (a mix of T and F).",
+
+    "prerequisites": ["EVAL_06"],
+
+    "assessment_type": "Categorization",
+
+    "example_task": "If the main operator column reads (T, F, T, T), mathematically classify the statement type."
+  },
+
+  {
+    "node_id": "EVAL_10",
+
+    "title": "Determining Logical Equivalence",
+
+    "description": "Compare the final main operator columns of two distinct truth tables to ascertain if they possess identical truth conditions.",
+
+    "prerequisites": ["EVAL_06"],
+
+    "assessment_type": "Categorization",
+
+    "example_task": "Do the mathematical expressions ~(P v Q) and (~P & ~Q) yield identical final columns in a truth table?"
+  }
+]

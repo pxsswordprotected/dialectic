@@ -1,0 +1,80 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "What is the truth value of \"The Atlantic Ocean is the largest ocean on Earth\"?",
+    "options": [
+      { "text": "T", "correct": false },
+      { "text": "F", "correct": true },
+      {
+        "text": "It has no truth value because it is debatable.",
+        "correct": false
+      }
+    ],
+    "explanation": "The Pacific Ocean is the largest ocean, so this proposition is false. A false claim is still a proposition with a definite truth value: F.",
+    "difficulty": 1,
+    "targets_slide": 2
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "What does bivalence mean in propositional logic?",
+    "options": [
+      {
+        "text": "A proposition can be true, false, or unknown.",
+        "correct": false
+      },
+      {
+        "text": "A proposition has exactly one of two possible truth values: True or False.",
+        "correct": true
+      },
+      {
+        "text": "A proposition must be verified before it receives a truth value.",
+        "correct": false
+      },
+      {
+        "text": "Two propositions can share the same truth value.",
+        "correct": false
+      }
+    ],
+    "explanation": "Bivalence is the constraint that every proposition occupies exactly one of two truth values, T or F. There is no third option, and a proposition cannot be both at once.",
+    "difficulty": 1,
+    "targets_slide": 3
+  },
+  {
+    "type": "fill_in",
+    "prompt": "Using the shorthand notation from this course, what is the truth value of \"Mars is closer to the Sun than Earth is\"?",
+    "acceptable_answers": ["F", "f", "False", "false"],
+    "explanation": "Earth is closer to the Sun than Mars. The proposition is false, so its truth value in shorthand is F.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "If you do not know whether a proposition is true or false, then it has no truth value.",
+    "answer": false,
+    "explanation": "A proposition's truth value does not depend on whether anyone knows it. Personal uncertainty is separate from the proposition's actual state. It still has exactly one truth value, T or F.",
+    "difficulty": 2,
+    "targets_slide": 5
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "\"There are more grains of sand on Earth than stars in the observable universe.\" What can you say about this sentence's truth value?",
+    "options": [
+      {
+        "text": "It has no truth value because the exact numbers are unknown.",
+        "correct": false
+      },
+      {
+        "text": "It is both true and false because scientists disagree.",
+        "correct": false
+      },
+      {
+        "text": "It has exactly one truth value, T or F, even if you cannot determine which.",
+        "correct": true
+      }
+    ],
+    "explanation": "Bivalence applies regardless of practical difficulty. The sentence makes a factual claim, so it is a proposition with exactly one truth value. Not knowing the answer does not remove the truth value.",
+    "difficulty": 3,
+    "targets_slide": 3
+  }
+]

@@ -1,0 +1,99 @@
+[
+  {
+    "type": "concept",
+    "heading": "Statements About Reality",
+    "body": "Consider the sentence, \"The window is open.\" This statement describes a physical fact. A person can observe the window and confirm if the statement matches reality. Now consider the sentence, \"Open the window.\" This states a command rather than a fact. It cannot match or fail to match reality. Logic relies entirely on sentences that make verifiable claims about the world. Commands and questions assert nothing.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Evaluating Sentences",
+    "body": "Review these three sentences. Only one makes a specific claim capable of being evaluated as true or false.",
+    "examples": [
+      {
+        "text": "The bicycle has two wheels.",
+        "valid": true
+      },
+      {
+        "text": "Ride the bicycle.",
+        "valid": false
+      },
+      {
+        "text": "Whose bicycle is this?",
+        "valid": false
+      }
+    ],
+    "note": "The command and the question present no facts to evaluate."
+  },
+  {
+    "type": "concept",
+    "heading": "Defining the Core Unit",
+    "body": "A **proposition** is a declarative sentence that is either true or false, but not both. This represents the basic building block of formal logic. Every logical argument requires propositions to function. Recognizing them quickly is an essential skill. Sentences must present a definite truth value to operate within a logical system.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Applying the Definition",
+    "body": "Apply the definition of a proposition to these everyday sentences. A sentence simply needs a verifiable truth value to qualify.",
+    "examples": [
+      {
+        "text": "Water freezes at zero degrees Celsius.",
+        "valid": true
+      },
+      {
+        "text": "A triangle has four sides.",
+        "valid": true
+      },
+      {
+        "text": "Where is the nearest store?",
+        "valid": false
+      },
+      {
+        "text": "Pass the salt.",
+        "valid": false
+      }
+    ],
+    "note": "\"A triangle has four sides\" represents a false statement, but it perfectly qualifies as a proposition."
+  },
+  {
+    "type": "rule",
+    "heading": "The Truth Value Test",
+    "body": "Use the truth value test to check uncertain sentences. Place the phrase \"It is true that\" at the very beginning of the sentence. If the resulting statement makes complete grammatical sense, the original sentence qualifies as a proposition. \"It is true that the door is closed\" sounds normal. \"It is true that close the door\" sounds broken.",
+    "examples": [
+      {
+        "text": "It is true that the bicycle has two wheels.",
+        "valid": true
+      },
+      {
+        "text": "It is true that ride the bicycle.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "False Statements Count",
+    "body": "Beginners frequently mistake false statements for non-propositions. Factually incorrect claims still qualify perfectly as propositions. \"The moon is made of green cheese\" evaluates to false. It remains a proposition because it possesses a definite truth value. A proposition merely requires the capacity to be judged true or false.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "summary",
+    "heading": "Key Takeaway",
+    "body": "A proposition is any declarative sentence possessing a definite truth value of either true or false. Commands, questions, and exclamations assert nothing and do not qualify.",
+    "examples": [
+      {
+        "text": "The lamp is switched on.",
+        "valid": true
+      },
+      {
+        "text": "Turn on the lamp.",
+        "valid": false
+      }
+    ],
+    "note": null
+  }
+]

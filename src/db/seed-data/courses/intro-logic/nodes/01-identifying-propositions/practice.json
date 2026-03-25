@@ -1,0 +1,112 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Identify the proposition among these sentences.",
+    "options": [
+      {
+        "text": "Read the instructions carefully.",
+        "correct": false
+      },
+      {
+        "text": "Did the mail arrive today?",
+        "correct": false
+      },
+      {
+        "text": "The train departs at noon.",
+        "correct": true
+      },
+      {
+        "text": "What a beautiful painting!",
+        "correct": false
+      }
+    ],
+    "explanation": "A proposition is a declarative sentence with a definite truth value. Commands, questions, and exclamations do not make verifiable claims about reality.",
+    "difficulty": 1,
+    "targets_slide": 2
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "A logically false sentence cannot be classified as a proposition.",
+    "answer": false,
+    "explanation": "A sentence merely needs the capacity to be judged true or false. Factually incorrect claims still possess a definite truth value and qualify as propositions.",
+    "difficulty": 1,
+    "targets_slide": 5
+  },
+  {
+    "type": "classify",
+    "prompt": "Sort each sentence into the correct category.",
+    "categories": ["Proposition", "Not a Proposition"],
+    "items": [
+      {
+        "text": "The capital of Japan is London.",
+        "category": "Proposition"
+      },
+      {
+        "text": "Turn off the oven.",
+        "category": "Not a Proposition"
+      },
+      {
+        "text": "A gold coin is buried under the oak tree.",
+        "category": "Proposition"
+      },
+      {
+        "text": "How many ounces are in a cup?",
+        "category": "Not a Proposition"
+      }
+    ],
+    "explanation": "Propositions are declarative sentences capable of being true or false. False statements and unverified claims still count. Commands and questions assert no verifiable facts.",
+    "difficulty": 2,
+    "targets_slide": 3
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Apply the truth value test to the sentence \"Find the nearest exit.\" What is the result?",
+    "options": [
+      {
+        "text": "It is a proposition because it can be true or false.",
+        "correct": false
+      },
+      {
+        "text": "It is a proposition because \"It is true that find the nearest exit\" makes grammatical sense.",
+        "correct": false
+      },
+      {
+        "text": "It is not a proposition because \"It is true that find the nearest exit\" makes no grammatical sense.",
+        "correct": true
+      },
+      {
+        "text": "It is not a proposition because it contains a false claim.",
+        "correct": false
+      }
+    ],
+    "explanation": "Placing the phrase \"It is true that\" before a command results in a broken, ungrammatical sentence. This confirms the original sentence lacks a definite truth value.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Consider the sentence, \"There is an undiscovered planet in our solar system.\" Why does this qualify as a proposition?",
+    "options": [
+      {
+        "text": "It asks a question about astronomy.",
+        "correct": false
+      },
+      {
+        "text": "It is a scientifically proven fact.",
+        "correct": false
+      },
+      {
+        "text": "It issues a command to search for planets.",
+        "correct": false
+      },
+      {
+        "text": "It makes a declarative claim that is definitely either true or false.",
+        "correct": true
+      }
+    ],
+    "explanation": "A proposition requires a definite truth value, but it does not require immediate human knowledge of that value. The claim about the planet either matches reality or it does not, making it a valid proposition.",
+    "difficulty": 3,
+    "targets_slide": 0
+  }
+]

@@ -1,0 +1,59 @@
+[
+  {
+    "type": "concept",
+    "heading": "Every Proposition Has a State",
+    "body": "A proposition, as defined in Identifying Propositions, is a declarative sentence that is either true or false. That \"either true or false\" part is not just a description. It points to a specific property every proposition carries. Each proposition exists in exactly one of two states: true or false. No third option exists.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "What a Truth Value Is",
+    "body": "The state assigned to a proposition is called its **truth value**. A truth value is simply the label \"True\" or \"False\" attached to a proposition based on whether its claim matches reality. Every proposition has exactly one truth value at any given time.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Assigning Truth Values",
+    "body": "Determine the truth value of each proposition by checking it against reality.",
+    "examples": [
+      { "text": "Paris is the capital of France. → True", "valid": true },
+      { "text": "The Earth has three moons. → False", "valid": true },
+      { "text": "Water boils at 100°C at sea level. → True", "valid": true },
+      { "text": "Tokyo is in Europe. → False", "valid": true }
+    ],
+    "note": "All four are propositions. The ones labeled False are not disqualified. They are propositions whose truth value happens to be False."
+  },
+  {
+    "type": "rule",
+    "heading": "Exactly One, Not Both",
+    "body": "A proposition cannot be both true and false at the same time. It also cannot be neither. In propositional logic, every proposition occupies exactly one of the two truth values. This constraint is called **bivalence**: there are two and only two possible truth values.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "Shorthand Notation",
+    "body": "Logic uses the capital letters **T** and **F** as shorthand for True and False. Some textbooks use 1 for True and 0 for False. All three notations mean the same thing. This course uses T and F.",
+    "examples": [
+      { "text": "\"Snow is white\" has truth value T", "valid": true },
+      { "text": "\"Fish are mammals\" has truth value F", "valid": true }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Opinion Is Not a Truth Value",
+    "body": "Beginners sometimes hesitate to assign a truth value to a sentence they are unsure about. In propositional logic, uncertainty about a proposition does not mean it lacks a truth value. \"There are more than 10,000 stars visible from Earth with the naked eye\" is either true or false, whether or not you know which. Personal uncertainty is not the same as having no truth value.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "summary",
+    "heading": "Key Takeaway",
+    "body": "Every proposition has exactly one truth value: True (T) or False (F). There is no third option, and a proposition's truth value does not depend on whether you happen to know it.",
+    "examples": null,
+    "note": null
+  }
+]
