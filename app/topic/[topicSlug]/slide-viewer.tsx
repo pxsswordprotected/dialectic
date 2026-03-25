@@ -35,7 +35,9 @@ export function SlideViewer({
   slides: Slide[];
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [phase, setPhase] = useState<"lesson" | "transition">("lesson");
   const slide = slides[currentIndex];
+  const isLastSlide = currentIndex === slides.length - 1;
 
   if (slides.length === 0) {
     return (
@@ -48,6 +50,45 @@ export function SlideViewer({
         </Link>
         <h1 className="text-2xl font-semibold">{topic.title}</h1>
         <p className="text-zinc-500">No slides available for this topic.</p>
+      </div>
+    );
+  }
+
+  if (phase === "transition") {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <Link
+            href="/dashboard"
+            className="text-sm text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
+          >
+            &larr; Back to dashboard
+          </Link>
+        </div>
+
+        <h1 className="text-lg font-semibold text-zinc-500">{topic.title}</h1>
+
+        <div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800 flex flex-col items-center justify-center space-y-4 py-16">
+          <p className="text-xl font-semibold">Lesson Complete</p>
+          <p className="text-sm text-zinc-500">
+            Ready to test what you learned?
+          </p>
+        </div>
+
+        <div className="flex items-center justify-between">
+          <button
+            onClick={() => setPhase("lesson")}
+            className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/50"
+          >
+            Back
+          </button>
+          <button
+            disabled
+            className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            Start Practice
+          </button>
+        </div>
       </div>
     );
   }
@@ -87,10 +128,7 @@ export function SlideViewer({
         {content?.examples && content.examples.length > 0 && (
           <ul className="space-y-2 mt-4">
             {content.examples.map((ex, i) => (
-              <li
-                key={i}
-                className="flex items-start gap-2 text-sm"
-              >
+              <li key={i} className="flex items-start gap-2 text-sm">
                 <span
                   className={`mt-0.5 h-2 w-2 shrink-0 rounded-full ${
                     ex.valid ? "bg-green-500" : "bg-red-400"
@@ -119,11 +157,16 @@ export function SlideViewer({
           Back
         </button>
         <button
-          onClick={() => setCurrentIndex((i) => i + 1)}
-          disabled={currentIndex === slides.length - 1}
-          className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium disabled:opacity-30 disabled:cursor-not-allowed hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/50"
+          onClick={() => {
+            if (isLastSlide) {
+              setPhase("transition");
+            } else {
+              setCurrentIndex((i) => i + 1);
+            }
+          }}
+          className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/50"
         >
-          Next
+          {isLastSlide ? "Continue" : "Next"}
         </button>
       </div>
     </div>
