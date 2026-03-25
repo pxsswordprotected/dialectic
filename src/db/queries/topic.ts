@@ -1,6 +1,6 @@
 import { eq, and, asc } from "drizzle-orm";
 import { db } from "@/db";
-import { topics, courses, slides } from "@/db/schema";
+import { topics, courses, slides, practiceQuestions } from "@/db/schema";
 
 export async function getTopicWithSlides(topicSlug: string) {
   const topic = await db
@@ -32,5 +32,19 @@ export async function getTopicWithSlides(topicSlug: string) {
     .where(eq(slides.topicId, topic.id))
     .orderBy(asc(slides.sortOrder));
 
-  return { topic, slides: topicSlides };
+  const questions = await db
+    .select({
+      id: practiceQuestions.id,
+      sortOrder: practiceQuestions.sortOrder,
+      questionType: practiceQuestions.questionType,
+      prompt: practiceQuestions.prompt,
+      questionData: practiceQuestions.questionData,
+      explanation: practiceQuestions.explanation,
+      difficulty: practiceQuestions.difficulty,
+    })
+    .from(practiceQuestions)
+    .where(eq(practiceQuestions.topicId, topic.id))
+    .orderBy(asc(practiceQuestions.sortOrder));
+
+  return { topic, slides: topicSlides, questions };
 }

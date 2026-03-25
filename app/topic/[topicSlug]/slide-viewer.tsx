@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import { PracticeViewer } from "./practice-viewer";
 
 type SlideContent = {
   body: string;
@@ -27,15 +28,29 @@ type Topic = {
   sortOrder: number;
 };
 
+type Question = {
+  id: string;
+  sortOrder: number;
+  questionType: string;
+  prompt: string;
+  questionData: unknown;
+  explanation: string | null;
+  difficulty: number;
+};
+
 export function SlideViewer({
   topic,
   slides,
+  questions,
 }: {
   topic: Topic;
   slides: Slide[];
+  questions: Question[];
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [phase, setPhase] = useState<"lesson" | "transition">("lesson");
+  const [phase, setPhase] = useState<"lesson" | "transition" | "practice">(
+    "lesson",
+  );
   const slide = slides[currentIndex];
   const isLastSlide = currentIndex === slides.length - 1;
 
@@ -51,6 +66,20 @@ export function SlideViewer({
         <h1 className="text-2xl font-semibold">{topic.title}</h1>
         <p className="text-zinc-500">No slides available for this topic.</p>
       </div>
+    );
+  }
+
+  if (phase === "practice") {
+    return (
+      <PracticeViewer
+        questions={questions}
+        topicId={topic.id}
+        topicTitle={topic.title}
+        onReviewLesson={() => {
+          setPhase("lesson");
+          setCurrentIndex(0);
+        }}
+      />
     );
   }
 
@@ -83,8 +112,8 @@ export function SlideViewer({
             Back
           </button>
           <button
-            disabled
-            className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium disabled:opacity-30 disabled:cursor-not-allowed"
+            onClick={() => setPhase("practice")}
+            className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/50"
           >
             Start Practice
           </button>

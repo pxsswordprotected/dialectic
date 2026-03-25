@@ -26,7 +26,7 @@ export default async function TopicPage({
 
   return (
     <div className="mx-auto w-full max-w-3xl px-4 py-8">
-      <SlideViewer topic={data.topic} slides={data.slides} />
+      <SlideViewer topic={data.topic} slides={data.slides} questions={data.questions} />
     </div>
   );
 }

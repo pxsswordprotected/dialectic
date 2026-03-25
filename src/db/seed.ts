@@ -114,7 +114,7 @@ async function seed() {
           description: node.description,
           slug: topicSlug,
           sortOrder: i,
-          totalXp: 100,
+          totalXp: 25,
         })
         .returning();
 

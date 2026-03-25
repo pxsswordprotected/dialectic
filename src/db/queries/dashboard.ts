@@ -1,4 +1,4 @@
-import { eq, sum, sql } from "drizzle-orm";
+import { eq, sum, sql, count, lte, and } from "drizzle-orm";
 import { db } from "@/db";
 import {
   profiles,
@@ -7,6 +7,7 @@ import {
   topicPrerequisites,
   userProgress,
   xpLog,
+  reviewSchedule,
 } from "@/db/schema";
 
 // ── Ensure profile exists for new users ─────────────────────────────────────
@@ -21,7 +22,7 @@ export async function ensureProfile(userId: string) {
 // ── Dashboard data fetching ─────────────────────────────────────────────────
 
 export async function getDashboardData(userId: string) {
-  const [course, allTopics, prerequisites, progressRows, xpResult, profile] =
+  const [course, allTopics, prerequisites, progressRows, xpResult, profile, dueReviewResult] =
     await Promise.all([
       // Course
       db.query.courses.findFirst({
@@ -63,6 +64,17 @@ export async function getDashboardData(userId: string) {
       db.query.profiles.findFirst({
         where: eq(profiles.id, userId),
       }),
+
+      // Due reviews
+      db
+        .select({ total: count() })
+        .from(reviewSchedule)
+        .where(
+          and(
+            eq(reviewSchedule.userId, userId),
+            lte(reviewSchedule.nextReviewAt, new Date()),
+          ),
+        ),
     ]);
 
   return {
@@ -72,6 +84,7 @@ export async function getDashboardData(userId: string) {
     progressRows,
     totalXp: Number(xpResult[0]?.total ?? 0),
     profile: profile ?? null,
+    dueReviewCount: Number(dueReviewResult[0]?.total ?? 0),
   };
 }
 
