@@ -94,6 +94,7 @@ type TopicRow = {
   id: string;
   title: string;
   description: string | null;
+  slug: string;
   sortOrder: number;
 };
 

@@ -92,6 +92,26 @@ export default async function DashboardPage() {
         </div>
       </div>
 
+      {/* Review banner */}
+      {data.dueReviewCount > 0 && (
+        <div className="rounded-md border border-zinc-200 p-5 dark:border-zinc-800 flex items-center justify-between">
+          <div>
+            <p className="text-sm font-medium">
+              {data.dueReviewCount} topic{data.dueReviewCount === 1 ? "" : "s"} due for review
+            </p>
+            <p className="text-xs text-zinc-500 mt-0.5">
+              Spaced repetition keeps knowledge fresh
+            </p>
+          </div>
+          <Link
+            href="/review"
+            className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/50"
+          >
+            Start Review
+          </Link>
+        </div>
+      )}
+
       {/* Continue learning */}
       {continueTopic && (
         <div className="rounded-md border border-zinc-200 p-5 dark:border-zinc-800">
