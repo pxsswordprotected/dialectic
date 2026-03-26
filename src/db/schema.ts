@@ -125,9 +125,10 @@ export const profiles = pgTable("profiles", {
   id: uuid("id").primaryKey(), // matches auth.users.id — NO defaultRandom
   displayName: varchar("display_name", { length: 255 }),
   avatarUrl: text("avatar_url"),
-  dailyXpGoal: integer("daily_xp_goal").default(30).notNull(),
+  dailyXpGoal: integer("daily_xp_goal").default(100).notNull(),
   currentStreak: integer("current_streak").default(0).notNull(),
   lastActiveDate: date("last_active_date"),
+  timezone: varchar("timezone", { length: 64 }).default("America/Chicago").notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });

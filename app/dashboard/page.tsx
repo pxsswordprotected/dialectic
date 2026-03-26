@@ -6,6 +6,8 @@ import {
   getDashboardData,
   computeTopicStatuses,
 } from "@/db/queries/dashboard";
+import { getStreakDisplayData } from "@/db/queries/streak";
+import { StreakDisplay } from "@/components/streak-display";
 
 const statusConfig = {
   completed: {
@@ -41,7 +43,10 @@ export default async function DashboardPage() {
   }
 
   await ensureProfile(user.id);
-  const data = await getDashboardData(user.id);
+  const [data, streakData] = await Promise.all([
+    getDashboardData(user.id),
+    getStreakDisplayData(user.id),
+  ]);
 
   if (!data.course) {
     return (
@@ -60,6 +65,12 @@ export default async function DashboardPage() {
 
   return (
     <div className="mx-auto w-full max-w-3xl px-4 py-8 space-y-8">
+      <StreakDisplay
+        currentStreak={streakData.currentStreak}
+        dailyXpEarned={streakData.dailyXpEarned}
+        dailyXpGoal={streakData.dailyXpGoal}
+      />
+
       {/* Header */}
       <div className="flex items-baseline justify-between">
         <h1 className="text-2xl font-semibold tracking-tight">

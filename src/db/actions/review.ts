@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { eq, and } from "drizzle-orm";
 import { db } from "@/db";
 import { reviewSchedule, xpLog } from "@/db/schema";
+import { updateStreakOnXpEarned } from "./streak";
 
 const XP_PER_CORRECT = 5;
 
@@ -75,5 +76,7 @@ export async function completeReviewSession(topicResults: TopicResult[]) {
         xpAmount: result.correctCount * XP_PER_CORRECT,
       });
     }
+
+    await updateStreakOnXpEarned(tx, user.id);
   });
 }
