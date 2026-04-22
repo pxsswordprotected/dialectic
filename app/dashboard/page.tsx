@@ -7,6 +7,7 @@ import {
   computeTopicStatuses,
 } from "@/db/queries/dashboard";
 import { getStreakDisplayData } from "@/db/queries/streak";
+import { Navbar } from "@/components/navbar";
 import { StreakDisplay } from "@/components/streak-display";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowLeft } from "@phosphor-icons/react/dist/ssr";
@@ -66,7 +67,16 @@ export default async function DashboardPage() {
   const totalTopics = topicsWithStatus.length;
 
   return (
-    <div className="mx-auto w-full max-w-3xl px-4 py-8 space-y-8">
+    <>
+      <div className="fixed inset-x-0 top-0 z-50 bg-neutral-50">
+        <Navbar
+          activeTab="learn"
+          xp={data.totalXp}
+          starsEarned={completedCount}
+          starsTotal={totalTopics}
+        />
+      </div>
+      <div className="mx-auto w-full max-w-3xl space-y-8 px-4 pt-[80px] pb-8">
       <StreakDisplay
         currentStreak={streakData.currentStreak}
         dailyXpEarned={streakData.dailyXpEarned}
@@ -192,6 +202,7 @@ export default async function DashboardPage() {
           })}
         </ol>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
