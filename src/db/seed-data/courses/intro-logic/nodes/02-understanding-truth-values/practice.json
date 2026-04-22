@@ -41,8 +41,10 @@
   },
   {
     "type": "fill_in",
-    "prompt": "Using the shorthand notation from this course, what is the truth value of \"Mars is closer to the Sun than Earth is\"?",
-    "acceptable_answers": ["F", "f", "False", "false"],
+    "prompt": "Using the shorthand notation from this course, the truth value of \"Mars is closer to the Sun than Earth is\" is ___.",
+    "blanks": [
+      { "acceptable_answers": ["F", "f", "False", "false"] }
+    ],
     "explanation": "Earth is closer to the Sun than Mars. The proposition is false, so its truth value in shorthand is F.",
     "difficulty": 2,
     "targets_slide": 4

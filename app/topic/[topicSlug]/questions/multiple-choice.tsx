@@ -1,56 +1,80 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 type Option = { text: string; correct: boolean };
 
 export function MultipleChoice({
-  prompt,
   options,
   onAnswer,
   answered,
 }: {
-  prompt: string;
   options: Option[];
   onAnswer: (correct: boolean) => void;
   answered: boolean;
 }) {
   const [selected, setSelected] = useState<number | null>(null);
 
-  function handleSelect(index: number) {
-    if (answered) return;
-    setSelected(index);
-    onAnswer(options[index].correct);
+  function handleCheck() {
+    if (answered || selected === null) return;
+    onAnswer(options[selected].correct);
   }
 
   return (
-    <div className="space-y-4">
-      <p className="text-sm font-medium">{prompt}</p>
-      <div className="space-y-2">
+    <div className="flex flex-col gap-16">
+      <ul className="flex flex-col gap-12">
         {options.map((opt, i) => {
-          let style = "border-zinc-200 dark:border-zinc-800";
-          if (answered && selected === i) {
-            style = opt.correct
-              ? "border-green-500 bg-green-50 dark:bg-green-950/30"
-              : "border-red-500 bg-red-50 dark:bg-red-950/30";
+          const isSelected = selected === i;
+          let highlight = "";
+          if (answered && isSelected) {
+            highlight = opt.correct ? "highlight-true" : "highlight-false";
           } else if (answered && opt.correct) {
-            style = "border-green-500";
+            highlight = "highlight-true";
           }
 
           return (
-            <button
-              key={i}
-              onClick={() => handleSelect(i)}
-              disabled={answered}
-              className={`w-full text-left rounded-md border px-4 py-3 text-sm transition-colors ${style} ${
-                !answered ? "hover:bg-zinc-50 dark:hover:bg-zinc-800/50 cursor-pointer" : ""
-              }`}
-            >
-              {opt.text}
-            </button>
+            <li key={i}>
+              <button
+                type="button"
+                role="radio"
+                aria-checked={isSelected}
+                onClick={() => !answered && setSelected(i)}
+                disabled={answered}
+                className={`group flex w-full items-center gap-12 text-left text-base leading-[1.4] text-neutral-800 ${
+                  answered ? "cursor-default" : "cursor-pointer"
+                }`}
+              >
+                <span
+                  aria-hidden
+                  className={`flex size-[18px] shrink-0 items-center justify-center rounded-full border border-solid transition-colors ${
+                    isSelected
+                      ? "border-primary-400"
+                      : answered
+                        ? "border-neutral-400"
+                        : "border-neutral-400 group-hover:border-neutral-800"
+                  }`}
+                >
+                  {isSelected && (
+                    <span className="size-[10px] rounded-full bg-primary-400" />
+                  )}
+                </span>
+                <span className={highlight}>{opt.text}</span>
+              </button>
+            </li>
           );
         })}
-      </div>
+      </ul>
+      {!answered && (
+        <Button
+          variant="secondary"
+          onClick={handleCheck}
+          disabled={selected === null}
+          className="self-start"
+        >
+          Check Answer
+        </Button>
+      )}
     </div>
   );
 }

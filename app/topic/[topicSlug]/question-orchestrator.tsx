@@ -118,7 +118,9 @@ export function QuestionOrchestrator({
           <FillIn
             key={question.id}
             prompt={question.prompt}
-            acceptableAnswers={data.acceptable_answers as string[]}
+            blanks={
+              data.blanks as Array<{ acceptable_answers: string[] }>
+            }
             onAnswer={handleAnswer}
             answered={answered}
           />

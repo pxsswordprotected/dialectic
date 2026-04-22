@@ -22,13 +22,10 @@
   },
   {
     "type": "fill_in",
-    "prompt": "Complete the sentence: A proposition is a declarative sentence that is either _____ or _____, but not both.",
-    "acceptable_answers": [
-      "true or false",
-      "True or False",
-      "true/false",
-      "True/False",
-      "T or F"
+    "prompt": "Complete the sentence: A proposition is a declarative sentence that is either ___ or ___, but not both.",
+    "blanks": [
+      { "acceptable_answers": ["true", "True"] },
+      { "acceptable_answers": ["false", "False"] }
     ],
     "explanation": "By definition, a proposition must have exactly one of two possible truth values: true or false. This is what separates propositions from commands, questions, and exclamations.",
     "difficulty": 2,

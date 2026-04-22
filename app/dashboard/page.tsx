@@ -8,6 +8,8 @@ import {
 } from "@/db/queries/dashboard";
 import { getStreakDisplayData } from "@/db/queries/streak";
 import { StreakDisplay } from "@/components/streak-display";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, ArrowLeft } from "@phosphor-icons/react/dist/ssr";
 
 const statusConfig = {
   completed: {
@@ -103,12 +105,30 @@ export default async function DashboardPage() {
         </div>
       </div>
 
+      <Button>Start</Button>
+      <Button>Save changes</Button>
+
+      <Button variant="secondary">Check answer</Button>
+      <Button
+        variant="secondary"
+        iconRight={<ArrowRight size={20} weight="bold" />}
+      >
+        Next question
+      </Button>
+      <Button
+        variant="secondary"
+        iconLeft={<ArrowLeft size={20} weight="bold" />}
+      >
+        Review lesson
+      </Button>
+      
       {/* Review banner */}
       {data.dueReviewCount > 0 && (
         <div className="rounded-md border border-zinc-200 p-5 dark:border-zinc-800 flex items-center justify-between">
           <div>
             <p className="text-sm font-medium">
-              {data.dueReviewCount} topic{data.dueReviewCount === 1 ? "" : "s"} due for review
+              {data.dueReviewCount} topic{data.dueReviewCount === 1 ? "" : "s"}{" "}
+              due for review
             </p>
             <p className="text-xs text-zinc-500 mt-0.5">
               Spaced repetition keeps knowledge fresh

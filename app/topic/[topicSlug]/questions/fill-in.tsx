@@ -1,65 +1,106 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
+import { Button } from "@/components/ui/button";
+
+type Blank = { acceptable_answers: string[] };
+
+function isCorrect(value: string, blank: Blank) {
+  const v = value.trim().toLowerCase();
+  return blank.acceptable_answers.some(
+    (a) => a.trim().toLowerCase() === v,
+  );
+}
 
 export function FillIn({
   prompt,
-  acceptableAnswers,
+  blanks,
   onAnswer,
   answered,
 }: {
   prompt: string;
-  acceptableAnswers: string[];
+  blanks: Blank[];
   onAnswer: (correct: boolean) => void;
   answered: boolean;
 }) {
-  const [value, setValue] = useState("");
-  const [correct, setCorrect] = useState(false);
+  const segments = prompt.split(/_{3,}/g);
+  const [values, setValues] = useState<string[]>(() =>
+    Array.from({ length: blanks.length }, () => ""),
+  );
 
-  function handleSubmit() {
-    if (answered || !value.trim()) return;
-    const isCorrect = acceptableAnswers.some(
-      (a) => a.trim().toLowerCase() === value.trim().toLowerCase(),
-    );
-    setCorrect(isCorrect);
-    onAnswer(isCorrect);
+  const allFilled = values.every((v) => v.trim().length > 0);
+  const perBlankCorrect = values.map((v, i) => isCorrect(v, blanks[i]));
+
+  function handleCheck() {
+    if (answered || !allFilled) return;
+    onAnswer(perBlankCorrect.every(Boolean));
+  }
+
+  function updateValue(i: number, next: string) {
+    setValues((prev) => prev.map((v, idx) => (idx === i ? next : v)));
   }
 
   return (
-    <div className="space-y-4">
-      <p className="text-sm font-medium">{prompt}</p>
-      <div className="flex gap-2">
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") handleSubmit();
-          }}
-          disabled={answered}
-          placeholder="Type your answer..."
-          className={`flex-1 rounded-md border px-4 py-2 text-sm outline-none ${
-            answered
-              ? correct
-                ? "border-green-500 bg-green-50 dark:bg-green-950/30"
-                : "border-red-500 bg-red-50 dark:bg-red-950/30"
-              : "border-zinc-200 dark:border-zinc-800 focus:border-zinc-400"
-          }`}
-        />
-        {!answered && (
-          <button
-            onClick={handleSubmit}
-            disabled={!value.trim()}
-            className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium disabled:opacity-30 disabled:cursor-not-allowed hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/50"
-          >
-            Submit
-          </button>
+    <div className="flex flex-col gap-16">
+      <p className="text-base leading-[1.4] text-neutral-800">
+        {segments.map((seg, i) => {
+          const blank = blanks[i];
+          const value = values[i] ?? "";
+          const first = blank?.acceptable_answers[0] ?? "";
+          const size = Math.max(first.length, value.length, 4);
+          return (
+            <Fragment key={i}>
+              {seg}
+              {i < blanks.length && (
+                answered ? (
+                  <span
+                    className={
+                      perBlankCorrect[i] ? "highlight-true" : "highlight-false"
+                    }
+                  >
+                    {value}
+                  </span>
+                ) : (
+                  <input
+                    type="text"
+                    value={value}
+                    onChange={(e) => updateValue(i, e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") handleCheck();
+                    }}
+                    size={size}
+                    aria-label={`Blank ${i + 1}`}
+                    className="mx-2 inline-block border-0 border-b border-solid border-neutral-400 bg-transparent px-4 font-[inherit] text-neutral-800 outline-none focus:border-primary-400"
+                  />
+                )
+              )}
+            </Fragment>
+          );
+        })}
+      </p>
+
+      {answered &&
+        perBlankCorrect.some((c) => !c) && (
+          <ul className="flex flex-col gap-4 text-base leading-[1.4] text-neutral-500">
+            {blanks.map((b, i) =>
+              perBlankCorrect[i] ? null : (
+                <li key={i}>
+                  Accepted for blank {i + 1}: {b.acceptable_answers[0]}
+                </li>
+              ),
+            )}
+          </ul>
         )}
-      </div>
-      {answered && !correct && (
-        <p className="text-sm text-zinc-500">
-          Accepted answer: {acceptableAnswers[0]}
-        </p>
+
+      {!answered && (
+        <Button
+          variant="secondary"
+          onClick={handleCheck}
+          disabled={!allFilled}
+          className="self-start"
+        >
+          Check Answer
+        </Button>
       )}
     </div>
   );
