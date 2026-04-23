@@ -9,6 +9,9 @@ import {
 } from "@/components/practice-slide";
 import { PracticeTransition } from "@/components/practice-transition";
 import { TopicCard } from "@/components/dashboard/topic-card";
+import { ContinueLearningCard } from "@/components/dashboard/continue-learning-card";
+import { ProgressCard } from "@/components/dashboard/progress-card";
+import { ProgressPill } from "@/components/dashboard/progress-pill";
 import lessonData from "@/db/seed-data/courses/intro-logic/nodes/01-identifying-propositions/lesson.json";
 import practiceData from "@/db/seed-data/courses/intro-logic/nodes/01-identifying-propositions/practice.json";
 
@@ -54,6 +57,31 @@ export default function ComponentsPage() {
         title="Truth Tables"
         totalXp={80}
       />
+
+      <ContinueLearningCard
+        mode="continue"
+        title="Identifying Propositions"
+        progressPercent={40}
+        href="/topic/identifying-propositions"
+      />
+      <ContinueLearningCard
+        mode="start"
+        title="Identifying Propositions"
+        progressPercent={0}
+        href="/topic/identifying-propositions"
+      />
+
+      <ProgressCard
+        xpEarned={14}
+        xpTotal={120}
+        lessonsCompleted={1}
+        lessonsTotal={32}
+      />
+
+      <ProgressPill lessonsCompleted={0} lessonsTotal={32} />
+      <ProgressPill lessonsCompleted={1} lessonsTotal={32} />
+      <ProgressPill lessonsCompleted={16} lessonsTotal={32} />
+      <ProgressPill lessonsCompleted={32} lessonsTotal={32} />
 
       <SlideCounter bars={lessonBars(6, 2)} />
       <SlideCounter bars={lessonBars(3, 0)} showLeft={false} />

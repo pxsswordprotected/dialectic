@@ -5,6 +5,7 @@ import {
   LockSimple,
 } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "@/components/ui/button";
+import { CARD_INNER_STROKE } from "./card-styles";
 
 type BaseProps = {
   title: string;
@@ -23,8 +24,7 @@ export type TopicCardProps =
   | ({ variant: "brand_new" } & BaseProps)
   | ({ variant: "locked" } & BaseProps);
 
-const shell =
-  "flex w-[1050px] items-center rounded-sm border border-black/10 p-16";
+const shell = `flex w-[1050px] items-center ${CARD_INNER_STROKE} p-16`;
 
 export function TopicCard(props: TopicCardProps) {
   if (props.variant === "locked") {
@@ -85,7 +85,7 @@ export function TopicCard(props: TopicCardProps) {
       {leftIcon && <div className="mr-20">{leftIcon}</div>}
       <div className="flex flex-col gap-8">
         <span className="font-heading text-neutral-800">{props.title}</span>
-        <div className="font-sans text-base text-neutral-400">{subtitle}</div>
+        <div className="font-sans text-xs text-neutral-400">{subtitle}</div>
       </div>
       <div className="ml-auto">{button}</div>
     </div>

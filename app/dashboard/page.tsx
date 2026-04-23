@@ -5,7 +5,10 @@ import {
   ensureProfile,
   getDashboardData,
   computeTopicStatuses,
+  computeContinueCard,
 } from "@/db/queries/dashboard";
+import { ContinueLearningCard } from "@/components/dashboard/continue-learning-card";
+import { ProgressCard } from "@/components/dashboard/progress-card";
 import { getStreakDisplayData } from "@/db/queries/streak";
 import { Navbar } from "@/components/navbar";
 import { StreakDisplay } from "@/components/streak-display";
@@ -64,6 +67,16 @@ export default async function DashboardPage() {
   const { topicsWithStatus, continueTopic, completedCount } =
     computeTopicStatuses(data.topics, data.progressRows, data.prerequisites);
 
+  const continueCard = computeContinueCard(
+    topicsWithStatus,
+    data.progressRows,
+    data.slideCounts,
+    data.questionCounts,
+    data.correctAnswers,
+  );
+
+  const courseTotalXp = data.topics.reduce((sum, t) => sum + t.totalXp, 0);
+
   const totalTopics = topicsWithStatus.length;
 
   return (
@@ -77,131 +90,117 @@ export default async function DashboardPage() {
         />
       </div>
       <div className="mx-auto w-full max-w-3xl space-y-8 px-4 pt-[80px] pb-8">
-      <StreakDisplay
-        currentStreak={streakData.currentStreak}
-        dailyXpEarned={streakData.dailyXpEarned}
-        dailyXpGoal={streakData.dailyXpGoal}
-      />
+        <StreakDisplay
+          currentStreak={streakData.currentStreak}
+          dailyXpEarned={streakData.dailyXpEarned}
+          dailyXpGoal={streakData.dailyXpGoal}
+        />
 
-      {/* Header */}
-      <div className="flex items-baseline justify-between">
-        <h1 className="text-2xl font-semibold tracking-tight">
-          {data.course.title}
-        </h1>
-        <span className="text-sm text-zinc-500">{user.email}</span>
-      </div>
-
-      {/* Stats row */}
-      <div className="grid grid-cols-3 gap-4">
-        <div className="rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
-          <p className="text-sm text-zinc-500">Topics Completed</p>
-          <p className="text-2xl font-semibold">
-            {completedCount}
-            <span className="text-base font-normal text-zinc-400">
-              /{totalTopics}
-            </span>
-          </p>
+        {/* Header */}
+        <div className="flex items-baseline justify-between">
+          <h1 className="text-2xl font-semibold tracking-tight">
+            {data.course.title}
+          </h1>
+          <span className="text-sm text-zinc-500">{user.email}</span>
         </div>
-        <div className="rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
-          <p className="text-sm text-zinc-500">Total XP</p>
-          <p className="text-2xl font-semibold">{data.totalXp}</p>
-        </div>
-        <div className="rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
-          <p className="text-sm text-zinc-500">Streak</p>
-          <p className="text-2xl font-semibold">
-            {data.profile?.currentStreak ?? 0}
-            <span className="text-base font-normal text-zinc-400"> days</span>
-          </p>
-        </div>
-      </div>
 
-      <Button>Start</Button>
-      <Button>Save changes</Button>
-
-      <Button variant="secondary">Check answer</Button>
-      <Button
-        variant="secondary"
-        iconRight={<ArrowRight size={20} weight="bold" />}
-      >
-        Next question
-      </Button>
-      <Button
-        variant="secondary"
-        iconLeft={<ArrowLeft size={20} weight="bold" />}
-      >
-        Review lesson
-      </Button>
-      
-      {/* Review banner */}
-      {data.dueReviewCount > 0 && (
-        <div className="rounded-md border border-zinc-200 p-5 dark:border-zinc-800 flex items-center justify-between">
-          <div>
-            <p className="text-sm font-medium">
-              {data.dueReviewCount} topic{data.dueReviewCount === 1 ? "" : "s"}{" "}
-              due for review
-            </p>
-            <p className="text-xs text-zinc-500 mt-0.5">
-              Spaced repetition keeps knowledge fresh
+        {/* Stats row */}
+        <div className="grid grid-cols-3 gap-4">
+          <div className="rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
+            <p className="text-sm text-zinc-500">Topics Completed</p>
+            <p className="text-2xl font-semibold">
+              {completedCount}
+              <span className="text-base font-normal text-zinc-400">
+                /{totalTopics}
+              </span>
             </p>
           </div>
-          <Link
-            href="/review"
-            className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/50"
-          >
-            Start Review
-          </Link>
-        </div>
-      )}
-
-      {/* Continue learning */}
-      {continueTopic && (
-        <div className="rounded-md border border-zinc-200 p-5 dark:border-zinc-800">
-          <p className="text-xs font-medium uppercase tracking-wider text-zinc-500">
-            Continue Learning
-          </p>
-          <p className="mt-1 text-lg font-semibold">{continueTopic.title}</p>
-          {continueTopic.description && (
-            <p className="mt-1 text-sm text-zinc-500">
-              {continueTopic.description}
+          <div className="rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
+            <p className="text-sm text-zinc-500">Total XP</p>
+            <p className="text-2xl font-semibold">{data.totalXp}</p>
+          </div>
+          <div className="rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
+            <p className="text-sm text-zinc-500">Streak</p>
+            <p className="text-2xl font-semibold">
+              {data.profile?.currentStreak ?? 0}
+              <span className="text-base font-normal text-zinc-400"> days</span>
             </p>
-          )}
+          </div>
         </div>
-      )}
 
-      {/* Topic list */}
-      <div className="space-y-1">
-        <h2 className="mb-3 text-lg font-semibold">All Topics</h2>
-        <ol className="space-y-1">
-          {topicsWithStatus.map((topic, i) => {
-            const cfg = statusConfig[topic.status];
-            const isClickable = topic.status !== "locked";
-            const inner = (
-              <li
-                key={topic.id}
-                className={`flex items-center gap-3 rounded-md border border-zinc-200 px-4 py-3 dark:border-zinc-800${isClickable ? " hover:bg-zinc-50 dark:hover:bg-zinc-800/50" : ""}`}
-              >
-                <span className="text-sm text-zinc-400 w-6 text-right">
-                  {i + 1}
-                </span>
-                <span className={`h-2.5 w-2.5 rounded-full ${cfg.dot}`} />
-                <span
-                  className={`flex-1 text-sm font-medium ${topic.status === "locked" ? "text-zinc-400" : ""}`}
+        {/* Review banner */}
+        {data.dueReviewCount > 0 && (
+          <div className="rounded-md border border-zinc-200 p-5 dark:border-zinc-800 flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium">
+                {data.dueReviewCount} topic
+                {data.dueReviewCount === 1 ? "" : "s"} due for review
+              </p>
+              <p className="text-xs text-zinc-500 mt-0.5">
+                Spaced repetition keeps knowledge fresh
+              </p>
+            </div>
+            <Link
+              href="/review"
+              className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/50"
+            >
+              Start Review
+            </Link>
+          </div>
+        )}
+
+        {/* Continue / Start learning + Progress */}
+        <div className="flex gap-16">
+          {continueCard && (
+            <ContinueLearningCard
+              mode={continueCard.mode}
+              title={continueCard.topic.title}
+              progressPercent={continueCard.progressPercent}
+              href={`/topic/${continueCard.topic.slug}`}
+            />
+          )}
+          <ProgressCard
+            xpEarned={data.totalXp}
+            xpTotal={courseTotalXp}
+            lessonsCompleted={completedCount}
+            lessonsTotal={totalTopics}
+          />
+        </div>
+
+        {/* Topic list */}
+        <div className="space-y-1">
+          <h2 className="mb-3 text-lg font-semibold">All Topics</h2>
+          <ol className="space-y-1">
+            {topicsWithStatus.map((topic, i) => {
+              const cfg = statusConfig[topic.status];
+              const isClickable = topic.status !== "locked";
+              const inner = (
+                <li
+                  key={topic.id}
+                  className={`flex items-center gap-3 rounded-md border border-zinc-200 px-4 py-3 dark:border-zinc-800${isClickable ? " hover:bg-zinc-50 dark:hover:bg-zinc-800/50" : ""}`}
                 >
-                  {topic.title}
-                </span>
-                <span className={`text-xs ${cfg.text}`}>{cfg.label}</span>
-              </li>
-            );
-            return isClickable ? (
-              <Link key={topic.id} href={`/topic/${topic.slug}`}>
-                {inner}
-              </Link>
-            ) : (
-              inner
-            );
-          })}
-        </ol>
-      </div>
+                  <span className="text-sm text-zinc-400 w-6 text-right">
+                    {i + 1}
+                  </span>
+                  <span className={`h-2.5 w-2.5 rounded-full ${cfg.dot}`} />
+                  <span
+                    className={`flex-1 text-sm font-medium ${topic.status === "locked" ? "text-zinc-400" : ""}`}
+                  >
+                    {topic.title}
+                  </span>
+                  <span className={`text-xs ${cfg.text}`}>{cfg.label}</span>
+                </li>
+              );
+              return isClickable ? (
+                <Link key={topic.id} href={`/topic/${topic.slug}`}>
+                  {inner}
+                </Link>
+              ) : (
+                inner
+              );
+            })}
+          </ol>
+        </div>
       </div>
     </>
   );

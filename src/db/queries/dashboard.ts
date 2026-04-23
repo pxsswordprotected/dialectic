@@ -8,6 +8,9 @@ import {
   userProgress,
   xpLog,
   reviewSchedule,
+  slides,
+  practiceQuestions,
+  practiceQuestionProgress,
 } from "@/db/schema";
 
 // ── Ensure profile exists for new users ─────────────────────────────────────
@@ -22,7 +25,18 @@ export async function ensureProfile(userId: string) {
 // ── Dashboard data fetching ─────────────────────────────────────────────────
 
 export async function getDashboardData(userId: string) {
-  const [course, allTopics, prerequisites, progressRows, xpResult, profile, dueReviewResult] =
+  const [
+    course,
+    allTopics,
+    prerequisites,
+    progressRows,
+    xpResult,
+    profile,
+    dueReviewResult,
+    slideCountRows,
+    questionCountRows,
+    correctAnswerRows,
+  ] =
     await Promise.all([
       // Course
       db.query.courses.findFirst({
@@ -75,7 +89,50 @@ export async function getDashboardData(userId: string) {
             lte(reviewSchedule.nextReviewAt, new Date()),
           ),
         ),
+
+      // Slide counts per topic (for this course)
+      db
+        .select({ topicId: slides.topicId, total: count() })
+        .from(slides)
+        .innerJoin(topics, eq(slides.topicId, topics.id))
+        .innerJoin(courses, eq(topics.courseId, courses.id))
+        .where(eq(courses.slug, "intro-logic"))
+        .groupBy(slides.topicId),
+
+      // Practice question counts per topic (for this course)
+      db
+        .select({ topicId: practiceQuestions.topicId, total: count() })
+        .from(practiceQuestions)
+        .innerJoin(topics, eq(practiceQuestions.topicId, topics.id))
+        .innerJoin(courses, eq(topics.courseId, courses.id))
+        .where(eq(courses.slug, "intro-logic"))
+        .groupBy(practiceQuestions.topicId),
+
+      // Correct practice answers per topic for this user
+      db
+        .select({ topicId: practiceQuestions.topicId, total: count() })
+        .from(practiceQuestionProgress)
+        .innerJoin(
+          practiceQuestions,
+          eq(practiceQuestionProgress.practiceQuestionId, practiceQuestions.id),
+        )
+        .innerJoin(topics, eq(practiceQuestions.topicId, topics.id))
+        .innerJoin(courses, eq(topics.courseId, courses.id))
+        .where(
+          and(
+            eq(practiceQuestionProgress.userId, userId),
+            eq(practiceQuestionProgress.isCorrect, true),
+            eq(courses.slug, "intro-logic"),
+          ),
+        )
+        .groupBy(practiceQuestions.topicId),
     ]);
+
+  const toCountMap = (rows: { topicId: string; total: number }[]) => {
+    const m = new Map<string, number>();
+    for (const r of rows) m.set(r.topicId, Number(r.total));
+    return m;
+  };
 
   return {
     course: course ?? null,
@@ -85,6 +142,9 @@ export async function getDashboardData(userId: string) {
     totalXp: Number(xpResult[0]?.total ?? 0),
     profile: profile ?? null,
     dueReviewCount: Number(dueReviewResult[0]?.total ?? 0),
+    slideCounts: toCountMap(slideCountRows),
+    questionCounts: toCountMap(questionCountRows),
+    correctAnswers: toCountMap(correctAnswerRows),
   };
 }
 
@@ -101,6 +161,8 @@ type TopicRow = {
 type ProgressRow = {
   topicId: string;
   status: "locked" | "available" | "in_progress" | "completed";
+  currentSlideIndex?: number;
+  updatedAt?: Date;
 };
 
 type PrerequisiteRow = {
@@ -167,4 +229,54 @@ export function computeTopicStatuses(
   ).length;
 
   return { topicsWithStatus, continueTopic, completedCount };
+}
+
+// ── Compute continue/start-learning card ────────────────────────────────────
+
+export type ContinueCard = {
+  mode: "continue" | "start";
+  topic: TopicWithStatus;
+  progressPercent: number;
+};
+
+export function computeContinueCard(
+  topicsWithStatus: TopicWithStatus[],
+  progressRows: ProgressRow[],
+  slideCounts: Map<string, number>,
+  questionCounts: Map<string, number>,
+  correctAnswers: Map<string, number>,
+): ContinueCard | null {
+  const inProgressRows = progressRows
+    .filter((r) => r.status === "in_progress" && r.updatedAt)
+    .sort(
+      (a, b) =>
+        (b.updatedAt?.getTime() ?? 0) - (a.updatedAt?.getTime() ?? 0),
+    );
+
+  const calcPercent = (topicId: string, currentSlideIndex: number) => {
+    const totalSlides = slideCounts.get(topicId) ?? 0;
+    const totalQuestions = questionCounts.get(topicId) ?? 0;
+    const correct = correctAnswers.get(topicId) ?? 0;
+    const denom = totalSlides + totalQuestions;
+    if (denom === 0) return 0;
+    const numerator = Math.min(currentSlideIndex, totalSlides) + correct;
+    return Math.round((numerator / denom) * 100);
+  };
+
+  for (const row of inProgressRows) {
+    const topic = topicsWithStatus.find((t) => t.id === row.topicId);
+    if (!topic) continue;
+    return {
+      mode: "continue",
+      topic,
+      progressPercent: calcPercent(row.topicId, row.currentSlideIndex ?? 0),
+    };
+  }
+
+  const startTopic = topicsWithStatus.find((t) => t.status === "available");
+  if (startTopic) {
+    return { mode: "start", topic: startTopic, progressPercent: 0 };
+  }
+
+  return null;
 }
