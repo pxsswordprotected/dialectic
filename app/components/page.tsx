@@ -8,6 +8,7 @@ import {
   type PracticeQuestionData,
 } from "@/components/practice-slide";
 import { PracticeTransition } from "@/components/practice-transition";
+import { TopicCard } from "@/components/dashboard/topic-card";
 import lessonData from "@/db/seed-data/courses/intro-logic/nodes/01-identifying-propositions/lesson.json";
 import practiceData from "@/db/seed-data/courses/intro-logic/nodes/01-identifying-propositions/practice.json";
 
@@ -23,6 +24,36 @@ export default function ComponentsPage() {
         starsTotal={50}
       />
       <StreakDisplay currentStreak={5} dailyXpEarned={30} dailyXpGoal={50} />
+
+      <TopicCard
+        variant="review"
+        title="Review"
+        totalXp={0}
+        dueXp={40}
+      />
+      <TopicCard
+        variant="completed"
+        title="Identifying Propositions"
+        totalXp={50}
+        xpEarned={50}
+      />
+      <TopicCard
+        variant="in_progress"
+        title="Understanding Truth Values"
+        totalXp={60}
+        xpEarned={24}
+        progressPercent={40}
+      />
+      <TopicCard
+        variant="brand_new"
+        title="Logical Connectives"
+        totalXp={75}
+      />
+      <TopicCard
+        variant="locked"
+        title="Truth Tables"
+        totalXp={80}
+      />
 
       <SlideCounter bars={lessonBars(6, 2)} />
       <SlideCounter bars={lessonBars(3, 0)} showLeft={false} />
