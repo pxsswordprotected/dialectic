@@ -43,6 +43,8 @@ type PracticeSlideProps = {
   bars: BarState[];
   onNext?: () => void;
   onAnswered?: (correct: boolean) => void;
+  reveal?: "correct" | "incorrect";
+  nextLabel?: string;
 };
 
 export function PracticeSlide({
@@ -51,8 +53,11 @@ export function PracticeSlide({
   bars,
   onNext,
   onAnswered,
+  reveal,
+  nextLabel = "Next Question",
 }: PracticeSlideProps) {
-  const [answered, setAnswered] = useState(false);
+  const [answered, setAnswered] = useState(reveal !== undefined);
+  const revealOn = reveal !== undefined;
 
   function handleAnswer(correct: boolean) {
     setAnswered(true);
@@ -69,12 +74,19 @@ export function PracticeSlide({
       />
 
       <div className="mt-32 w-[700px] text-left">
-        <h2 className="text-lg font-medium text-neutral-800">
-          Question {questionNumber}
-        </h2>
+        <div className="flex items-center gap-12">
+          <h2 className="text-lg font-medium text-neutral-800">
+            Question {questionNumber}
+          </h2>
+          {reveal === "incorrect" && (
+            <span className="rounded-sm bg-error-200 px-8 py-[2px] text-xs font-medium text-error-600">
+              You got this wrong
+            </span>
+          )}
+        </div>
 
         {question.type !== "fill_in" && (
-          <p className="mt-[28px] text-base leading-[1.4] text-neutral-800">
+          <p className="mt-[28px] text-lg leading-[1.4] text-neutral-800">
             {question.prompt}
           </p>
         )}
@@ -85,6 +97,7 @@ export function PracticeSlide({
               options={question.options}
               onAnswer={handleAnswer}
               answered={answered}
+              reveal={revealOn}
             />
           )}
           {question.type === "true_false" && (
@@ -93,6 +106,7 @@ export function PracticeSlide({
               answer={question.answer}
               onAnswer={handleAnswer}
               answered={answered}
+              reveal={revealOn}
             />
           )}
           {question.type === "fill_in" && (
@@ -101,6 +115,7 @@ export function PracticeSlide({
               blanks={question.blanks}
               onAnswer={handleAnswer}
               answered={answered}
+              reveal={revealOn}
             />
           )}
           {question.type === "order" && (
@@ -108,12 +123,13 @@ export function PracticeSlide({
               sequence={question.sequence}
               onAnswer={handleAnswer}
               answered={answered}
+              reveal={revealOn}
             />
           )}
         </div>
 
         {answered && (
-          <p className="mt-20 text-base font-medium leading-[1.4] text-neutral-800">
+          <p className="mt-20 text-lg font-medium leading-[1.4] text-neutral-800">
             {question.explanation}
           </p>
         )}
@@ -125,7 +141,7 @@ export function PracticeSlide({
             onClick={onNext}
             iconRight={<ArrowRight size={20} />}
           >
-            Next Question
+            {nextLabel}
           </Button>
         )}
 

@@ -22,7 +22,7 @@ export function PracticeTransition({
       <div className="mt-[36px] w-[700px] text-left">
         <h2 className="font-heading text-xl text-neutral-800">Practice</h2>
 
-        <p className="mt-[28px] text-base leading-[1.4] text-neutral-800">
+        <p className="mt-[28px] text-lg leading-[1.4] text-neutral-800">
           {`${questionCount} questions on what you just learned. Don't worry about getting every one right.`}
         </p>
 

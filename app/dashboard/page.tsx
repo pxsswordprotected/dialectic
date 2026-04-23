@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation";
-import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import {
   ensureProfile,
@@ -7,36 +6,15 @@ import {
   computeTopicStatuses,
   computeContinueCard,
 } from "@/db/queries/dashboard";
+import { Navbar } from "@/components/navbar";
 import { ContinueLearningCard } from "@/components/dashboard/continue-learning-card";
 import { ProgressCard } from "@/components/dashboard/progress-card";
-import { getStreakDisplayData } from "@/db/queries/streak";
-import { Navbar } from "@/components/navbar";
-import { StreakDisplay } from "@/components/streak-display";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowLeft } from "@phosphor-icons/react/dist/ssr";
-
-const statusConfig = {
-  completed: {
-    dot: "bg-green-500",
-    text: "text-green-600 dark:text-green-400",
-    label: "Completed",
-  },
-  in_progress: {
-    dot: "bg-blue-500",
-    text: "text-blue-600 dark:text-blue-400",
-    label: "In Progress",
-  },
-  available: {
-    dot: "bg-yellow-500",
-    text: "text-yellow-600 dark:text-yellow-400",
-    label: "Available",
-  },
-  locked: {
-    dot: "bg-zinc-400",
-    text: "text-zinc-500 dark:text-zinc-500",
-    label: "Locked",
-  },
-} as const;
+import { pickCardImage } from "@/lib/card-images";
+import { ProgressPill } from "@/components/dashboard/progress-pill";
+import {
+  TopicCard,
+  type TopicCardProps,
+} from "@/components/dashboard/topic-card";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -49,23 +27,23 @@ export default async function DashboardPage() {
   }
 
   await ensureProfile(user.id);
-  const [data, streakData] = await Promise.all([
-    getDashboardData(user.id),
-    getStreakDisplayData(user.id),
-  ]);
+  const data = await getDashboardData(user.id);
 
   if (!data.course) {
     return (
       <div className="flex flex-1 items-center justify-center">
-        <p className="text-zinc-500">
+        <p className="text-neutral-500">
           Course not found. Run the seed script first.
         </p>
       </div>
     );
   }
 
-  const { topicsWithStatus, continueTopic, completedCount } =
-    computeTopicStatuses(data.topics, data.progressRows, data.prerequisites);
+  const { topicsWithStatus, completedCount } = computeTopicStatuses(
+    data.topics,
+    data.progressRows,
+    data.prerequisites,
+  );
 
   const continueCard = computeContinueCard(
     topicsWithStatus,
@@ -76,8 +54,63 @@ export default async function DashboardPage() {
   );
 
   const courseTotalXp = data.topics.reduce((sum, t) => sum + t.totalXp, 0);
-
   const totalTopics = topicsWithStatus.length;
+
+  const progressByTopic = new Map<string, number>();
+  for (const row of data.progressRows) {
+    const totalSlides = data.slideCounts.get(row.topicId) ?? 0;
+    const totalQuestions = data.questionCounts.get(row.topicId) ?? 0;
+    const correct = data.correctAnswers.get(row.topicId) ?? 0;
+    const denom = totalSlides + totalQuestions;
+    const pct =
+      denom === 0
+        ? 0
+        : Math.round(
+            ((Math.min(row.currentSlideIndex, totalSlides) + correct) / denom) *
+              100,
+          );
+    progressByTopic.set(row.topicId, pct);
+  }
+
+  const topicCardProps = (
+    topic: (typeof topicsWithStatus)[number],
+  ): TopicCardProps => {
+    const href = `/topic/${topic.slug}`;
+    switch (topic.status) {
+      case "completed":
+        return {
+          variant: "completed",
+          title: topic.title,
+          totalXp: topic.totalXp,
+          xpEarned: topic.totalXp,
+          href,
+        };
+      case "in_progress": {
+        const pct = progressByTopic.get(topic.id) ?? 0;
+        return {
+          variant: "in_progress",
+          title: topic.title,
+          totalXp: topic.totalXp,
+          xpEarned: Math.round((topic.totalXp * pct) / 100),
+          progressPercent: pct,
+          href,
+        };
+      }
+      case "available":
+        return {
+          variant: "brand_new",
+          title: topic.title,
+          totalXp: topic.totalXp,
+          href,
+        };
+      case "locked":
+        return {
+          variant: "locked",
+          title: topic.title,
+          totalXp: topic.totalXp,
+        };
+    }
+  };
 
   return (
     <>
@@ -89,74 +122,41 @@ export default async function DashboardPage() {
           starsTotal={totalTopics}
         />
       </div>
-      <div className="mx-auto w-full max-w-3xl space-y-8 px-4 pt-[80px] pb-8">
-        <StreakDisplay
-          currentStreak={streakData.currentStreak}
-          dailyXpEarned={streakData.dailyXpEarned}
-          dailyXpGoal={streakData.dailyXpGoal}
-        />
 
-        {/* Header */}
-        <div className="flex items-baseline justify-between">
-          <h1 className="text-2xl font-semibold tracking-tight">
+      <div className="mx-auto w-[1050px] pt-[116px] pb-32">
+        {/* Course title + progress pill */}
+        <div className="flex items-center gap-24">
+          <h1 className="font-heading text-2xl text-neutral-800">
             {data.course.title}
           </h1>
-          <span className="text-sm text-zinc-500">{user.email}</span>
+          <ProgressPill
+            lessonsCompleted={completedCount}
+            lessonsTotal={totalTopics}
+          />
         </div>
 
-        {/* Stats row */}
-        <div className="grid grid-cols-3 gap-4">
-          <div className="rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
-            <p className="text-sm text-zinc-500">Topics Completed</p>
-            <p className="text-2xl font-semibold">
-              {completedCount}
-              <span className="text-base font-normal text-zinc-400">
-                /{totalTopics}
-              </span>
-            </p>
-          </div>
-          <div className="rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
-            <p className="text-sm text-zinc-500">Total XP</p>
-            <p className="text-2xl font-semibold">{data.totalXp}</p>
-          </div>
-          <div className="rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
-            <p className="text-sm text-zinc-500">Streak</p>
-            <p className="text-2xl font-semibold">
-              {data.profile?.currentStreak ?? 0}
-              <span className="text-base font-normal text-zinc-400"> days</span>
-            </p>
-          </div>
-        </div>
-
-        {/* Review banner */}
+        {/* Review card */}
         {data.dueReviewCount > 0 && (
-          <div className="rounded-md border border-zinc-200 p-5 dark:border-zinc-800 flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium">
-                {data.dueReviewCount} topic
-                {data.dueReviewCount === 1 ? "" : "s"} due for review
-              </p>
-              <p className="text-xs text-zinc-500 mt-0.5">
-                Spaced repetition keeps knowledge fresh
-              </p>
-            </div>
-            <Link
+          <div className="mt-32">
+            <TopicCard
+              variant="review"
+              title="Review"
+              totalXp={0}
+              dueXp={data.dueReviewCount}
               href="/review"
-              className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/50"
-            >
-              Start Review
-            </Link>
+            />
           </div>
         )}
 
-        {/* Continue / Start learning + Progress */}
-        <div className="flex gap-16">
+        {/* Continue learning + Progress cards */}
+        <div className="mt-32 flex gap-16">
           {continueCard && (
             <ContinueLearningCard
               mode={continueCard.mode}
               title={continueCard.topic.title}
               progressPercent={continueCard.progressPercent}
               href={`/topic/${continueCard.topic.slug}`}
+              bgImage={pickCardImage(continueCard.topic.id)}
             />
           )}
           <ProgressCard
@@ -167,39 +167,17 @@ export default async function DashboardPage() {
           />
         </div>
 
-        {/* Topic list */}
-        <div className="space-y-1">
-          <h2 className="mb-3 text-lg font-semibold">All Topics</h2>
-          <ol className="space-y-1">
-            {topicsWithStatus.map((topic, i) => {
-              const cfg = statusConfig[topic.status];
-              const isClickable = topic.status !== "locked";
-              const inner = (
-                <li
-                  key={topic.id}
-                  className={`flex items-center gap-3 rounded-md border border-zinc-200 px-4 py-3 dark:border-zinc-800${isClickable ? " hover:bg-zinc-50 dark:hover:bg-zinc-800/50" : ""}`}
-                >
-                  <span className="text-sm text-zinc-400 w-6 text-right">
-                    {i + 1}
-                  </span>
-                  <span className={`h-2.5 w-2.5 rounded-full ${cfg.dot}`} />
-                  <span
-                    className={`flex-1 text-sm font-medium ${topic.status === "locked" ? "text-zinc-400" : ""}`}
-                  >
-                    {topic.title}
-                  </span>
-                  <span className={`text-xs ${cfg.text}`}>{cfg.label}</span>
-                </li>
-              );
-              return isClickable ? (
-                <Link key={topic.id} href={`/topic/${topic.slug}`}>
-                  {inner}
-                </Link>
-              ) : (
-                inner
-              );
-            })}
-          </ol>
+        {/* Divider */}
+        <div className="mt-32 h-px w-[1050px] bg-black/10" />
+
+        {/* All Lessons */}
+        <p className="mt-24 font-sans text-base text-neutral-400">
+          All Lessons
+        </p>
+        <div className="mt-16 flex flex-col gap-24">
+          {topicsWithStatus.map((topic) => (
+            <TopicCard key={topic.id} {...topicCardProps(topic)} />
+          ))}
         </div>
       </div>
     </>

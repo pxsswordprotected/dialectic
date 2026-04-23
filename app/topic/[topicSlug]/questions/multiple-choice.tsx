@@ -9,12 +9,20 @@ export function MultipleChoice({
   options,
   onAnswer,
   answered,
+  reveal,
 }: {
   options: Option[];
   onAnswer: (correct: boolean) => void;
   answered: boolean;
+  reveal?: boolean;
 }) {
-  const [selected, setSelected] = useState<number | null>(null);
+  const [selected, setSelected] = useState<number | null>(() => {
+    if (reveal) {
+      const idx = options.findIndex((o) => o.correct);
+      return idx >= 0 ? idx : null;
+    }
+    return null;
+  });
 
   function handleCheck() {
     if (answered || selected === null) return;
@@ -41,7 +49,7 @@ export function MultipleChoice({
                 aria-checked={isSelected}
                 onClick={() => !answered && setSelected(i)}
                 disabled={answered}
-                className={`group flex w-full items-center gap-12 text-left text-base leading-[1.4] text-neutral-800 ${
+                className={`group flex w-full items-center gap-12 text-left text-lg leading-[1.4] text-neutral-800 ${
                   answered ? "cursor-default" : "cursor-pointer"
                 }`}
               >

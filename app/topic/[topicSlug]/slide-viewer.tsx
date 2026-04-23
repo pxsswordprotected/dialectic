@@ -1,22 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
-import ReactMarkdown from "react-markdown";
-import { PracticeViewer } from "./practice-viewer";
+import { useRouter } from "next/navigation";
+import { ArrowLeft, ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { logPracticeXp } from "@/db/actions/xp";
+import { LessonSlide, type LessonSlideData } from "@/components/lesson-slide";
+import {
+  PracticeSlide,
+  type PracticeQuestionData,
+} from "@/components/practice-slide";
+import { PracticeTransition } from "@/components/practice-transition";
+import { CourseProgressBar } from "@/components/course-progress-bar";
+import { lessonBars } from "@/components/slide-counter-helpers";
+import { Button, buttonClasses } from "@/components/ui/button";
 
-type SlideContent = {
-  body: string;
-  examples: Array<{ text: string; valid: boolean }> | null;
-  note: string | null;
-};
-
-type Slide = {
+type DbSlide = {
   id: string;
   sortOrder: number;
   slideType: string;
   heading: string | null;
   content: unknown;
+};
+
+type DbQuestion = {
+  id: string;
+  sortOrder: number;
+  questionType: string;
+  prompt: string;
+  questionData: unknown;
+  explanation: string | null;
+  difficulty: number;
 };
 
 type Topic = {
@@ -28,175 +42,239 @@ type Topic = {
   sortOrder: number;
 };
 
-type Question = {
-  id: string;
-  sortOrder: number;
-  questionType: string;
-  prompt: string;
-  questionData: unknown;
-  explanation: string | null;
-  difficulty: number;
-};
+const PASS_THRESHOLD = 3;
+
+function toLessonSlide(slide: DbSlide): LessonSlideData {
+  const content = (slide.content ?? {}) as {
+    body?: string;
+    examples?: Array<{ text: string; valid: boolean }> | null;
+    note?: string | null;
+  };
+  return {
+    type: slide.slideType as LessonSlideData["type"],
+    heading: slide.heading ?? "",
+    body: content.body ?? "",
+    examples: content.examples ?? null,
+    note: content.note ?? null,
+  };
+}
+
+function toPracticeQuestion(q: DbQuestion): PracticeQuestionData {
+  const data = (q.questionData ?? {}) as Record<string, unknown>;
+  const explanation = q.explanation ?? "";
+  switch (q.questionType) {
+    case "multiple_choice":
+      return {
+        type: "multiple_choice",
+        prompt: q.prompt,
+        options:
+          (data.options as Array<{ text: string; correct: boolean }>) ?? [],
+        explanation,
+      };
+    case "true_false":
+      return {
+        type: "true_false",
+        prompt: q.prompt,
+        statement: (data.statement as string) ?? "",
+        answer: (data.answer as boolean) ?? false,
+        explanation,
+      };
+    case "fill_in":
+      return {
+        type: "fill_in",
+        prompt: q.prompt,
+        blanks: (data.blanks as Array<{ acceptable_answers: string[] }>) ?? [],
+        explanation,
+      };
+    case "order":
+      return {
+        type: "order",
+        prompt: q.prompt,
+        sequence: (data.sequence as string[]) ?? [],
+        explanation,
+      };
+    default:
+      throw new Error(`Unknown question type: ${q.questionType}`);
+  }
+}
 
 export function SlideViewer({
   topic,
   slides,
   questions,
+  lessonsCompletedIfPass,
+  totalTopics,
+  viewMode = false,
+  pastCorrectness = {},
 }: {
   topic: Topic;
-  slides: Slide[];
-  questions: Question[];
+  slides: DbSlide[];
+  questions: DbQuestion[];
+  lessonsCompletedIfPass: number;
+  totalTopics: number;
+  viewMode?: boolean;
+  pastCorrectness?: Record<string, boolean>;
 }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [phase, setPhase] = useState<"lesson" | "transition" | "practice">(
-    "lesson",
-  );
-  const slide = slides[currentIndex];
-  const isLastSlide = currentIndex === slides.length - 1;
+  const [phase, setPhase] = useState<
+    "lesson" | "transition" | "practice" | "results"
+  >("lesson");
+  const [slideIndex, setSlideIndex] = useState(0);
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const resultsRef = useRef<Array<{ prompt: string; correct: boolean }>>([]);
+  const xpLoggedRef = useRef(false);
+  const router = useRouter();
 
   if (slides.length === 0) {
     return (
-      <div className="space-y-4">
+      <div className="mx-auto w-[700px] space-y-4 py-8">
         <Link
           href="/dashboard"
-          className="text-sm text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
+          className="text-base text-neutral-400 hover:text-neutral-800"
         >
           &larr; Back to dashboard
         </Link>
-        <h1 className="text-2xl font-semibold">{topic.title}</h1>
-        <p className="text-zinc-500">No slides available for this topic.</p>
+        <h1 className="font-heading text-xl text-neutral-800">{topic.title}</h1>
+        <p className="text-neutral-500">No slides available for this topic.</p>
       </div>
     );
   }
 
-  if (phase === "practice") {
+  if (phase === "lesson") {
+    const slide = slides[slideIndex];
+    const isLast = slideIndex === slides.length - 1;
     return (
-      <PracticeViewer
-        questions={questions}
-        topicId={topic.id}
-        topicTitle={topic.title}
-        onReviewLesson={() => {
-          setPhase("lesson");
-          setCurrentIndex(0);
-        }}
-      />
+      <>
+        <LessonSlide
+          slide={toLessonSlide(slide)}
+          bars={lessonBars(slides.length, slideIndex)}
+          showLeftChevron={slideIndex > 0}
+          showRightChevron
+          onPrev={
+            slideIndex > 0 ? () => setSlideIndex((i) => i - 1) : undefined
+          }
+          onNext={() => {
+            if (isLast) setPhase(viewMode ? "practice" : "transition");
+            else setSlideIndex((i) => i + 1);
+          }}
+        />
+      </>
     );
   }
 
   if (phase === "transition") {
     return (
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <Link
-            href="/dashboard"
-            className="text-sm text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
-          >
-            &larr; Back to dashboard
-          </Link>
-        </div>
-
-        <h1 className="text-lg font-semibold text-zinc-500">{topic.title}</h1>
-
-        <div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800 flex flex-col items-center justify-center space-y-4 py-16">
-          <p className="text-xl font-semibold">Lesson Complete</p>
-          <p className="text-sm text-zinc-500">
-            Ready to test what you learned?
-          </p>
-        </div>
-
-        <div className="flex items-center justify-between">
-          <button
-            onClick={() => setPhase("lesson")}
-            className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/50"
-          >
-            Back
-          </button>
-          <button
-            onClick={() => setPhase("practice")}
-            className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/50"
-          >
-            Start Practice
-          </button>
-        </div>
-      </div>
+      <>
+        <PracticeTransition
+          questionCount={questions.length}
+          onStart={() => setPhase("practice")}
+        />
+      </>
     );
   }
 
-  const content = slide.content as SlideContent | null;
-
-  return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <Link
-          href="/dashboard"
-          className="text-sm text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
-        >
-          &larr; Back to dashboard
-        </Link>
-        <span className="text-sm text-zinc-400">
-          {currentIndex + 1} / {slides.length}
-        </span>
-      </div>
-
-      {/* Topic title */}
-      <h1 className="text-lg font-semibold text-zinc-500">{topic.title}</h1>
-
-      {/* Slide content */}
-      <div className="rounded-md border border-zinc-200 p-6 dark:border-zinc-800 space-y-4">
-        {slide.heading && (
-          <h2 className="text-xl font-semibold">{slide.heading}</h2>
-        )}
-
-        {content?.body && (
-          <div className="prose prose-sm dark:prose-invert max-w-none">
-            <ReactMarkdown>{content.body}</ReactMarkdown>
-          </div>
-        )}
-
-        {content?.examples && content.examples.length > 0 && (
-          <ul className="space-y-2 mt-4">
-            {content.examples.map((ex, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm">
-                <span
-                  className={`mt-0.5 h-2 w-2 shrink-0 rounded-full ${
-                    ex.valid ? "bg-green-500" : "bg-red-400"
-                  }`}
-                />
-                <span>{ex.text}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-
-        {content?.note && (
-          <p className="text-sm text-zinc-500 italic border-l-2 border-zinc-300 pl-3 dark:border-zinc-700">
-            {content.note}
-          </p>
-        )}
-      </div>
-
-      {/* Navigation */}
-      <div className="flex items-center justify-between">
-        <button
-          onClick={() => setCurrentIndex((i) => i - 1)}
-          disabled={currentIndex === 0}
-          className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium disabled:opacity-30 disabled:cursor-not-allowed hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/50"
-        >
-          Back
-        </button>
-        <button
-          onClick={() => {
-            if (isLastSlide) {
-              setPhase("transition");
+  if (phase === "practice") {
+    const question = questions[questionIndex];
+    const isLast = questionIndex === questions.length - 1;
+    return (
+      <>
+        <PracticeSlide
+          key={question.id}
+          question={toPracticeQuestion(question)}
+          questionNumber={questionIndex + 1}
+          bars={lessonBars(questions.length, questionIndex)}
+          reveal={
+            viewMode
+              ? pastCorrectness[question.id] === false
+                ? "incorrect"
+                : "correct"
+              : undefined
+          }
+          nextLabel={viewMode && isLast ? "Continue" : undefined}
+          onAnswered={(correct) => {
+            resultsRef.current.push({ prompt: question.prompt, correct });
+          }}
+          onNext={() => {
+            if (viewMode && isLast) {
+              router.push("/dashboard");
+            } else if (isLast) {
+              setPhase("results");
             } else {
-              setCurrentIndex((i) => i + 1);
+              setQuestionIndex((i) => i + 1);
             }
           }}
-          className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/50"
-        >
-          {isLastSlide ? "Continue" : "Next"}
-        </button>
+        />
+      </>
+    );
+  }
+
+  // Results
+  const results = viewMode
+    ? questions.map((q) => ({
+        prompt: q.prompt,
+        correct: pastCorrectness[q.id] ?? true,
+      }))
+    : resultsRef.current;
+  const correctCount = results.filter((r) => r.correct).length;
+  const passed = viewMode ? true : correctCount >= PASS_THRESHOLD;
+  const xpEarned = viewMode ? 0 : correctCount * 5 + (passed ? 5 : 0);
+  const coursePct =
+    totalTopics > 0
+      ? Math.round((lessonsCompletedIfPass / totalTopics) * 100)
+      : 0;
+
+  if (!viewMode && !xpLoggedRef.current) {
+    xpLoggedRef.current = true;
+    logPracticeXp(topic.id, correctCount, passed);
+  }
+
+  return (
+    <div className="flex flex-col items-center">
+      <CourseProgressBar
+        mode={passed ? "pass" : "fail"}
+        coursePct={coursePct}
+        xpEarned={xpEarned}
+      />
+      <div className="mt-32 w-[700px] text-left text-neutral-800">
+        <h2 className="font-heading text-2xl">
+          {passed ? "Lesson Complete" : "Not Quite"}
+        </h2>
+        <p className="mt-[28px] font-sans text-lg font-medium leading-[1.4]">
+          Score: {correctCount}/{results.length} correct
+        </p>
+        <ul className="mt-[28px] flex flex-col gap-8">
+          {results.map((r, i) => (
+            <li key={i} className="text-lg leading-[1.4]">
+              <span
+                className={r.correct ? "highlight-true" : "highlight-false"}
+              >
+                Question {i + 1}: {r.prompt}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-[28px]">
+          {passed ? (
+            <Link href="/dashboard" className={buttonClasses("secondary")}>
+              Continue
+              <ArrowRight size={20} weight="bold" />
+            </Link>
+          ) : (
+            <Button
+              variant="secondary"
+              iconLeft={<ArrowLeft size={20} weight="bold" />}
+              onClick={() => {
+                resultsRef.current = [];
+                xpLoggedRef.current = false;
+                setQuestionIndex(0);
+                setSlideIndex(0);
+                setPhase("lesson");
+              }}
+            >
+              Review Lesson
+            </Button>
+          )}
+        </div>
+        <div aria-hidden className="mt-[28px] h-px w-full bg-neutral-400" />
       </div>
     </div>
   );

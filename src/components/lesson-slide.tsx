@@ -86,7 +86,7 @@ export function LessonSlide({
           </span>
         </div>
 
-        <p className="mt-[28px] text-base leading-[1.4] text-neutral-800">
+        <p className="mt-[28px] text-lg leading-[1.4] text-neutral-800">
           <InlineMarkdown text={slide.body} />
         </p>
 
@@ -95,10 +95,7 @@ export function LessonSlide({
             <p className="text-base font-medium text-neutral-800">Examples:</p>
             <ul className="mt-16 flex flex-col gap-12">
               {slide.examples.map((ex, i) => (
-                <li
-                  key={i}
-                  className="text-base leading-[1.4] text-neutral-800"
-                >
+                <li key={i} className="text-lg leading-[1.4] text-neutral-800">
                   <span
                     className={ex.valid ? "highlight-true" : "highlight-false"}
                   >
@@ -111,7 +108,7 @@ export function LessonSlide({
         )}
 
         {slide.note && (
-          <p className="mt-16 text-base italic leading-[1.4] text-neutral-500">
+          <p className="mt-16 text-lg italic leading-[1.4] text-neutral-500">
             {slide.note}
           </p>
         )}

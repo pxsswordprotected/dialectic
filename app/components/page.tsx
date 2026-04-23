@@ -8,8 +8,10 @@ import {
   type PracticeQuestionData,
 } from "@/components/practice-slide";
 import { PracticeTransition } from "@/components/practice-transition";
+import { CourseProgressBar } from "@/components/course-progress-bar";
 import { TopicCard } from "@/components/dashboard/topic-card";
 import { ContinueLearningCard } from "@/components/dashboard/continue-learning-card";
+import { pickCardImage } from "@/lib/card-images";
 import { ProgressCard } from "@/components/dashboard/progress-card";
 import { ProgressPill } from "@/components/dashboard/progress-pill";
 import lessonData from "@/db/seed-data/courses/intro-logic/nodes/01-identifying-propositions/lesson.json";
@@ -63,12 +65,14 @@ export default function ComponentsPage() {
         title="Identifying Propositions"
         progressPercent={40}
         href="/topic/identifying-propositions"
+        bgImage={pickCardImage("identifying-propositions")}
       />
       <ContinueLearningCard
         mode="start"
         title="Identifying Propositions"
         progressPercent={0}
         href="/topic/identifying-propositions"
+        bgImage={pickCardImage("start-preview")}
       />
 
       <ProgressCard
@@ -98,6 +102,10 @@ export default function ComponentsPage() {
       ))}
 
       <PracticeTransition questionCount={practiceData.length} />
+
+      <CourseProgressBar mode="fail" coursePct={0} xpEarned={0} />
+      <CourseProgressBar mode="pass" coursePct={40} xpEarned={25} />
+      <CourseProgressBar mode="pass" coursePct={100} xpEarned={25} />
 
       {(practiceData as PracticeQuestionData[]).map((q, i) => (
         <PracticeSlide

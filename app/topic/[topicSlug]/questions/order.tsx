@@ -17,13 +17,17 @@ export function Order({
   sequence,
   onAnswer,
   answered,
+  reveal,
 }: {
   sequence: string[];
   onAnswer: (correct: boolean) => void;
   answered: boolean;
+  reveal?: boolean;
 }) {
   const shuffled = useMemo(() => shuffle(sequence), [sequence]);
-  const [selected, setSelected] = useState<string[]>([]);
+  const [selected, setSelected] = useState<string[]>(() =>
+    reveal ? [...sequence] : [],
+  );
 
   const remaining = shuffled.filter((item) => !selected.includes(item));
 
@@ -50,7 +54,7 @@ export function Order({
           Your order
         </p>
         {selected.length === 0 ? (
-          <p className="text-base italic leading-[1.4] text-neutral-400">
+          <p className="text-lg italic leading-[1.4] text-neutral-400">
             Click items below to build your sequence
           </p>
         ) : (
@@ -61,7 +65,7 @@ export function Order({
               return (
                 <li
                   key={i}
-                  className="flex items-center gap-12 rounded-sm border border-solid border-black/10 bg-neutral-50 px-12 py-8 text-base leading-[1.4] text-neutral-800"
+                  className="flex items-center gap-12 rounded-sm border border-solid border-black/10 bg-neutral-50 px-12 py-8 text-lg leading-[1.4] text-neutral-800"
                 >
                   <span className="w-16 text-right text-neutral-400">
                     {i + 1}.
@@ -107,7 +111,7 @@ export function Order({
                 <button
                   type="button"
                   onClick={() => handleAdd(item)}
-                  className="w-full cursor-pointer rounded-sm border border-dashed border-neutral-300 bg-neutral-50 px-12 py-8 text-left text-base leading-[1.4] text-neutral-800 hover:bg-neutral-100"
+                  className="w-full cursor-pointer rounded-sm border border-dashed border-neutral-300 bg-neutral-50 px-12 py-8 text-left text-lg leading-[1.4] text-neutral-800 hover:bg-neutral-100"
                 >
                   {item}
                 </button>
@@ -126,7 +130,7 @@ export function Order({
             {sequence.map((item, i) => (
               <li
                 key={i}
-                className="flex items-center gap-12 rounded-sm border border-solid border-black/10 bg-neutral-50 px-12 py-8 text-base leading-[1.4] text-neutral-800"
+                className="flex items-center gap-12 rounded-sm border border-solid border-black/10 bg-neutral-50 px-12 py-8 text-lg leading-[1.4] text-neutral-800"
               >
                 <span className="w-16 text-right text-neutral-400">
                   {i + 1}.

@@ -1,6 +1,31 @@
-import { eq, and, asc } from "drizzle-orm";
+import { eq, and, asc, inArray } from "drizzle-orm";
 import { db } from "@/db";
-import { topics, courses, slides, practiceQuestions } from "@/db/schema";
+import {
+  topics,
+  courses,
+  slides,
+  practiceQuestions,
+  practiceQuestionProgress,
+} from "@/db/schema";
+
+export async function getPastCorrectness(userId: string, questionIds: string[]) {
+  if (questionIds.length === 0) return {} as Record<string, boolean>;
+  const rows = await db
+    .select({
+      practiceQuestionId: practiceQuestionProgress.practiceQuestionId,
+      isCorrect: practiceQuestionProgress.isCorrect,
+    })
+    .from(practiceQuestionProgress)
+    .where(
+      and(
+        eq(practiceQuestionProgress.userId, userId),
+        inArray(practiceQuestionProgress.practiceQuestionId, questionIds),
+      ),
+    );
+  const map: Record<string, boolean> = {};
+  for (const r of rows) map[r.practiceQuestionId] = r.isCorrect;
+  return map;
+}
 
 export async function getTopicWithSlides(topicSlug: string) {
   const topic = await db

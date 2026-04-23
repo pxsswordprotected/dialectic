@@ -8,13 +8,17 @@ export function TrueFalse({
   answer,
   onAnswer,
   answered,
+  reveal,
 }: {
   statement: string;
   answer: boolean;
   onAnswer: (correct: boolean) => void;
   answered: boolean;
+  reveal?: boolean;
 }) {
-  const [selected, setSelected] = useState<boolean | null>(null);
+  const [selected, setSelected] = useState<boolean | null>(() =>
+    reveal ? answer : null,
+  );
 
   function handleCheck() {
     if (answered || selected === null) return;
@@ -34,7 +38,7 @@ export function TrueFalse({
 
   return (
     <div className="flex flex-col gap-16">
-      <blockquote className="border-l-2 border-neutral-300 pl-12 text-base italic leading-[1.4] text-neutral-800">
+      <blockquote className="border-l-2 border-neutral-300 pl-12 text-lg italic leading-[1.4] text-neutral-800">
         {statement}
       </blockquote>
       <ul className="flex flex-col gap-12">
@@ -48,7 +52,7 @@ export function TrueFalse({
                 aria-checked={isSelected}
                 onClick={() => !answered && setSelected(value)}
                 disabled={answered}
-                className={`group flex w-full items-center gap-12 text-left text-base leading-[1.4] text-neutral-800 ${
+                className={`group flex w-full items-center gap-12 text-left text-lg leading-[1.4] text-neutral-800 ${
                   answered ? "cursor-default" : "cursor-pointer"
                 }`}
               >

@@ -156,6 +156,7 @@ type TopicRow = {
   description: string | null;
   slug: string;
   sortOrder: number;
+  totalXp: number;
 };
 
 type ProgressRow = {

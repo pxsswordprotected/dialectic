@@ -45,6 +45,13 @@ export function Navbar(props: NavbarProps) {
     return () => document.removeEventListener("mousedown", onMouseDown);
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onScroll = () => setMenuOpen(false);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [menuOpen]);
+
   return (
     <nav className="relative mx-auto h-48 w-full max-w-[1050px]">
       <div

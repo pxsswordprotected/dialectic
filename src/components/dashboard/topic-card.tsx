@@ -31,7 +31,7 @@ export function TopicCard(props: TopicCardProps) {
     return (
       <div className={`${shell} bg-neutral-200`}>
         <div className="flex flex-1 items-center gap-12 text-neutral-600">
-          <span className="font-heading">{props.title}</span>
+          <span className="font-heading text-lg">{props.title}</span>
           <span className="font-sans text-base">{props.totalXp} XP</span>
         </div>
         <LockSimple size={28} className="text-neutral-600" />
@@ -84,7 +84,7 @@ export function TopicCard(props: TopicCardProps) {
     <div className={`${shell} bg-white`}>
       {leftIcon && <div className="mr-20">{leftIcon}</div>}
       <div className="flex flex-col gap-8">
-        <span className="font-heading text-neutral-800">{props.title}</span>
+        <span className="font-heading text-lg text-neutral-800">{props.title}</span>
         <div className="font-sans text-xs text-neutral-400">{subtitle}</div>
       </div>
       <div className="ml-auto">{button}</div>
