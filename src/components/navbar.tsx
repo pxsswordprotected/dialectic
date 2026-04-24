@@ -68,7 +68,7 @@ export function Navbar(props: NavbarProps) {
           clipPath: "polygon(0 0, 100% 0, calc(100% - 36px) 100%, 36px 100%)",
         }}
       />
-      <div className="relative flex h-full items-center text-neutral-800">
+      <div className="relative flex h-full items-center text-neutral-800 select-none">
         {mode === "default" ? (
           <div className="flex items-center gap-32 pl-[100px]">
             <button

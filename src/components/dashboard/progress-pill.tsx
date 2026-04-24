@@ -15,7 +15,7 @@ export function ProgressPill({ lessonsCompleted, lessonsTotal }: Props) {
 
   return (
     <span
-      className="inline-flex items-center rounded-full px-16 py-[6px] font-sans text-xs text-neutral-500"
+      className="inline-flex items-center rounded-full px-16 py-[6px] font-sans text-xs text-neutral-500 select-none"
       style={{
         background,
         boxShadow: "inset 0 0 2.7px rgba(0, 0, 0, 0.5)",
