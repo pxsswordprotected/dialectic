@@ -1,4 +1,4 @@
-import { eq, sum, sql, count, lte, and } from "drizzle-orm";
+import { eq, sum, sql, count, lte, and, inArray } from "drizzle-orm";
 import { db } from "@/db";
 import {
   profiles,
@@ -8,6 +8,7 @@ import {
   userProgress,
   xpLog,
   reviewSchedule,
+  reviewSessions,
   slides,
   practiceQuestions,
   practiceQuestionProgress,
@@ -33,6 +34,7 @@ export async function getDashboardData(userId: string) {
     xpResult,
     profile,
     dueReviewResult,
+    inProgressReviewRow,
     slideCountRows,
     questionCountRows,
     correctAnswerRows,
@@ -68,11 +70,19 @@ export async function getDashboardData(userId: string) {
         .from(userProgress)
         .where(eq(userProgress.userId, userId)),
 
-      // Total XP
+      // Total XP (course XP only — excludes review_completed and streak_bonus)
       db
         .select({ total: sum(xpLog.xpAmount) })
         .from(xpLog)
-        .where(eq(xpLog.userId, userId)),
+        .where(
+          and(
+            eq(xpLog.userId, userId),
+            inArray(xpLog.activityType, [
+              "practice_session",
+              "topic_completed",
+            ]),
+          ),
+        ),
 
       // Profile
       db.query.profiles.findFirst({
@@ -89,6 +99,22 @@ export async function getDashboardData(userId: string) {
             lte(reviewSchedule.nextReviewAt, new Date()),
           ),
         ),
+
+      // In-progress review session (if any)
+      db
+        .select({
+          id: reviewSessions.id,
+          currentIndex: reviewSessions.currentIndex,
+          questions: reviewSessions.questions,
+        })
+        .from(reviewSessions)
+        .where(
+          and(
+            eq(reviewSessions.userId, userId),
+            eq(reviewSessions.status, "in_progress"),
+          ),
+        )
+        .limit(1),
 
       // Slide counts per topic (for this course)
       db
@@ -142,6 +168,12 @@ export async function getDashboardData(userId: string) {
     totalXp: Number(xpResult[0]?.total ?? 0),
     profile: profile ?? null,
     dueReviewCount: Number(dueReviewResult[0]?.total ?? 0),
+    inProgressReview: inProgressReviewRow[0]
+      ? {
+          currentIndex: inProgressReviewRow[0].currentIndex,
+          totalQuestions: inProgressReviewRow[0].questions.length,
+        }
+      : null,
     slideCounts: toCountMap(slideCountRows),
     questionCounts: toCountMap(questionCountRows),
     correctAnswers: toCountMap(correctAnswerRows),

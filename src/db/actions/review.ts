@@ -1,20 +1,18 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
-import { eq, and } from "drizzle-orm";
+import { eq, and, sql } from "drizzle-orm";
 import { db } from "@/db";
-import { reviewSchedule, xpLog } from "@/db/schema";
+import { reviewSchedule, reviewSessions, xpLog } from "@/db/schema";
 import { updateStreakOnXpEarned } from "./streak";
 
 const XP_PER_CORRECT = 5;
 
-type TopicResult = {
-  topicId: string;
-  correctCount: number;
-  totalCount: number;
-};
-
-export async function completeReviewSession(topicResults: TopicResult[]) {
+export async function saveReviewAnswer(
+  sessionId: string,
+  questionId: string,
+  correct: boolean,
+) {
   const supabase = await createClient();
   const {
     data: { user },
@@ -23,21 +21,86 @@ export async function completeReviewSession(topicResults: TopicResult[]) {
   if (!user) throw new Error("Not authenticated");
 
   await db.transaction(async (tx) => {
-    for (const result of topicResults) {
+    const [session] = await tx
+      .select()
+      .from(reviewSessions)
+      .where(
+        and(
+          eq(reviewSessions.id, sessionId),
+          eq(reviewSessions.userId, user.id),
+        ),
+      )
+      .for("update")
+      .limit(1);
+
+    if (!session || session.status !== "in_progress") return;
+
+    const nextAnswers = { ...session.answers, [questionId]: correct };
+    const index = session.questions.findIndex(
+      (q) => q.questionId === questionId,
+    );
+    const nextIndex =
+      index >= 0
+        ? Math.max(session.currentIndex, index + 1)
+        : session.currentIndex;
+
+    await tx
+      .update(reviewSessions)
+      .set({ answers: nextAnswers, currentIndex: nextIndex })
+      .where(eq(reviewSessions.id, sessionId));
+  });
+}
+
+export async function completeReviewSession(sessionId: string) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) throw new Error("Not authenticated");
+
+  await db.transaction(async (tx) => {
+    const [session] = await tx
+      .select()
+      .from(reviewSessions)
+      .where(
+        and(
+          eq(reviewSessions.id, sessionId),
+          eq(reviewSessions.userId, user.id),
+        ),
+      )
+      .for("update")
+      .limit(1);
+
+    if (!session || session.status !== "in_progress") return;
+
+    // Group results by topicId from stored plan + answers
+    const byTopic = new Map<string, { correct: number; total: number }>();
+    for (const q of session.questions) {
+      const answered = q.questionId in session.answers;
+      if (!answered) continue;
+      const entry = byTopic.get(q.topicId) ?? { correct: 0, total: 0 };
+      entry.total += 1;
+      if (session.answers[q.questionId]) entry.correct += 1;
+      byTopic.set(q.topicId, entry);
+    }
+
+    for (const [topicId, result] of byTopic) {
       const [schedule] = await tx
         .select()
         .from(reviewSchedule)
         .where(
           and(
             eq(reviewSchedule.userId, user.id),
-            eq(reviewSchedule.topicId, result.topicId),
+            eq(reviewSchedule.topicId, topicId),
           ),
         )
+        .for("update")
         .limit(1);
 
       if (!schedule) continue;
 
-      const quality = Math.round((result.correctCount / result.totalCount) * 5);
+      const quality = Math.round((result.correct / result.total) * 5);
 
       // SM-2 ease factor update (harshened)
       const newEase = Math.max(
@@ -47,7 +110,6 @@ export async function completeReviewSession(topicResults: TopicResult[]) {
           (5 - quality) * (0.08 + (5 - quality) * 0.02),
       );
 
-      // Interval update
       let newInterval: number;
       if (quality >= 3) {
         newInterval = schedule.intervalDays * newEase;
@@ -71,11 +133,16 @@ export async function completeReviewSession(topicResults: TopicResult[]) {
 
       await tx.insert(xpLog).values({
         userId: user.id,
-        topicId: result.topicId,
+        topicId,
         activityType: "review_completed",
-        xpAmount: result.correctCount * XP_PER_CORRECT,
+        xpAmount: result.correct * XP_PER_CORRECT,
       });
     }
+
+    await tx
+      .update(reviewSessions)
+      .set({ status: "completed", completedAt: sql`now()` })
+      .where(eq(reviewSessions.id, sessionId));
 
     await updateStreakOnXpEarned(tx, user.id);
   });

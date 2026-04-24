@@ -9,20 +9,20 @@ type NavbarProps =
       mode?: "default";
       activeTab?: "learn" | "courses";
       xp: number;
-      starsEarned: number;
-      starsTotal: number;
+      dailyXpEarned: number;
+      dailyXpGoal: number;
     }
   | {
       mode: "lesson";
       xp: number;
-      starsEarned: number;
-      starsTotal: number;
+      dailyXpEarned: number;
+      dailyXpGoal: number;
       lessonTitle: string;
       backHref?: string;
     };
 
 export function Navbar(props: NavbarProps) {
-  const { mode = "default", xp, starsEarned, starsTotal } = props;
+  const { mode = "default", xp, dailyXpEarned, dailyXpGoal } = props;
 
   const [activeTab, setActiveTab] = useState<"learn" | "courses">(
     props.mode !== "lesson" ? (props.activeTab ?? "learn") : "learn",
@@ -136,7 +136,7 @@ export function Navbar(props: NavbarProps) {
             <div className="flex items-center gap-[6px]">
               <Star size={22} weight="fill" className="text-primary-400" />
               <span className="text-base text-neutral-800">
-                {starsEarned}/{starsTotal}
+                {dailyXpEarned}/{dailyXpGoal}
               </span>
             </div>
           </div>

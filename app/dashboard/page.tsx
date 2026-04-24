@@ -6,6 +6,7 @@ import {
   computeTopicStatuses,
   computeContinueCard,
 } from "@/db/queries/dashboard";
+import { getStreakDisplayData } from "@/db/queries/streak";
 import { Navbar } from "@/components/navbar";
 import { ContinueLearningCard } from "@/components/dashboard/continue-learning-card";
 import { ProgressCard } from "@/components/dashboard/progress-card";
@@ -27,7 +28,10 @@ export default async function DashboardPage() {
   }
 
   await ensureProfile(user.id);
-  const data = await getDashboardData(user.id);
+  const [data, streak] = await Promise.all([
+    getDashboardData(user.id),
+    getStreakDisplayData(user.id),
+  ]);
 
   if (!data.course) {
     return (
@@ -118,8 +122,8 @@ export default async function DashboardPage() {
         <Navbar
           activeTab="learn"
           xp={data.totalXp}
-          starsEarned={completedCount}
-          starsTotal={totalTopics}
+          dailyXpEarned={streak.dailyXpEarned}
+          dailyXpGoal={streak.dailyXpGoal}
         />
       </div>
 
@@ -136,7 +140,18 @@ export default async function DashboardPage() {
         </div>
 
         {/* Review card */}
-        {data.dueReviewCount > 0 && (
+        {data.inProgressReview ? (
+          <div className="mt-32">
+            <TopicCard
+              variant="review_in_progress"
+              title="Review"
+              totalXp={0}
+              answered={data.inProgressReview.currentIndex}
+              totalQuestions={data.inProgressReview.totalQuestions}
+              href="/review"
+            />
+          </div>
+        ) : data.dueReviewCount > 0 ? (
           <div className="mt-32">
             <TopicCard
               variant="review"
@@ -146,7 +161,7 @@ export default async function DashboardPage() {
               href="/review"
             />
           </div>
-        )}
+        ) : null}
 
         {/* Continue learning + Progress cards */}
         <div className="mt-32 flex gap-16">

@@ -1,11 +1,12 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { getDueReviewQuestions } from "@/db/queries/review";
+import { getOrCreateReviewSession } from "@/db/queries/review";
 import {
   ensureProfile,
   getDashboardData,
   computeTopicStatuses,
 } from "@/db/queries/dashboard";
+import { getStreakDisplayData } from "@/db/queries/streak";
 import { Navbar } from "@/components/navbar";
 import { ReviewContainer } from "./review-container";
 
@@ -20,12 +21,13 @@ export default async function ReviewPage() {
   }
 
   await ensureProfile(user.id);
-  const [reviewData, dashboard] = await Promise.all([
-    getDueReviewQuestions(user.id),
+  const [session, dashboard, streak] = await Promise.all([
+    getOrCreateReviewSession(user.id),
     getDashboardData(user.id),
+    getStreakDisplayData(user.id),
   ]);
 
-  if (!reviewData) {
+  if (!session) {
     redirect("/dashboard");
   }
 
@@ -35,7 +37,7 @@ export default async function ReviewPage() {
     dashboard.prerequisites,
   );
 
-  const topicCount = reviewData.dueTopics.length;
+  const topicCount = session.dueTopics.length;
 
   return (
     <>
@@ -45,14 +47,18 @@ export default async function ReviewPage() {
           lessonTitle={`Reviewing ${topicCount} ${topicCount === 1 ? "topic" : "topics"}`}
           backHref="/dashboard"
           xp={dashboard.totalXp}
-          starsEarned={completedCount}
-          starsTotal={topicsWithStatus.length}
+          dailyXpEarned={streak.dailyXpEarned}
+          dailyXpGoal={streak.dailyXpGoal}
         />
       </div>
       <div className="w-full pt-[100px] pb-48">
         <ReviewContainer
-          questions={reviewData.questions}
-          dueTopics={reviewData.dueTopics}
+          sessionId={session.sessionId}
+          questions={session.questions}
+          answers={session.answers}
+          startIndex={session.currentIndex}
+          dailyXpEarned={streak.dailyXpEarned}
+          dailyXpGoal={streak.dailyXpGoal}
         />
       </div>
     </>

@@ -2,9 +2,15 @@ type Props = {
   mode: "fail" | "pass";
   coursePct: number;
   xpEarned: number;
+  completeLabel?: string;
 };
 
-export function CourseProgressBar({ mode, coursePct, xpEarned }: Props) {
+export function CourseProgressBar({
+  mode,
+  coursePct,
+  xpEarned,
+  completeLabel = "Course completed",
+}: Props) {
   if (mode === "fail") {
     return (
       <div className="flex w-[700px] items-center gap-12">
@@ -17,7 +23,7 @@ export function CourseProgressBar({ mode, coursePct, xpEarned }: Props) {
   }
 
   const pct = Math.max(0, Math.min(100, coursePct));
-  const text = pct >= 100 ? "Course completed" : `+${xpEarned} XP earned`;
+  const text = pct >= 100 ? completeLabel : `+${xpEarned} XP earned`;
 
   return (
     <div className="flex w-[700px] items-center gap-12">

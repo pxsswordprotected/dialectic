@@ -20,13 +20,13 @@ import practiceData from "@/db/seed-data/courses/intro-logic/nodes/01-identifyin
 export default function ComponentsPage() {
   return (
     <div className="mx-auto flex w-full max-w-[1050px] flex-col items-center gap-100 px-4 py-16">
-      <Navbar xp={4} starsEarned={35} starsTotal={50} />
+      <Navbar xp={4} dailyXpEarned={35} dailyXpGoal={50} />
       <Navbar
         mode="lesson"
         lessonTitle="Lesson 1: Identifying Propositions"
         xp={4}
-        starsEarned={35}
-        starsTotal={50}
+        dailyXpEarned={35}
+        dailyXpGoal={50}
       />
       <StreakDisplay currentStreak={5} dailyXpEarned={30} dailyXpGoal={50} />
 

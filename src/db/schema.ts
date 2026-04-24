@@ -48,6 +48,11 @@ export const xpActivityTypeEnum = pgEnum("xp_activity_type", [
   "streak_bonus",
 ]);
 
+export const reviewSessionStatusEnum = pgEnum("review_session_status", [
+  "in_progress",
+  "completed",
+]);
+
 // ── Content Tables ───────────────────────────────────────────────────────────
 
 export const courses = pgTable("courses", {
@@ -190,6 +195,21 @@ export const reviewSchedule = pgTable("review_schedule", {
   index("review_schedule_user_next_idx").on(table.userId, table.nextReviewAt),
 ]);
 
+export const reviewSessions = pgTable("review_sessions", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => profiles.id, { onDelete: "cascade" }),
+  questions: jsonb("questions").$type<Array<{ questionId: string; topicId: string }>>().notNull(),
+  answers: jsonb("answers").$type<Record<string, boolean>>().default({}).notNull(),
+  currentIndex: integer("current_index").default(0).notNull(),
+  status: reviewSessionStatusEnum("status").default("in_progress").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+  completedAt: timestamp("completed_at", { withTimezone: true }),
+}, (table) => [
+  index("review_sessions_user_status_idx").on(table.userId, table.status),
+]);
+
 export const xpLog = pgTable("xp_log", {
   id: uuid("id").defaultRandom().primaryKey(),
   userId: uuid("user_id")
@@ -274,6 +294,10 @@ export const practiceQuestionProgressRelations = relations(practiceQuestionProgr
 export const reviewScheduleRelations = relations(reviewSchedule, ({ one }) => ({
   user: one(profiles, { fields: [reviewSchedule.userId], references: [profiles.id] }),
   topic: one(topics, { fields: [reviewSchedule.topicId], references: [topics.id] }),
+}));
+
+export const reviewSessionsRelations = relations(reviewSessions, ({ one }) => ({
+  user: one(profiles, { fields: [reviewSessions.userId], references: [profiles.id] }),
 }));
 
 export const xpLogRelations = relations(xpLog, ({ one }) => ({

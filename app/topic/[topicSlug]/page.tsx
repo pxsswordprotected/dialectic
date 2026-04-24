@@ -6,6 +6,7 @@ import {
   getDashboardData,
   computeTopicStatuses,
 } from "@/db/queries/dashboard";
+import { getStreakDisplayData } from "@/db/queries/streak";
 import { Navbar } from "@/components/navbar";
 import { SlideViewer } from "./slide-viewer";
 
@@ -25,9 +26,10 @@ export default async function TopicPage({
 
   const { topicSlug } = await params;
   await ensureProfile(user.id);
-  const [data, dashboard] = await Promise.all([
+  const [data, dashboard, streak] = await Promise.all([
     getTopicWithSlides(topicSlug),
     getDashboardData(user.id),
+    getStreakDisplayData(user.id),
   ]);
 
   if (!data) {
@@ -61,8 +63,8 @@ export default async function TopicPage({
           lessonTitle={data.topic.title}
           backHref="/dashboard"
           xp={dashboard.totalXp}
-          starsEarned={completedCount}
-          starsTotal={topicsWithStatus.length}
+          dailyXpEarned={streak.dailyXpEarned}
+          dailyXpGoal={streak.dailyXpGoal}
         />
       </div>
       <div className="w-full pt-[128px] pb-48">

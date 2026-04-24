@@ -15,6 +15,11 @@ type BaseProps = {
 
 export type TopicCardProps =
   | ({ variant: "review"; dueXp: number } & BaseProps)
+  | ({
+      variant: "review_in_progress";
+      answered: number;
+      totalQuestions: number;
+    } & BaseProps)
   | ({ variant: "completed"; xpEarned: number } & BaseProps)
   | ({
       variant: "in_progress";
@@ -40,7 +45,7 @@ export function TopicCard(props: TopicCardProps) {
   }
 
   const leftIcon =
-    props.variant === "review" ? (
+    props.variant === "review" || props.variant === "review_in_progress" ? (
       <ExclamationMark size={32} weight="bold" className="text-primary-400" />
     ) : props.variant === "completed" ? (
       <Check
@@ -53,6 +58,10 @@ export function TopicCard(props: TopicCardProps) {
   const subtitle =
     props.variant === "review" ? (
       <span>{props.dueXp} XP available</span>
+    ) : props.variant === "review_in_progress" ? (
+      <span>
+        {props.answered}/{props.totalQuestions} answered
+      </span>
     ) : props.variant === "completed" ? (
       <span>{props.xpEarned} XP earned</span>
     ) : props.variant === "in_progress" ? (
@@ -72,6 +81,8 @@ export function TopicCard(props: TopicCardProps) {
   const button =
     props.variant === "review" ? (
       <Button variant="primary">Start review</Button>
+    ) : props.variant === "review_in_progress" ? (
+      <Button variant="primary">Continue review</Button>
     ) : props.variant === "completed" ? (
       <Button variant="secondary">View</Button>
     ) : props.variant === "in_progress" ? (

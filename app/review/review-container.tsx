@@ -7,9 +7,13 @@ import {
   PracticeSlide,
   type PracticeQuestionData,
 } from "@/components/practice-slide";
+import { CourseProgressBar } from "@/components/course-progress-bar";
 import { lessonBars } from "@/components/slide-counter-helpers";
 import { buttonClasses } from "@/components/ui/button";
-import { completeReviewSession } from "@/db/actions/review";
+import {
+  saveReviewAnswer,
+  completeReviewSession,
+} from "@/db/actions/review";
 
 const XP_PER_CORRECT = 5;
 
@@ -21,11 +25,6 @@ type ReviewQuestion = {
   explanation: string | null;
   topicId: string;
   topicTitle: string;
-};
-
-type DueTopic = {
-  id: string;
-  title: string;
 };
 
 type TopicScore = {
@@ -75,48 +74,45 @@ function toPracticeQuestion(q: ReviewQuestion): PracticeQuestionData {
 }
 
 export function ReviewContainer({
+  sessionId,
   questions,
+  answers,
+  startIndex,
+  dailyXpEarned,
+  dailyXpGoal,
 }: {
+  sessionId: string;
   questions: ReviewQuestion[];
-  dueTopics: DueTopic[];
+  answers: Record<string, boolean>;
+  startIndex: number;
+  dailyXpEarned: number;
+  dailyXpGoal: number;
 }) {
-  const [questionIndex, setQuestionIndex] = useState(0);
+  const clampedStart = Math.min(startIndex, questions.length - 1);
+  const [questionIndex, setQuestionIndex] = useState(clampedStart);
   const [topicScores, setTopicScores] = useState<TopicScore[] | null>(null);
-  const resultsRef = useRef<Array<{ questionId: string; correct: boolean }>>(
-    [],
-  );
+  const answersRef = useRef<Record<string, boolean>>({ ...answers });
   const submittedRef = useRef(false);
 
-  function finish() {
-    if (submittedRef.current) return;
-    submittedRef.current = true;
-
+  function buildScores(): TopicScore[] {
     const byTopic = new Map<
       string,
       { correct: number; total: number; title: string }
     >();
 
-    for (const r of resultsRef.current) {
-      const q = questions.find((qq) => qq.id === r.questionId);
-      if (!q) continue;
-
-      const existing = byTopic.get(q.topicId) ?? {
+    for (const q of questions) {
+      if (!(q.id in answersRef.current)) continue;
+      const entry = byTopic.get(q.topicId) ?? {
         correct: 0,
         total: 0,
         title: q.topicTitle,
       };
-      existing.total += 1;
-      if (r.correct) existing.correct += 1;
-      byTopic.set(q.topicId, existing);
+      entry.total += 1;
+      if (answersRef.current[q.id]) entry.correct += 1;
+      byTopic.set(q.topicId, entry);
     }
 
     const scores: TopicScore[] = [];
-    const topicResults: Array<{
-      topicId: string;
-      correctCount: number;
-      totalCount: number;
-    }> = [];
-
     for (const [topicId, data] of byTopic) {
       scores.push({
         topicId,
@@ -124,31 +120,38 @@ export function ReviewContainer({
         correctCount: data.correct,
         totalCount: data.total,
       });
-      topicResults.push({
-        topicId,
-        correctCount: data.correct,
-        totalCount: data.total,
-      });
     }
+    return scores;
+  }
 
-    setTopicScores(scores);
-    completeReviewSession(topicResults);
+  function finish() {
+    if (submittedRef.current) return;
+    submittedRef.current = true;
+    setTopicScores(buildScores());
+    completeReviewSession(sessionId);
   }
 
   if (topicScores) {
     const totalCorrect = topicScores.reduce((s, t) => s + t.correctCount, 0);
     const totalQuestions = topicScores.reduce((s, t) => s + t.totalCount, 0);
     const totalXp = totalCorrect * XP_PER_CORRECT;
+    const dailyPct =
+      dailyXpGoal > 0
+        ? Math.round(((dailyXpEarned + totalXp) / dailyXpGoal) * 100)
+        : 0;
 
     return (
       <div className="flex flex-col items-center">
-        <div className="w-[700px] text-left text-neutral-800">
+        <CourseProgressBar
+          mode={totalXp > 0 ? "pass" : "fail"}
+          coursePct={dailyPct}
+          xpEarned={totalXp}
+          completeLabel="Daily goal reached"
+        />
+        <div className="mt-32 w-[700px] text-left text-neutral-800">
           <h2 className="font-heading text-2xl">Review Complete</h2>
           <p className="mt-[28px] font-sans text-lg font-medium leading-[1.4]">
             Score: {totalCorrect}/{totalQuestions} correct
-          </p>
-          <p className="mt-8 text-lg leading-[1.4] text-neutral-500">
-            +{totalXp} XP earned
           </p>
 
           <ul className="mt-[28px] flex flex-col gap-8">
@@ -205,6 +208,13 @@ export function ReviewContainer({
 
   const question = questions[questionIndex];
   const isLast = questionIndex === questions.length - 1;
+  const existingAnswer = answersRef.current[question.id];
+  const revealForResumed =
+    existingAnswer === undefined
+      ? undefined
+      : existingAnswer
+        ? "correct"
+        : "incorrect";
 
   return (
     <PracticeSlide
@@ -213,8 +223,11 @@ export function ReviewContainer({
       questionNumber={questionIndex + 1}
       bars={lessonBars(questions.length, questionIndex)}
       nextLabel={isLast ? "See Results" : undefined}
+      reveal={revealForResumed}
       onAnswered={(correct) => {
-        resultsRef.current.push({ questionId: question.id, correct });
+        if (question.id in answersRef.current) return;
+        answersRef.current[question.id] = correct;
+        saveReviewAnswer(sessionId, question.id, correct);
       }}
       onNext={() => {
         if (isLast) {
