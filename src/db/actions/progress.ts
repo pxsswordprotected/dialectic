@@ -3,7 +3,7 @@
 import { sql } from "drizzle-orm";
 import { createClient } from "@/lib/supabase/server";
 import { db } from "@/db";
-import { userProgress, practiceQuestionProgress } from "@/db/schema";
+import { userProgress } from "@/db/schema";
 
 async function getUserId() {
   const supabase = await createClient();
@@ -35,31 +35,3 @@ export async function setSlideProgress(topicId: string, slideIndex: number) {
     });
 }
 
-export async function recordPracticeAnswer(
-  practiceQuestionId: string,
-  isCorrect: boolean,
-) {
-  const userId = await getUserId();
-
-  await db
-    .insert(practiceQuestionProgress)
-    .values({
-      userId,
-      practiceQuestionId,
-      isCorrect,
-      attempts: 1,
-      lastAttemptAt: new Date(),
-    })
-    .onConflictDoUpdate({
-      target: [
-        practiceQuestionProgress.userId,
-        practiceQuestionProgress.practiceQuestionId,
-      ],
-      set: {
-        isCorrect: sql`${practiceQuestionProgress.isCorrect} OR ${isCorrect}`,
-        attempts: sql`${practiceQuestionProgress.attempts} + 1`,
-        lastAttemptAt: new Date(),
-        updatedAt: new Date(),
-      },
-    });
-}

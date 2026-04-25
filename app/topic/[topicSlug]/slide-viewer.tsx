@@ -10,10 +10,13 @@ import {
   X,
 } from "@phosphor-icons/react/dist/ssr";
 import { logPracticeXp } from "@/db/actions/xp";
+import { setSlideProgress } from "@/db/actions/progress";
 import {
-  setSlideProgress,
-  recordPracticeAnswer,
-} from "@/db/actions/progress";
+  startPracticeSession,
+  savePracticeAnswer,
+  completePracticeSession,
+  type PracticeSessionState,
+} from "@/db/actions/practice-session";
 import { LessonSlide, type LessonSlideData } from "@/components/lesson-slide";
 import {
   PracticeSlide,
@@ -124,6 +127,7 @@ export function SlideViewer({
   viewMode = false,
   pastCorrectness = {},
   initialSlideIndex = 0,
+  practiceSession = null,
 }: {
   topic: Topic;
   slides: DbSlide[];
@@ -133,20 +137,56 @@ export function SlideViewer({
   viewMode?: boolean;
   pastCorrectness?: Record<string, boolean>;
   initialSlideIndex?: number;
+  practiceSession?: PracticeSessionState | null;
 }) {
+  const resumeMidPractice = !viewMode && practiceSession !== null;
   const resumePastLessons =
-    !viewMode && slides.length > 0 && initialSlideIndex >= slides.length;
+    !viewMode &&
+    !resumeMidPractice &&
+    slides.length > 0 &&
+    initialSlideIndex >= slides.length;
   const initialLessonIndex =
-    viewMode || resumePastLessons
+    viewMode || resumeMidPractice || resumePastLessons
       ? 0
-      : Math.min(Math.max(initialSlideIndex, 0), Math.max(slides.length - 1, 0));
+      : Math.min(
+          Math.max(initialSlideIndex, 0),
+          Math.max(slides.length - 1, 0),
+        );
+  const initialQuestionIndex = resumeMidPractice
+    ? Math.min(
+        Math.max(practiceSession.currentIndex, 0),
+        Math.max(questions.length - 1, 0),
+      )
+    : 0;
   const [phase, setPhase] = useState<
     "lesson" | "transition" | "practice" | "results"
-  >(resumePastLessons ? "transition" : "lesson");
+  >(
+    resumeMidPractice
+      ? "practice"
+      : resumePastLessons
+        ? "transition"
+        : "lesson",
+  );
   const [slideIndex, setSlideIndex] = useState(initialLessonIndex);
-  const [questionIndex, setQuestionIndex] = useState(0);
-  const resultsRef = useRef<Array<{ prompt: string; correct: boolean }>>([]);
+  const [questionIndex, setQuestionIndex] = useState(initialQuestionIndex);
+  const resultsRef = useRef<Array<{ prompt: string; correct: boolean }>>(
+    resumeMidPractice
+      ? practiceSession.questions
+          .filter((qid) => qid in practiceSession.answers)
+          .map((qid) => {
+            const q = questions.find((x) => x.id === qid);
+            return {
+              prompt: q?.prompt ?? "",
+              correct: practiceSession.answers[qid],
+            };
+          })
+      : [],
+  );
+  const sessionPromiseRef = useRef<Promise<PracticeSessionState> | null>(
+    practiceSession ? Promise.resolve(practiceSession) : null,
+  );
   const xpLoggedRef = useRef(false);
+  const sessionCompletedRef = useRef(false);
   const router = useRouter();
 
   if (slides.length === 0) {
@@ -199,7 +239,12 @@ export function SlideViewer({
       <>
         <PracticeTransition
           questionCount={questions.length}
-          onStart={() => setPhase("practice")}
+          onStart={() => {
+            if (!viewMode && !sessionPromiseRef.current) {
+              sessionPromiseRef.current = startPracticeSession(topic.id);
+            }
+            setPhase("practice");
+          }}
         />
       </>
     );
@@ -222,10 +267,17 @@ export function SlideViewer({
                 : "correct"
               : undefined
           }
-          nextLabel={viewMode && isLast ? "Continue" : undefined}
+          nextLabel={
+            isLast ? (viewMode ? "Continue" : "See results") : undefined
+          }
           onAnswered={(correct) => {
             resultsRef.current.push({ prompt: question.prompt, correct });
-            if (!viewMode) void recordPracticeAnswer(question.id, correct);
+            if (viewMode) return;
+            const promise = sessionPromiseRef.current;
+            if (!promise) return;
+            void promise.then((s) =>
+              savePracticeAnswer(s.id, question.id, correct),
+            );
           }}
           onNext={() => {
             if (viewMode && isLast) {
@@ -233,11 +285,7 @@ export function SlideViewer({
             } else if (isLast) {
               setPhase("results");
             } else {
-              const next = questionIndex + 1;
-              if (!viewMode) {
-                void setSlideProgress(topic.id, slides.length + next);
-              }
-              setQuestionIndex(next);
+              setQuestionIndex(questionIndex + 1);
             }
           }}
         />
@@ -265,6 +313,12 @@ export function SlideViewer({
     logPracticeXp(topic.id, correctCount, passed);
   }
 
+  if (!viewMode && !sessionCompletedRef.current) {
+    sessionCompletedRef.current = true;
+    const promise = sessionPromiseRef.current;
+    if (promise) void promise.then((s) => completePracticeSession(s.id));
+  }
+
   return (
     <div className="flex flex-col items-center">
       <CourseProgressBar
@@ -287,7 +341,8 @@ export function SlideViewer({
             >
               {r.correct ? (
                 <Check
-                  size={20}
+                  size={24}
+                  weight="bold"
                   className="shrink-0 text-highlight-true"
                   style={{ strokeLinecap: "square" }}
                 />

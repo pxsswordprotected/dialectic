@@ -1,6 +1,7 @@
 import { redirect, notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getTopicWithSlides, getPastCorrectness } from "@/db/queries/topic";
+import { getInProgressPracticeSession } from "@/db/queries/practice-session";
 import {
   ensureProfile,
   getDashboardData,
@@ -58,6 +59,9 @@ export default async function TopicPage({
         data.questions.map((q) => q.id),
       )
     : {};
+  const practiceSession = viewMode
+    ? null
+    : await getInProgressPracticeSession(user.id, data.topic.id);
 
   return (
     <>
@@ -82,6 +86,7 @@ export default async function TopicPage({
           viewMode={viewMode}
           pastCorrectness={pastCorrectness}
           initialSlideIndex={savedSlideIndex}
+          practiceSession={practiceSession}
         />
       </div>
     </>

@@ -46,7 +46,14 @@ export async function logPracticeXp(
           status: "completed",
           completedAt: new Date(),
         })
-        .onConflictDoNothing();
+        .onConflictDoUpdate({
+          target: [userProgress.userId, userProgress.topicId],
+          set: {
+            status: "completed",
+            completedAt: new Date(),
+            updatedAt: new Date(),
+          },
+        });
 
       const tomorrow = new Date();
       tomorrow.setDate(tomorrow.getDate() + 1);

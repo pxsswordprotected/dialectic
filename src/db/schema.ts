@@ -53,6 +53,11 @@ export const reviewSessionStatusEnum = pgEnum("review_session_status", [
   "completed",
 ]);
 
+export const practiceSessionStatusEnum = pgEnum("practice_session_status", [
+  "in_progress",
+  "completed",
+]);
+
 // ── Content Tables ───────────────────────────────────────────────────────────
 
 export const courses = pgTable("courses", {
@@ -208,6 +213,25 @@ export const reviewSessions = pgTable("review_sessions", {
   completedAt: timestamp("completed_at", { withTimezone: true }),
 }, (table) => [
   index("review_sessions_user_status_idx").on(table.userId, table.status),
+]);
+
+export const practiceSessions = pgTable("practice_sessions", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => profiles.id, { onDelete: "cascade" }),
+  topicId: uuid("topic_id")
+    .notNull()
+    .references(() => topics.id, { onDelete: "cascade" }),
+  questions: jsonb("questions").$type<string[]>().notNull(),
+  answers: jsonb("answers").$type<Record<string, boolean>>().default({}).notNull(),
+  currentIndex: integer("current_index").default(0).notNull(),
+  status: practiceSessionStatusEnum("status").default("in_progress").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+  completedAt: timestamp("completed_at", { withTimezone: true }),
+}, (table) => [
+  index("practice_sessions_user_status_idx").on(table.userId, table.status),
+  index("practice_sessions_user_topic_status_idx").on(table.userId, table.topicId, table.status),
 ]);
 
 export const xpLog = pgTable("xp_log", {
