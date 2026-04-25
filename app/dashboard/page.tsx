@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import {
@@ -17,7 +18,11 @@ import {
   type TopicCardProps,
 } from "@/components/dashboard/topic-card";
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ course?: string }>;
+}) {
   const supabase = await createClient();
   const {
     data: { user },
@@ -28,18 +33,39 @@ export default async function DashboardPage() {
   }
 
   await ensureProfile(user.id);
+  const { course: courseSlug } = await searchParams;
   const [data, streak] = await Promise.all([
-    getDashboardData(user.id),
+    getDashboardData(user.id, courseSlug),
     getStreakDisplayData(user.id),
   ]);
 
   if (!data.course) {
+    const accountName =
+      data.profile?.displayName ?? user.email?.split("@")[0] ?? "Account";
     return (
-      <div className="flex flex-1 items-center justify-center">
-        <p className="text-neutral-500">
-          Course not found. Run the seed script first.
-        </p>
-      </div>
+      <>
+        <div className="fixed inset-x-0 top-0 z-50 bg-neutral-50">
+          <Navbar
+            activeTab="learn"
+            currentStreak={streak.currentStreak}
+            dailyXpEarned={streak.dailyXpEarned}
+            dailyXpGoal={streak.dailyXpGoal}
+            accountName={accountName}
+          />
+        </div>
+        <div className="mx-auto flex w-[1050px] flex-1 items-center justify-center pt-[100px] pb-32">
+          <p className="text-base text-neutral-800 select-none">
+            Pick a course from{" "}
+            <Link
+              href="/courses"
+              className="font-semibold text-primary-400 underline"
+            >
+              All Courses
+            </Link>{" "}
+            to get started.
+          </p>
+        </div>
+      </>
     );
   }
 

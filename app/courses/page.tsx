@@ -58,7 +58,7 @@ export default async function CoursesPage() {
               progressPercent={c.progressPercent}
               completedTopics={c.completedTopics}
               totalTopics={c.totalTopics}
-              href="/dashboard"
+              href={`/dashboard?course=${c.slug}`}
               bgImage={pickCardImage(c.id)}
             />
           ))}

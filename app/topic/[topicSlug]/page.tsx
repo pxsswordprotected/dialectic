@@ -49,6 +49,9 @@ export default async function TopicPage({
     : completedCount + 1;
 
   const viewMode = wasAlreadyCompleted;
+  const savedSlideIndex =
+    dashboard.progressRows.find((r) => r.topicId === data.topic.id)
+      ?.currentSlideIndex ?? 0;
   const pastCorrectness = viewMode
     ? await getPastCorrectness(
         user.id,
@@ -78,6 +81,7 @@ export default async function TopicPage({
           totalTopics={topicsWithStatus.length}
           viewMode={viewMode}
           pastCorrectness={pastCorrectness}
+          initialSlideIndex={savedSlideIndex}
         />
       </div>
     </>

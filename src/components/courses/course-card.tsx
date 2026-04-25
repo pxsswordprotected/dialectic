@@ -45,7 +45,7 @@ export function CourseCard({
             aria-hidden
             className="absolute inset-0 size-full object-cover opacity-50"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white from-50% to-transparent transition-opacity duration-300 group-hover:opacity-0" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white from-50% to-transparent" />
         </>
       )}
       {!bgImage && (

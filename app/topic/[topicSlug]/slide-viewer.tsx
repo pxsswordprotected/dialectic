@@ -10,6 +10,10 @@ import {
   X,
 } from "@phosphor-icons/react/dist/ssr";
 import { logPracticeXp } from "@/db/actions/xp";
+import {
+  setSlideProgress,
+  recordPracticeAnswer,
+} from "@/db/actions/progress";
 import { LessonSlide, type LessonSlideData } from "@/components/lesson-slide";
 import {
   PracticeSlide,
@@ -119,6 +123,7 @@ export function SlideViewer({
   totalTopics,
   viewMode = false,
   pastCorrectness = {},
+  initialSlideIndex = 0,
 }: {
   topic: Topic;
   slides: DbSlide[];
@@ -127,11 +132,18 @@ export function SlideViewer({
   totalTopics: number;
   viewMode?: boolean;
   pastCorrectness?: Record<string, boolean>;
+  initialSlideIndex?: number;
 }) {
+  const resumePastLessons =
+    !viewMode && slides.length > 0 && initialSlideIndex >= slides.length;
+  const initialLessonIndex =
+    viewMode || resumePastLessons
+      ? 0
+      : Math.min(Math.max(initialSlideIndex, 0), Math.max(slides.length - 1, 0));
   const [phase, setPhase] = useState<
     "lesson" | "transition" | "practice" | "results"
-  >("lesson");
-  const [slideIndex, setSlideIndex] = useState(0);
+  >(resumePastLessons ? "transition" : "lesson");
+  const [slideIndex, setSlideIndex] = useState(initialLessonIndex);
   const [questionIndex, setQuestionIndex] = useState(0);
   const resultsRef = useRef<Array<{ prompt: string; correct: boolean }>>([]);
   const xpLoggedRef = useRef(false);
@@ -166,8 +178,16 @@ export function SlideViewer({
             slideIndex > 0 ? () => setSlideIndex((i) => i - 1) : undefined
           }
           onNext={() => {
-            if (isLast) setPhase(viewMode ? "practice" : "transition");
-            else setSlideIndex((i) => i + 1);
+            if (isLast) {
+              if (!viewMode) {
+                void setSlideProgress(topic.id, slides.length);
+              }
+              setPhase(viewMode ? "practice" : "transition");
+            } else {
+              const next = slideIndex + 1;
+              if (!viewMode) void setSlideProgress(topic.id, next);
+              setSlideIndex(next);
+            }
           }}
         />
       </>
@@ -205,6 +225,7 @@ export function SlideViewer({
           nextLabel={viewMode && isLast ? "Continue" : undefined}
           onAnswered={(correct) => {
             resultsRef.current.push({ prompt: question.prompt, correct });
+            if (!viewMode) void recordPracticeAnswer(question.id, correct);
           }}
           onNext={() => {
             if (viewMode && isLast) {
@@ -212,7 +233,11 @@ export function SlideViewer({
             } else if (isLast) {
               setPhase("results");
             } else {
-              setQuestionIndex((i) => i + 1);
+              const next = questionIndex + 1;
+              if (!viewMode) {
+                void setSlideProgress(topic.id, slides.length + next);
+              }
+              setQuestionIndex(next);
             }
           }}
         />

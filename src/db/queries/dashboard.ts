@@ -1,4 +1,4 @@
-import { eq, sum, sql, count, lte, and, inArray } from "drizzle-orm";
+import { eq, sum, sql, count, lte, and, inArray, desc } from "drizzle-orm";
 import { db } from "@/db";
 import {
   profiles,
@@ -25,7 +25,58 @@ export async function ensureProfile(userId: string) {
 
 // ── Dashboard data fetching ─────────────────────────────────────────────────
 
-export async function getDashboardData(userId: string) {
+async function resolveMostRecentCourseSlug(
+  userId: string,
+): Promise<string | null> {
+  const rows = await db
+    .select({ slug: courses.slug })
+    .from(userProgress)
+    .innerJoin(topics, eq(userProgress.topicId, topics.id))
+    .innerJoin(courses, eq(topics.courseId, courses.id))
+    .where(eq(userProgress.userId, userId))
+    .orderBy(desc(userProgress.updatedAt))
+    .limit(1);
+  return rows[0]?.slug ?? null;
+}
+
+export async function getDashboardData(
+  userId: string,
+  courseSlug?: string,
+) {
+  const resolvedSlug =
+    courseSlug ?? (await resolveMostRecentCourseSlug(userId));
+
+  if (!resolvedSlug) {
+    const [profile, xpResult] = await Promise.all([
+      db.query.profiles.findFirst({ where: eq(profiles.id, userId) }),
+      db
+        .select({ total: sum(xpLog.xpAmount) })
+        .from(xpLog)
+        .where(
+          and(
+            eq(xpLog.userId, userId),
+            inArray(xpLog.activityType, [
+              "practice_session",
+              "topic_completed",
+            ]),
+          ),
+        ),
+    ]);
+    return {
+      course: null,
+      topics: [],
+      prerequisites: [],
+      progressRows: [],
+      totalXp: Number(xpResult[0]?.total ?? 0),
+      profile: profile ?? null,
+      dueReviewCount: 0,
+      inProgressReview: null,
+      slideCounts: new Map<string, number>(),
+      questionCounts: new Map<string, number>(),
+      correctAnswers: new Map<string, number>(),
+    };
+  }
+
   const [
     course,
     allTopics,
@@ -42,7 +93,7 @@ export async function getDashboardData(userId: string) {
     await Promise.all([
       // Course
       db.query.courses.findFirst({
-        where: eq(courses.slug, "intro-logic"),
+        where: eq(courses.slug, resolvedSlug),
       }),
 
       // All topics for this course (by slug lookup)
@@ -50,7 +101,7 @@ export async function getDashboardData(userId: string) {
         .select()
         .from(topics)
         .innerJoin(courses, eq(topics.courseId, courses.id))
-        .where(eq(courses.slug, "intro-logic"))
+        .where(eq(courses.slug, resolvedSlug))
         .orderBy(topics.sortOrder),
 
       // All prerequisites for topics in this course
@@ -62,7 +113,7 @@ export async function getDashboardData(userId: string) {
         .from(topicPrerequisites)
         .innerJoin(topics, eq(topicPrerequisites.topicId, topics.id))
         .innerJoin(courses, eq(topics.courseId, courses.id))
-        .where(eq(courses.slug, "intro-logic")),
+        .where(eq(courses.slug, resolvedSlug)),
 
       // User progress
       db
@@ -122,7 +173,7 @@ export async function getDashboardData(userId: string) {
         .from(slides)
         .innerJoin(topics, eq(slides.topicId, topics.id))
         .innerJoin(courses, eq(topics.courseId, courses.id))
-        .where(eq(courses.slug, "intro-logic"))
+        .where(eq(courses.slug, resolvedSlug))
         .groupBy(slides.topicId),
 
       // Practice question counts per topic (for this course)
@@ -131,7 +182,7 @@ export async function getDashboardData(userId: string) {
         .from(practiceQuestions)
         .innerJoin(topics, eq(practiceQuestions.topicId, topics.id))
         .innerJoin(courses, eq(topics.courseId, courses.id))
-        .where(eq(courses.slug, "intro-logic"))
+        .where(eq(courses.slug, resolvedSlug))
         .groupBy(practiceQuestions.topicId),
 
       // Correct practice answers per topic for this user
@@ -148,7 +199,7 @@ export async function getDashboardData(userId: string) {
           and(
             eq(practiceQuestionProgress.userId, userId),
             eq(practiceQuestionProgress.isCorrect, true),
-            eq(courses.slug, "intro-logic"),
+            eq(courses.slug, resolvedSlug),
           ),
         )
         .groupBy(practiceQuestions.topicId),
