@@ -144,6 +144,12 @@ export async function completeReviewSession(sessionId: string) {
       .set({ status: "completed", completedAt: sql`now()` })
       .where(eq(reviewSessions.id, sessionId));
 
-    await updateStreakOnXpEarned(tx, user.id);
+    let totalEarned = 0;
+    for (const [, result] of byTopic) {
+      totalEarned += result.correct * XP_PER_CORRECT;
+    }
+    if (totalEarned > 0) {
+      await updateStreakOnXpEarned(tx, user.id);
+    }
   });
 }

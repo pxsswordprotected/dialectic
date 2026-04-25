@@ -121,9 +121,14 @@ export default async function DashboardPage() {
       <div className="fixed inset-x-0 top-0 z-50 bg-neutral-50">
         <Navbar
           activeTab="learn"
-          xp={data.totalXp}
+          currentStreak={streak.currentStreak}
           dailyXpEarned={streak.dailyXpEarned}
           dailyXpGoal={streak.dailyXpGoal}
+          accountName={
+            data.profile?.displayName ??
+            user.email?.split("@")[0] ??
+            "Account"
+          }
         />
       </div>
 

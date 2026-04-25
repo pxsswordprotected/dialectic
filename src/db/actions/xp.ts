@@ -57,6 +57,9 @@ export async function logPracticeXp(
         .onConflictDoNothing();
     }
 
-    await updateStreakOnXpEarned(tx, user.id);
+    const earned = practiceXp + (passed ? TOPIC_COMPLETED_BONUS : 0);
+    if (earned > 0) {
+      await updateStreakOnXpEarned(tx, user.id);
+    }
   });
 }

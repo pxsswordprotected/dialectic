@@ -8,13 +8,14 @@ type NavbarProps =
   | {
       mode?: "default";
       activeTab?: "learn" | "courses";
-      xp: number;
+      currentStreak: number;
       dailyXpEarned: number;
       dailyXpGoal: number;
+      accountName: string;
     }
   | {
       mode: "lesson";
-      xp: number;
+      currentStreak: number;
       dailyXpEarned: number;
       dailyXpGoal: number;
       lessonTitle: string;
@@ -22,7 +23,7 @@ type NavbarProps =
     };
 
 export function Navbar(props: NavbarProps) {
-  const { mode = "default", xp, dailyXpEarned, dailyXpGoal } = props;
+  const { mode = "default", currentStreak, dailyXpEarned, dailyXpGoal } = props;
 
   const [activeTab, setActiveTab] = useState<"learn" | "courses">(
     props.mode !== "lesson" ? (props.activeTab ?? "learn") : "learn",
@@ -130,7 +131,7 @@ export function Navbar(props: NavbarProps) {
           <div className="flex items-center gap-16">
             <div className="flex items-center gap-[6px]">
               <Lightning size={22} weight="fill" className="text-primary-400" />
-              <span className="text-base text-neutral-800">{xp}</span>
+              <span className="text-base text-neutral-800">{currentStreak}</span>
             </div>
             <span className="h-[18px] w-px bg-neutral-200" />
             <div className="flex items-center gap-[6px]">
@@ -164,7 +165,7 @@ export function Navbar(props: NavbarProps) {
                 />
               </button>
               {menuOpen && (
-                <div className="absolute right-0 top-full mt-8 flex w-max flex-col gap-12 rounded-sm border border-black/10 bg-white p-16 shadow-[0_2px_8.5px_rgba(0,0,0,0.05)]">
+                <div className="absolute right-0 top-full mt-8 flex w-[180px] flex-col gap-12 rounded-sm border border-black/10 bg-white p-16 shadow-[0_2px_8.5px_rgba(0,0,0,0.05)]">
                   <div className="flex h-[40px] items-center gap-[6px] rounded-sm bg-neutral-50 px-12 py-8">
                     <span
                       className="size-6 shrink-0 rounded-full"
@@ -173,25 +174,22 @@ export function Navbar(props: NavbarProps) {
                           "linear-gradient(135deg, #f87c00 0%, #a855f7 100%)",
                       }}
                     />
-                    <span className="whitespace-nowrap text-base text-neutral-800">
-                      James A
+                    <span
+                      title={props.mode !== "lesson" ? props.accountName : ""}
+                      className="min-w-0 flex-1 truncate text-base text-neutral-800"
+                    >
+                      {props.mode !== "lesson" ? props.accountName : ""}
                     </span>
                   </div>
                   <Link
-                    href="/profile"
-                    className="rounded-sm text-base text-neutral-800 hover:bg-neutral-50"
-                  >
-                    Profile
-                  </Link>
-                  <Link
                     href="/settings"
-                    className="rounded-sm text-base text-neutral-800 hover:bg-neutral-50"
+                    className="-mx-4 flex h-[36px] items-center rounded-sm px-12 text-base text-neutral-800 hover:bg-neutral-50"
                   >
                     Settings
                   </Link>
                   <Link
                     href="/about"
-                    className="rounded-sm  text-base text-neutral-800 hover:bg-neutral-50"
+                    className="-mx-4 flex h-[36px] items-center rounded-sm px-12 text-base text-neutral-800 hover:bg-neutral-50"
                   >
                     About
                   </Link>

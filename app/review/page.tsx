@@ -46,7 +46,7 @@ export default async function ReviewPage() {
           mode="lesson"
           lessonTitle={`Reviewing ${topicCount} ${topicCount === 1 ? "topic" : "topics"}`}
           backHref="/dashboard"
-          xp={dashboard.totalXp}
+          currentStreak={streak.currentStreak}
           dailyXpEarned={streak.dailyXpEarned}
           dailyXpGoal={streak.dailyXpGoal}
         />

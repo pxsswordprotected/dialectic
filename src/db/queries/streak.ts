@@ -55,6 +55,7 @@ export async function getStreakDisplayData(userId: string) {
       currentStreak: true,
       dailyXpGoal: true,
       timezone: true,
+      lastActiveDate: true,
     },
   });
 
@@ -62,7 +63,11 @@ export async function getStreakDisplayData(userId: string) {
     return { currentStreak: 0, dailyXpEarned: 0, dailyXpGoal: 100 };
   }
 
-  const localToday = getLocalDate(new Date(), profile.timezone);
+  const now = new Date();
+  const localToday = getLocalDate(now, profile.timezone);
+  const yesterday = new Date(now);
+  yesterday.setDate(yesterday.getDate() - 1);
+  const localYesterday = getLocalDate(yesterday, profile.timezone);
   const startOfTodayUtc = localMidnightToUtc(localToday, profile.timezone);
 
   const [xpResult] = await db
@@ -75,8 +80,13 @@ export async function getStreakDisplayData(userId: string) {
       ),
     );
 
+  const lastActive = profile.lastActiveDate;
+  const isAlive =
+    lastActive === localToday || lastActive === localYesterday;
+  const effectiveStreak = isAlive ? profile.currentStreak : 0;
+
   return {
-    currentStreak: profile.currentStreak,
+    currentStreak: effectiveStreak,
     dailyXpEarned: Number(xpResult?.total ?? 0),
     dailyXpGoal: profile.dailyXpGoal,
   };
