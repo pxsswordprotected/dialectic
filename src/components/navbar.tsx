@@ -12,7 +12,7 @@ import {
 type NavbarProps =
   | {
       mode?: "default";
-      activeTab?: "learn" | "courses";
+      activeTab?: "learn" | "courses" | "account";
       currentStreak: number;
       dailyXpEarned: number;
       dailyXpGoal: number;
@@ -31,7 +31,7 @@ type NavbarProps =
 export function Navbar(props: NavbarProps) {
   const { mode = "default", currentStreak, dailyXpEarned, dailyXpGoal } = props;
 
-  const activeTab: "learn" | "courses" =
+  const activeTab: "learn" | "courses" | "account" =
     props.mode !== "lesson" ? (props.activeTab ?? "learn") : "learn";
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -162,7 +162,7 @@ export function Navbar(props: NavbarProps) {
               <button
                 type="button"
                 onClick={() => setMenuOpen((o) => !o)}
-                className="flex cursor-pointer items-center gap-3"
+                className="group relative flex cursor-pointer items-center gap-3"
                 aria-label="Open account menu"
                 aria-expanded={menuOpen}
               >
@@ -178,6 +178,12 @@ export function Navbar(props: NavbarProps) {
                   weight="bold"
                   className={`text-neutral-800 ${menuOpen ? "rotate-180" : ""}`}
                 />
+                {activeTab === "account" && (
+                  <span
+                    aria-hidden
+                    className="absolute -bottom-[11px] left-0 h-[2px] w-6 bg-primary-400"
+                  />
+                )}
               </button>
               {menuOpen && (
                 <div className="absolute right-0 top-full mt-8 flex w-[180px] flex-col gap-12 rounded-sm border border-black/10 bg-white p-16 shadow-[0_2px_8.5px_rgba(0,0,0,0.05)]">

@@ -71,7 +71,7 @@ export default async function SettingsPage() {
     <>
       <div className="fixed inset-x-0 top-0 z-50 bg-neutral-50">
         <Navbar
-          activeTab="learn"
+          activeTab="account"
           currentStreak={streak.currentStreak}
           dailyXpEarned={streak.dailyXpEarned}
           dailyXpGoal={streak.dailyXpGoal}
