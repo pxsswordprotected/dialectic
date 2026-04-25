@@ -31,9 +31,8 @@ type NavbarProps =
 export function Navbar(props: NavbarProps) {
   const { mode = "default", currentStreak, dailyXpEarned, dailyXpGoal } = props;
 
-  const [activeTab, setActiveTab] = useState<"learn" | "courses">(
-    props.mode !== "lesson" ? (props.activeTab ?? "learn") : "learn",
-  );
+  const activeTab: "learn" | "courses" =
+    props.mode !== "lesson" ? (props.activeTab ?? "learn") : "learn";
 
   const [menuOpen, setMenuOpen] = useState(false);
   const menuWrapperRef = useRef<HTMLDivElement>(null);
@@ -78,10 +77,9 @@ export function Navbar(props: NavbarProps) {
       <div className="relative flex h-full items-center text-neutral-800 select-none">
         {mode === "default" ? (
           <div className="flex items-center gap-32 pl-[100px]">
-            <button
-              type="button"
-              onClick={() => setActiveTab("learn")}
-              className="group relative cursor-pointer text-base text-neutral-800"
+            <Link
+              href="/dashboard"
+              className="group relative text-base text-neutral-800"
             >
               Learn
               {activeTab === "learn" ? (
@@ -95,11 +93,10 @@ export function Navbar(props: NavbarProps) {
                   className="absolute -bottom-[11px] inset-x-0 h-[2px] bg-primary-200 opacity-0 group-hover:opacity-100"
                 />
               )}
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveTab("courses")}
-              className="group relative cursor-pointer text-base text-neutral-800"
+            </Link>
+            <Link
+              href="/courses"
+              className="group relative text-base text-neutral-800"
             >
               All Courses
               {activeTab === "courses" ? (
@@ -113,7 +110,7 @@ export function Navbar(props: NavbarProps) {
                   className="absolute -bottom-[11px] inset-x-0 h-[2px] bg-primary-200 opacity-0 group-hover:opacity-100"
                 />
               )}
-            </button>
+            </Link>
           </div>
         ) : (
           <>

@@ -85,12 +85,17 @@ async function seed() {
       .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
       .join(" ");
 
+    const courseDescriptions: Record<string, string> = {
+      "intro-logic":
+        "Build a foundation in formal reasoning, from propositions and logical connectives through truth tables and proofs",
+    };
+
     const [course] = await db
       .insert(courses)
       .values({
         title: courseTitle,
         slug: courseSlug,
-        description: `Course: ${courseTitle}`,
+        description: courseDescriptions[courseSlug] ?? `Course: ${courseTitle}`,
         isPublished: true,
         sortOrder: 0,
       })
