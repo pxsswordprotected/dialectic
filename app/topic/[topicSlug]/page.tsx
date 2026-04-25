@@ -63,6 +63,7 @@ export default async function TopicPage({
           mode="lesson"
           lessonTitle={data.topic.title}
           backHref="/dashboard"
+          viewMode={viewMode}
           currentStreak={streak.currentStreak}
           dailyXpEarned={streak.dailyXpEarned}
           dailyXpGoal={streak.dailyXpGoal}
