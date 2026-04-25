@@ -2,7 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Lightning, Star, CaretDown } from "@phosphor-icons/react/dist/ssr";
+import {
+  Lightning,
+  Star,
+  CaretDown,
+  Eye,
+} from "@phosphor-icons/react/dist/ssr";
 
 type NavbarProps =
   | {
@@ -20,6 +25,7 @@ type NavbarProps =
       dailyXpGoal: number;
       lessonTitle: string;
       backHref?: string;
+      viewMode?: boolean;
     };
 
 export function Navbar(props: NavbarProps) {
@@ -121,9 +127,19 @@ export function Navbar(props: NavbarProps) {
             >
               Back to course
             </Link>
-            <p className="absolute left-1/2 -translate-x-1/2 text-base text-neutral-800">
-              {props.mode === "lesson" ? props.lessonTitle : ""}
-            </p>
+            {props.mode === "lesson" && props.viewMode ? (
+              <div className="absolute left-1/2 flex -translate-x-1/2 items-center gap-[6px]">
+                <Eye size={18} className="text-neutral-600" />
+                {/*<span className="text-base text-neutral-500">Viewing:</span>*/}
+                <span className="text-base text-neutral-800">
+                  {props.lessonTitle}
+                </span>
+              </div>
+            ) : (
+              <p className="absolute left-1/2 -translate-x-1/2 text-base text-neutral-800">
+                {props.mode === "lesson" ? props.lessonTitle : ""}
+              </p>
+            )}
           </>
         )}
 
@@ -131,7 +147,9 @@ export function Navbar(props: NavbarProps) {
           <div className="flex items-center gap-16">
             <div className="flex items-center gap-[6px]">
               <Lightning size={22} weight="fill" className="text-primary-400" />
-              <span className="text-base text-neutral-800">{currentStreak}</span>
+              <span className="text-base text-neutral-800">
+                {currentStreak}
+              </span>
             </div>
             <span className="h-[18px] w-px bg-neutral-200" />
             <div className="flex items-center gap-[6px]">
