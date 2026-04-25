@@ -34,7 +34,7 @@ const shell = `flex w-[1050px] items-center ${CARD_INNER_STROKE} p-16`;
 export function TopicCard(props: TopicCardProps) {
   if (props.variant === "locked") {
     return (
-      <div className={`${shell} bg-neutral-200`}>
+      <div className={`${shell} bg-neutral-200 select-none`}>
         <div className="flex flex-1 items-center gap-12 text-neutral-600">
           <span className="font-heading text-lg">{props.title}</span>
           <span className="font-sans text-base">{props.totalXp} XP</span>
@@ -92,10 +92,12 @@ export function TopicCard(props: TopicCardProps) {
     );
 
   const body = (
-    <div className={`${shell} bg-white`}>
+    <div className={`${shell} bg-white select-none`}>
       {leftIcon && <div className="mr-20">{leftIcon}</div>}
       <div className="flex flex-col gap-8">
-        <span className="font-heading text-lg text-neutral-800">{props.title}</span>
+        <span className="font-heading text-lg text-neutral-800">
+          {props.title}
+        </span>
         <div className="font-sans text-xs text-neutral-400">{subtitle}</div>
       </div>
       <div className="ml-auto">{button}</div>

@@ -17,7 +17,7 @@ export function PracticeTransition({
 
   return (
     <div className="flex flex-col items-center">
-      <SlideCounter bars={bars} showLeft={false} showRight={false} />
+      <SlideCounter bars={bars} showLeft={false} showRight={true} />
 
       <div className="mt-[36px] w-[700px] text-left">
         <h2 className="font-heading text-xl text-neutral-800">Practice</h2>

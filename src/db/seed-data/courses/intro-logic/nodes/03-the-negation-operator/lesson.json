@@ -1,0 +1,66 @@
+[
+  {
+    "type": "concept",
+    "heading": "Modifying Propositions",
+    "body": "Logic utilizes variables to represent propositions, a concept introduced in BASICS_02. A proposition can be modified to state that its original claim is false. This process is called **negation**, the act of reversing the truth value of a statement. If a sentence asserts that something is the case, its negation asserts that it is not the case.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "The Negation Operator",
+    "body": "The symbol used for negation is the tilde (~). This is a **unary operator**, an operator that acts on only one proposition at a time. The tilde is placed immediately before the proposition variable it modifies. If $P$ represents a statement, then $\\sim P$ represents the negation of that statement.",
+    "examples": null,
+    "note": "In some textbooks, the symbol ¬ is used instead of the tilde."
+  },
+  {
+    "type": "example",
+    "heading": "Translating Negation",
+    "body": "The negation of a sentence is usually formed by adding the word \"not\" or the phrase \"it is not the case that.\"",
+    "examples": [
+      {
+        "text": "P: The sky is blue. ~P: The sky is not blue.",
+        "valid": true
+      },
+      {
+        "text": "P: The sky is blue. ~P: It is not the case that the sky is blue.",
+        "valid": true
+      },
+      {
+        "text": "P: The sky is blue. ~P: The sky is green.",
+        "valid": false
+      }
+    ],
+    "note": "A negation must specifically deny the original claim, not just offer a different claim."
+  },
+  {
+    "type": "rule",
+    "heading": "Truth Value Inversion",
+    "body": "Negation inverts the truth value of a proposition. If the original proposition is true, its negation must be false. If the original proposition is false, its negation must be true. A proposition and its negation can never share the same truth value.",
+    "examples": [
+      {
+        "text": "If P is True, then ~P is False.",
+        "valid": true
+      },
+      {
+        "text": "If P is False, then ~P is True.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Negation vs. Antonyms",
+    "body": "Negation is not the same as finding an opposite or an antonym. The negation of \"The car is fast\" is \"The car is not fast,\" not \"The car is slow.\" A car that is stationary is \"not fast,\" but it is also \"not slow.\" Always use the word \"not\" to ensure the logic remains precise.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "summary",
+    "heading": "Key Takeaway",
+    "body": "The negation operator (~) is a unary operator that inverts the truth value of a single proposition. Applying a tilde turns a true statement false and a false statement true.",
+    "examples": null,
+    "note": null
+  }
+]

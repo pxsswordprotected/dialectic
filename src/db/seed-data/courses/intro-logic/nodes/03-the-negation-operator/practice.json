@@ -1,0 +1,77 @@
+[
+  {
+    "type": "fill_in",
+    "prompt": "The symbol used for negation is the ___ and it is classified as a ___ operator because it affects only one proposition.",
+    "blanks": [
+      {
+        "acceptable_answers": ["tilde", "~", "tilde (~)"]
+      },
+      {
+        "acceptable_answers": ["unary"]
+      }
+    ],
+    "explanation": "The tilde (~) is a unary operator, meaning it operates on a single proposition variable to invert its value.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "A proposition and its negation can have the same truth value if the original statement is vague.",
+    "answer": false,
+    "explanation": "A proposition and its negation must always have opposite truth values. If one is true, the other must be false.",
+    "difficulty": 1,
+    "targets_slide": 3
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "If P represents \"The light is on,\" which sentence accurately represents `~P`?",
+    "options": [
+      { "text": "The light is off.", "correct": false },
+      { "text": "The light is not on.", "correct": true },
+      { "text": "The lamp is on.", "correct": false },
+      { "text": "It is true that the light is on.", "correct": false }
+    ],
+    "explanation": "Logical negation specifically denies the original claim using \"not.\" Using an antonym like \"off\" is not a precise logical negation.",
+    "difficulty": 2,
+    "targets_slide": 2
+  },
+  {
+    "type": "classify",
+    "prompt": "Sort these pairs based on whether the second statement is the logical negation of the first.",
+    "categories": ["Logical Negation", "Not a Logical Negation"],
+    "items": [
+      {
+        "text": "The glass is full / The glass is not full",
+        "category": "Logical Negation"
+      },
+      {
+        "text": "The soup is hot / The soup is cold",
+        "category": "Not a Logical Negation"
+      },
+      {
+        "text": "It is snowing / It is not the case that it is snowing",
+        "category": "Logical Negation"
+      },
+      {
+        "text": "The cat is awake / The cat is asleep",
+        "category": "Not a Logical Negation"
+      }
+    ],
+    "explanation": "Logical negation inverts the truth value using \"not.\" Antonyms like hot/cold or awake/asleep are not negations because they ignore neutral middle states like lukewarm or dozing.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "If the sentence \"The coffee is not hot\" is a false statement, what is the truth value of the proposition \"The coffee is hot\"?",
+    "options": [
+      { "text": "True", "correct": true },
+      { "text": "False", "correct": false },
+      { "text": "It cannot be determined", "correct": false }
+    ],
+    "explanation": "If the negation (~P) is false, the original proposition (P) must be true, as the negation operator always inverts the truth value.",
+    "difficulty": 3,
+    "targets_slide": 3
+  }
+]

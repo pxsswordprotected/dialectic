@@ -1,0 +1,110 @@
+[
+  {
+    "type": "fill_in",
+    "prompt": "In the conditional statement $P \\rightarrow Q$, the variable $P$ is the ___ and the variable $Q$ is the ___.",
+    "blanks": [
+      {
+        "acceptable_answers": ["antecedent"]
+      },
+      {
+        "acceptable_answers": ["consequent"]
+      }
+    ],
+    "explanation": "The antecedent is the 'if' part (the condition), and the consequent is the 'then' part (the result).",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Which symbol represents a conditional operator?",
+    "options": [
+      {
+        "text": "$\\wedge$",
+        "correct": false
+      },
+      {
+        "text": "$\\vee$",
+        "correct": false
+      },
+      {
+        "text": "$\\rightarrow$",
+        "correct": true
+      },
+      {
+        "text": "$\\sim$",
+        "correct": false
+      }
+    ],
+    "explanation": "The arrow ($\\rightarrow$) or horseshoe symbol is used to denote the conditional relationship between two propositions.",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Under which specific condition is a conditional statement false?",
+    "options": [
+      {
+        "text": "When both the antecedent and consequent are false.",
+        "correct": false
+      },
+      {
+        "text": "When the antecedent is true and the consequent is false.",
+        "correct": true
+      },
+      {
+        "text": "When the antecedent is false and the consequent is true.",
+        "correct": false
+      }
+    ],
+    "explanation": "A conditional is only false when the condition is met (true) but the promised result does not follow (false).",
+    "difficulty": 2,
+    "targets_slide": 2
+  },
+  {
+    "type": "classify",
+    "prompt": "Assign the correct truth value to these conditional statements based on the provided component values.",
+    "categories": ["True", "False"],
+    "items": [
+      {
+        "text": "Antecedent is False, Consequent is False",
+        "category": "True"
+      },
+      {
+        "text": "Antecedent is True, Consequent is False",
+        "category": "False"
+      },
+      {
+        "text": "Antecedent is False, Consequent is True",
+        "category": "True"
+      },
+      {
+        "text": "Antecedent is True, Consequent is True",
+        "category": "True"
+      }
+    ],
+    "explanation": "A conditional is true in all cases except for the 'True leads to False' scenario. If the antecedent is false, the statement is vacuously true.",
+    "difficulty": 2,
+    "targets_slide": 3
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "A person claims: \"If I win the lottery, I will buy a boat.\" The person does not win the lottery and does not buy a boat. Is the claim logically true?",
+    "options": [
+      {
+        "text": "No, because no boat was purchased.",
+        "correct": false
+      },
+      {
+        "text": "No, because the lottery was not won.",
+        "correct": false
+      },
+      {
+        "text": "Yes, it is vacuously true because the condition was not met.",
+        "correct": true
+      }
+    ],
+    "explanation": "Since the antecedent (winning the lottery) is false, the promise was never tested. Therefore, the statement cannot be false and is considered logically true.",
+    "difficulty": 3,
+    "targets_slide": 3
+  }
+]

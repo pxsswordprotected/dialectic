@@ -1,6 +1,9 @@
 "use client";
 
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import { Button } from "@/components/ui/button";
 import { SlideCounter } from "@/components/slide-counter";
 import type { BarState } from "@/components/slide-counter-helpers";
@@ -29,19 +32,19 @@ const labelForType: Record<LessonSlideType, string> = {
 };
 
 function InlineMarkdown({ text }: { text: string }) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
   return (
-    <>
-      {parts.map((p, i) =>
-        p.startsWith("**") && p.endsWith("**") ? (
-          <strong key={i} className="font-semibold">
-            {p.slice(2, -2)}
-          </strong>
-        ) : (
-          <span key={i}>{p}</span>
+    <ReactMarkdown
+      remarkPlugins={[remarkMath]}
+      rehypePlugins={[rehypeKatex]}
+      components={{
+        p: ({ children }) => <>{children}</>,
+        strong: ({ children }) => (
+          <strong className="font-semibold">{children}</strong>
         ),
-      )}
-    </>
+      }}
+    >
+      {text}
+    </ReactMarkdown>
   );
 }
 

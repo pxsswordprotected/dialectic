@@ -68,6 +68,15 @@ function toPracticeQuestion(q: ReviewQuestion): PracticeQuestionData {
         sequence: (data.sequence as string[]) ?? [],
         explanation,
       };
+    case "classify":
+      return {
+        type: "classify",
+        prompt: q.prompt,
+        categories: (data.categories as string[]) ?? [],
+        items:
+          (data.items as Array<{ text: string; category: string }>) ?? [],
+        explanation,
+      };
     default:
       throw new Error(`Unknown question type: ${q.questionType}`);
   }

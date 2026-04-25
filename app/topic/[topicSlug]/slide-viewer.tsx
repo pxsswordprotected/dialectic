@@ -3,7 +3,12 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  X,
+} from "@phosphor-icons/react/dist/ssr";
 import { logPracticeXp } from "@/db/actions/xp";
 import { LessonSlide, type LessonSlideData } from "@/components/lesson-slide";
 import {
@@ -91,6 +96,14 @@ function toPracticeQuestion(q: DbQuestion): PracticeQuestionData {
         type: "order",
         prompt: q.prompt,
         sequence: (data.sequence as string[]) ?? [],
+        explanation,
+      };
+    case "classify":
+      return {
+        type: "classify",
+        prompt: q.prompt,
+        categories: (data.categories as string[]) ?? [],
+        items: (data.items as Array<{ text: string; category: string }>) ?? [],
         explanation,
       };
     default:
@@ -243,7 +256,24 @@ export function SlideViewer({
         </p>
         <ul className="mt-[28px] flex flex-col gap-8">
           {results.map((r, i) => (
-            <li key={i} className="text-lg leading-[1.4]">
+            <li
+              key={i}
+              className="flex items-center gap-8 text-lg leading-[1.4]"
+            >
+              {r.correct ? (
+                <Check
+                  size={20}
+                  className="shrink-0 text-highlight-true"
+                  style={{ strokeLinecap: "square" }}
+                />
+              ) : (
+                <X
+                  size={24}
+                  weight="bold"
+                  className="shrink-0 text-highlight-false"
+                  style={{ strokeLinecap: "square" }}
+                />
+              )}
               <span
                 className={r.correct ? "highlight-true" : "highlight-false"}
               >

@@ -1,0 +1,68 @@
+[
+  {
+    "type": "concept",
+    "heading": "If-Then Statements",
+    "body": "The lesson on Understanding truth values introduced basic propositions. Logic often requires expressing a relationship where one fact depends on another. This relationship is a **conditional**, a compound proposition asserting that if one statement is true, then another must also be true. In formal logic, this is symbolized by a horseshoe ($\\supset$) or an arrow ($\\rightarrow$).",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "Anatomy of a Conditional",
+    "body": "A conditional statement consists of two distinct parts. The **antecedent** is the requirement or condition, appearing after the word \"if.\" The **consequent** is the result or claim that follows from that condition, appearing after the word \"then.\" In the expression $P \\rightarrow Q$, $P$ is the antecedent and $Q$ is the consequent.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "The Condition for Falsehood",
+    "body": "A conditional statement is only false in one specific scenario: when the antecedent is true but the consequent is false. This represents a broken promise. If the condition is met but the result does not occur, the entire statement is proven false. In every other combination of truth values, the conditional remains true.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "Vacuous Truth",
+    "body": "If the antecedent is false, the entire conditional is automatically true. This occurs regardless of whether the consequent is true or false. Because the starting condition was never met, the statement cannot be proven false. This concept is called **vacuous truth**. A conditional is a guarantee that only applies when the antecedent happens.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "The Truth Table Applied",
+    "body": "Consider the conditional: \"If it is Tuesday, then the shop is open.\"",
+    "examples": [
+      {
+        "text": "It is Tuesday (T). The shop is open (T). The statement is True.",
+        "valid": true
+      },
+      {
+        "text": "It is Tuesday (T). The shop is closed (F). The statement is False.",
+        "valid": true
+      },
+      {
+        "text": "It is Monday (F). The shop is open (T). The statement is True.",
+        "valid": true
+      },
+      {
+        "text": "It is Monday (F). The shop is closed (F). The statement is True.",
+        "valid": true
+      }
+    ],
+    "note": "On Monday, the statement is not proven false, even if the shop is closed."
+  },
+  {
+    "type": "warning",
+    "heading": "Directional Dependency",
+    "body": "The order of a conditional cannot be reversed. A conditional is not a statement of equality. \"If the battery is dead, the car will not start\" does not mean \"If the car will not start, the battery is dead.\" The car might fail to start due to a lack of fuel. Reversing the antecedent and consequent creates a different logical claim.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "summary",
+    "heading": "Key Takeaway",
+    "body": "A conditional ($P \\rightarrow Q$) is false only when a true antecedent leads to a false consequent. If the antecedent is false, the statement is vacuously true.",
+    "examples": null,
+    "note": null
+  }
+]

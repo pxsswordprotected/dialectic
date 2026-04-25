@@ -48,7 +48,7 @@ export function ProgressCard({
   lessonsTotal,
 }: Props) {
   return (
-    <div className="flex flex-col gap-16">
+    <div className="flex flex-col gap-16 select-none">
       <span className="font-sans text-base text-neutral-400">Progress</span>
       <div
         className={`${CARD_INNER_STROKE} bg-white w-[517px] h-[164px] p-16 flex flex-col gap-24 items-center justify-center`}

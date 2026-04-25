@@ -42,7 +42,8 @@ export default async function TopicPage({
     dashboard.prerequisites,
   );
   const wasAlreadyCompleted =
-    topicsWithStatus.find((t) => t.id === data.topic.id)?.status === "completed";
+    topicsWithStatus.find((t) => t.id === data.topic.id)?.status ===
+    "completed";
   const lessonsCompletedIfPass = wasAlreadyCompleted
     ? completedCount
     : completedCount + 1;
@@ -67,7 +68,7 @@ export default async function TopicPage({
           dailyXpGoal={streak.dailyXpGoal}
         />
       </div>
-      <div className="w-full pt-[128px] pb-48">
+      <div className="w-full pt-[100px] pb-48">
         <SlideViewer
           topic={data.topic}
           slides={data.slides}

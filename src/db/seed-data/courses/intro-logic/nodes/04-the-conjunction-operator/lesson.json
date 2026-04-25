@@ -1,0 +1,64 @@
+[
+  {
+    "type": "concept",
+    "heading": "Combining Propositions",
+    "body": "The lesson on Understanding truth values explained that every proposition is either true or false. Logic often requires joining multiple propositions together to form a single, more complex claim. A **compound proposition** is a statement formed by connecting two or more propositions using logical operators.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "The Conjunction",
+    "body": "A **conjunction** is a compound proposition that asserts two statements are true at the same time. In English, this is typically represented by the word \"and.\" In formal logic, it is represented by the wedge symbol ($\\wedge$) or a dot ($\\cdot$). If $P$ and $Q$ are propositions, their conjunction is written as $P \\wedge Q$.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "Binary Operators",
+    "body": "A conjunction is a **binary operator**, which is an operator that acts on two propositions. This differs from the negation operator, which is unary and acts on only one. The two propositions being joined are called **conjuncts**. For a conjunction to be valid, both conjuncts must be propositions themselves.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "The Condition for Truth",
+    "body": "A conjunction is true if, and only if, both component propositions are true. If even one part of the statement is false, the entire conjunction is false. This rule is absolute. Logic does not allow for a conjunction to be \"mostly true.\"",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Evaluating Conjunctions",
+    "body": "Consider two propositions: P (The sun is a star) and Q (The moon is made of cheese).",
+    "examples": [
+      {
+        "text": "P is true. Q is false. Therefore, P \\wedge Q is false.",
+        "valid": true
+      },
+      {
+        "text": "The sun is a star and the earth is a planet. (True \\wedge True)",
+        "valid": true
+      },
+      {
+        "text": "The sun is a star and the moon is cheese. (True \\wedge False)",
+        "valid": false
+      }
+    ],
+    "note": "Even though the first half is true, the falsehood of the second half makes the entire sentence false."
+  },
+  {
+    "type": "warning",
+    "heading": "Falsehood Dominates",
+    "body": "A common mistake is assuming a conjunction remains true if the first part is true. In logic, a single false conjunct results in a false compound statement. If you say \"The car is red and the car has five wheels,\" and the car has only four wheels, your entire statement is logically false.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "summary",
+    "heading": "Key Takeaway",
+    "body": "A conjunction ($P \\wedge Q$) is a compound proposition that is true only when both $P$ and $Q$ are true. It uses a binary operator to join two conjuncts.",
+    "examples": null,
+    "note": null
+  }
+]

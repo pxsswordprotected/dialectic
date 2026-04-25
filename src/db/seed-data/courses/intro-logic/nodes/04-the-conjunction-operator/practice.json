@@ -1,0 +1,106 @@
+[
+  {
+    "type": "fill_in",
+    "prompt": "The logical operator for \"and\" is called a ___ and its symbol is the ___.",
+    "blanks": [
+      {
+        "acceptable_answers": ["conjunction"]
+      },
+      {
+        "acceptable_answers": ["wedge", "\\wedge", "dot", "\\cdot"]
+      }
+    ],
+    "explanation": "A conjunction is the logical name for an \"and\" statement, represented by either the wedge or the dot symbol.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "What are the two propositions within a conjunction called?",
+    "options": [
+      {
+        "text": "Unary operators",
+        "correct": false
+      },
+      {
+        "text": "Compounds",
+        "correct": false
+      },
+      {
+        "text": "Conjuncts",
+        "correct": true
+      }
+    ],
+    "explanation": "The component propositions joined by a conjunction operator are specifically termed conjuncts.",
+    "difficulty": 1,
+    "targets_slide": 2
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "If proposition P is true and proposition Q is false, what is the truth value of $P \\wedge Q$?",
+    "options": [
+      {
+        "text": "True",
+        "correct": false
+      },
+      {
+        "text": "False",
+        "correct": true
+      },
+      {
+        "text": "It depends on which proposition comes first",
+        "correct": false
+      }
+    ],
+    "explanation": "For a conjunction to be true, both parts must be true. If one part (Q) is false, the entire statement becomes false.",
+    "difficulty": 2,
+    "targets_slide": 3
+  },
+  {
+    "type": "classify",
+    "prompt": "Determine the truth value of the following conjunctions.",
+    "categories": ["True", "False"],
+    "items": [
+      {
+        "text": "1 + 1 = 2 and 2 + 2 = 4",
+        "category": "True"
+      },
+      {
+        "text": "Grass is green and the sun is cold",
+        "category": "False"
+      },
+      {
+        "text": "Dogs are birds and cats are mammals",
+        "category": "False"
+      },
+      {
+        "text": "Water is a liquid and ice is a solid",
+        "category": "True"
+      }
+    ],
+    "explanation": "Conjunctions are only true when every part of the statement is factually true.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "In the statement \"The sky is cloudy and the ground is dry,\" when is the entire statement logically true?",
+    "options": [
+      {
+        "text": "Whenever the sky is cloudy",
+        "correct": false
+      },
+      {
+        "text": "Whenever at least one of the two claims is true",
+        "correct": false
+      },
+      {
+        "text": "Only when the sky is cloudy and the ground is dry simultaneously",
+        "correct": true
+      }
+    ],
+    "explanation": "Logic requires both conditions of a conjunction to be met at the same time for the compound statement to hold a truth value of true.",
+    "difficulty": 3,
+    "targets_slide": 5
+  }
+]

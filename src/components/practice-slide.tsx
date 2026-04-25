@@ -9,6 +9,7 @@ import { MultipleChoice } from "@/app/topic/[topicSlug]/questions/multiple-choic
 import { TrueFalse } from "@/app/topic/[topicSlug]/questions/true-false";
 import { FillIn } from "@/app/topic/[topicSlug]/questions/fill-in";
 import { Order } from "@/app/topic/[topicSlug]/questions/order";
+import { Classify } from "@/app/topic/[topicSlug]/questions/classify";
 
 export type PracticeQuestionData =
   | {
@@ -34,6 +35,13 @@ export type PracticeQuestionData =
       type: "order";
       prompt: string;
       sequence: string[];
+      explanation: string;
+    }
+  | {
+      type: "classify";
+      prompt: string;
+      categories: string[];
+      items: Array<{ text: string; category: string }>;
       explanation: string;
     };
 
@@ -121,6 +129,15 @@ export function PracticeSlide({
           {question.type === "order" && (
             <Order
               sequence={question.sequence}
+              onAnswer={handleAnswer}
+              answered={answered}
+              reveal={revealOn}
+            />
+          )}
+          {question.type === "classify" && (
+            <Classify
+              categories={question.categories}
+              items={question.items}
               onAnswer={handleAnswer}
               answered={answered}
               reveal={revealOn}

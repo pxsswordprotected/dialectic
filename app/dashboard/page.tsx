@@ -127,10 +127,10 @@ export default async function DashboardPage() {
         />
       </div>
 
-      <div className="mx-auto w-[1050px] pt-[116px] pb-32">
+      <div className="mx-auto w-[1050px] pt-[100px] pb-32">
         {/* Course title + progress pill */}
         <div className="flex items-center gap-24">
-          <h1 className="font-heading text-2xl text-neutral-800">
+          <h1 className="font-heading text-2xl text-neutral-800 select-none">
             {data.course.title}
           </h1>
           <ProgressPill
@@ -186,7 +186,7 @@ export default async function DashboardPage() {
         <div className="mt-32 h-px w-[1050px] bg-black/10" />
 
         {/* All Lessons */}
-        <p className="mt-24 font-sans text-base text-neutral-400">
+        <p className="mt-24 font-sans text-base text-neutral-400 select-none">
           All Lessons
         </p>
         <div className="mt-16 flex flex-col gap-24">

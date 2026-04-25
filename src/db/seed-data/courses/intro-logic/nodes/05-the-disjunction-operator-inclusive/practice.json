@@ -1,0 +1,94 @@
+[
+  {
+    "type": "fill_in",
+    "prompt": "In logic, an \"or\" statement is known as a ___ and is represented by the symbol ___.",
+    "blanks": [
+      {
+        "acceptable_answers": ["disjunction"]
+      },
+      {
+        "acceptable_answers": ["vee", "\\vee", "v"]
+      }
+    ],
+    "explanation": "A disjunction uses the vee symbol (\\vee) to connect two propositions with an \"or\" relationship.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "How many component propositions must be false for a disjunction to be false?",
+    "options": [
+      {
+        "text": "At least one",
+        "correct": false
+      },
+      {
+        "text": "Exactly one",
+        "correct": false
+      },
+      {
+        "text": "Both component propositions",
+        "correct": true
+      }
+    ],
+    "explanation": "A disjunction is true if any part of it is true. It only fails if every component is false.",
+    "difficulty": 1,
+    "targets_slide": 3
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "If proposition P is false and proposition Q is true, what is the truth value of $P \\vee Q$?",
+    "options": [
+      {
+        "text": "True",
+        "correct": true
+      },
+      {
+        "text": "False",
+        "correct": false
+      },
+      {
+        "text": "It is neither true nor false",
+        "correct": false
+      }
+    ],
+    "explanation": "Because a disjunction only requires one true component to be true overall, the truth of Q makes the whole statement true.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "classify",
+    "prompt": "Determine the truth value of the following disjunctions.",
+    "categories": ["True", "False"],
+    "items": [
+      {
+        "text": "The earth is flat or the moon is round",
+        "category": "True"
+      },
+      {
+        "text": "Cats fly or dogs speak French",
+        "category": "False"
+      },
+      {
+        "text": "2 + 2 = 4 or 5 + 5 = 10",
+        "category": "True"
+      },
+      {
+        "text": "Fire is cold or ice is hot",
+        "category": "False"
+      }
+    ],
+    "explanation": "If at least one side of the \"or\" is a true claim, the entire statement is true. If both sides are false, the statement is false.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "The statement \"The sky is blue or 1 + 1 = 2\" is logically true.",
+    "answer": true,
+    "explanation": "Under the inclusive or rule, a disjunction is true when both components are true. Since both the sky being blue and the math equation are true, the compound statement is true.",
+    "difficulty": 3,
+    "targets_slide": 5
+  }
+]

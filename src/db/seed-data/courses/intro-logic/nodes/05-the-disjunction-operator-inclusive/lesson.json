@@ -1,0 +1,64 @@
+[
+  {
+    "type": "concept",
+    "heading": "Alternative Possibilities",
+    "body": "The lesson on Understanding truth values established that logic deals with statements that are strictly true or false. Often, a claim involves multiple possibilities where only one needs to be true for the entire statement to stand. This type of compound statement allows for flexibility in how a condition is met.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "The Disjunction",
+    "body": "A **disjunction** is a compound proposition that asserts at least one of two statements is true. It is represented by the word \"or\" in English. The formal symbol for disjunction is the vee ($\\vee$). If $P$ and $Q$ are propositions, the expression $P \\vee Q$ represents their disjunction.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "The Inclusive Or",
+    "body": "Logic typically uses the **inclusive or**, meaning the statement is true if the first part is true, the second part is true, or both parts are true. This differs from some everyday uses of \"or\" that imply you must choose only one option. In propositional logic, \"both\" is a valid path to truth for a disjunction.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "The Condition for Truth",
+    "body": "A disjunction is true if at least one of its component propositions is true. It only results in a false value when every component proposition is false. This makes the disjunction easier to satisfy than a conjunction, as it only requires a single point of truth to succeed.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Evaluating Disjunctions",
+    "body": "Consider two propositions: P (The apple is red) and Q (The apple is sweet).",
+    "examples": [
+      {
+        "text": "P is true. Q is false. Therefore, P \\vee Q is true.",
+        "valid": true
+      },
+      {
+        "text": "P is false. Q is false. Therefore, P \\vee Q is false.",
+        "valid": true
+      },
+      {
+        "text": "P is true. Q is true. Therefore, P \\vee Q is true.",
+        "valid": true
+      }
+    ],
+    "note": "The statement only fails when both claims are proven false."
+  },
+  {
+    "type": "warning",
+    "heading": "Both Means True",
+    "body": "A common misconception is that a disjunction becomes false if both parts are true. If you say \"The light is on or the door is open,\" and both are true, the statement is logically true. Do not assume that \"or\" forces a choice between one or the other.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "summary",
+    "heading": "Key Takeaway",
+    "body": "A disjunction ($P \\vee Q$) is a compound proposition that is true when at least one of its components is true. It is only false when both components are false.",
+    "examples": null,
+    "note": null
+  }
+]
