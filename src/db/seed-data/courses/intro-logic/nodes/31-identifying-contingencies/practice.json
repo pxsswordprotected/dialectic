@@ -1,0 +1,91 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Which final column shows that a formula is a contingency?",
+    "options": [
+      {
+        "text": "`T F T T`",
+        "correct": true
+      },
+      {
+        "text": "`T T T T`",
+        "correct": false
+      },
+      {
+        "text": "`F F F F`",
+        "correct": false
+      }
+    ],
+    "explanation": "A contingency has a final column with both T and F. It is true in some rows and false in others.",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "If the main operator column contains at least one T and at least one F, the formula is a contingency.",
+    "answer": true,
+    "explanation": "That is the defining test for a contingency.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "fill_in",
+    "prompt": "A contingency has a main operator column with a ___ of T and F.",
+    "blanks": [
+      {
+        "acceptable_answers": ["mix", "mixture"]
+      }
+    ],
+    "explanation": "A contingency is neither all true nor all false. Its final column must contain both truth values.",
+    "difficulty": 1,
+    "targets_slide": 5
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each final column.",
+    "categories": ["Contingency", "Not a contingency"],
+    "items": [
+      {
+        "text": "`T F T F`",
+        "category": "Contingency"
+      },
+      {
+        "text": "`T T T T`",
+        "category": "Not a contingency"
+      },
+      {
+        "text": "`F T F F`",
+        "category": "Contingency"
+      },
+      {
+        "text": "`F F F F`",
+        "category": "Not a contingency"
+      }
+    ],
+    "explanation": "A contingency has both T and F in the final column. Columns with only one truth value are not contingencies.",
+    "difficulty": 2,
+    "targets_slide": 3
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Which column should be checked to decide whether a whole formula is a contingency?",
+    "options": [
+      {
+        "text": "The main operator column",
+        "correct": true
+      },
+      {
+        "text": "Any inner parenthesis column",
+        "correct": false
+      },
+      {
+        "text": "Only the first base-variable column",
+        "correct": false
+      }
+    ],
+    "explanation": "The main operator column gives the truth value of the whole formula. Inner columns show only parts of the formula.",
+    "difficulty": 2,
+    "targets_slide": 4
+  }
+]

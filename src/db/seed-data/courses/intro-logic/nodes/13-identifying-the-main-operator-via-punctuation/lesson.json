@@ -1,0 +1,97 @@
+[
+  {
+    "type": "concept",
+    "heading": "Punctuation Clues",
+    "body": "Punctuation can show how English groups a compound sentence. That helps identify the **main operator**, the connector that governs the whole sentence. This builds on the earlier idea of the main operator.",
+    "examples": [
+      {
+        "text": "\"If Alice goes, and Bob goes, then Charlie stays\" has visible grouping marks.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Commas Can Mislead",
+    "body": "A comma does not name the main operator by itself. It may only mark a pause inside a larger structure, especially inside a standard conditional.",
+    "examples": [
+      {
+        "text": "In \"If Alice goes, and Bob goes, then Charlie stays,\" the main operator is conjunction.",
+        "valid": false
+      },
+      {
+        "text": "In \"If Alice goes, and Bob goes, then Charlie stays,\" the main operator is conditional.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "If Then Outside",
+    "body": "When a sentence starts with \"if\" and reaches a matching \"then,\" the whole sentence is usually a **conditional**, even if commas mark smaller parts inside it.",
+    "examples": [
+      {
+        "text": "\"If the light is on, and the door is shut, then the room is ready\" is governed by $\\rightarrow$.",
+        "valid": true
+      }
+    ],
+    "note": "The antecedent can contain its own conjunction or disjunction."
+  },
+  {
+    "type": "rule",
+    "heading": "Semicolons Split Blocks",
+    "body": "A **semicolon** often separates larger clause blocks. First read the block on each side, then ask which connector joins those two blocks. That connector is often the main operator.",
+    "examples": [
+      {
+        "text": "\"Alice packs, and Bob cooks; or Charlie orders takeout\" has disjunction as the main operator.",
+        "valid": true
+      },
+      {
+        "text": "\"Alice packs, and Bob cooks; or Charlie orders takeout\" has conjunction as the main operator.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Worked Cases",
+    "body": "Read grouped parts first. Then step outward until the whole sentence is covered by one operator.",
+    "examples": [
+      {
+        "text": "\"If Alice goes, and Bob goes, then Charlie stays\" has main operator conditional.",
+        "valid": true
+      },
+      {
+        "text": "\"Alice goes, and Bob goes, or Charlie stays\" has main operator disjunction.",
+        "valid": true
+      },
+      {
+        "text": "\"Alice goes; and Bob stays\" has main operator conjunction.",
+        "valid": true
+      }
+    ],
+    "note": "Use punctuation as a clue, not as a substitute for reading the whole sentence."
+  },
+  {
+    "type": "rule",
+    "heading": "Read Outward",
+    "body": "Find the smallest grouped pieces first. Then move outward to the connector that links the largest parts. The outermost connector is the main operator.",
+    "examples": [
+      {
+        "text": "In \"If Alice goes, and Bob goes, then Charlie stays,\" first see the inner conjunction, then the outer conditional.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "summary",
+    "heading": "Core Method",
+    "body": "Use commas and semicolons to spot grouping. Then identify the connector that governs the whole sentence, not the connector inside a smaller part.",
+    "examples": null,
+    "note": null
+  }
+]

@@ -1,0 +1,55 @@
+[
+  {
+    "type": "concept",
+    "heading": "The Conjunction Operator",
+    "body": "In logic, a conjunction asserts that two statements are both true. The most direct English translation is the word \"and\". If you have defined variable P and variable Q, the sentence \"P and Q\" translates to the symbolic expression $P \\wedge Q$.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "The Contrast Rule",
+    "body": "English uses words like \"but\", \"yet\", \"however\", and \"although\" to express contrast or surprise. Logic ignores this emotional narrative. If a sentence claims that two different facts are both true, it is a conjunction. Always translate these contrast words exactly like \"and\", using the $\\wedge$ operator.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Translating Contrast",
+    "body": "Let S = It is sunny. Let C = It is cold. Notice how different English sentences map to the exact same logical expression.",
+    "examples": [
+      { "text": "\"It is sunny, and it is cold.\" -> S ∧ C", "valid": true },
+      { "text": "\"It is sunny, but it is cold.\" -> S ∧ C", "valid": true },
+      {
+        "text": "\"It is sunny; however, it is cold.\" -> S ∧ C",
+        "valid": true
+      },
+      { "text": "\"It is sunny, yet it is cold.\" -> S ∧ C", "valid": true }
+    ],
+    "note": "Despite different phrasing, all four sentences make the exact same logical claim."
+  },
+  {
+    "type": "warning",
+    "heading": "Implicit Conjunctions",
+    "body": "Sometimes English joins two claims without any connecting word at all, relying entirely on punctuation. A semicolon joining two independent statements acts as an implicit conjunction. Because both statements are presented as true facts, they must be connected with the $\\wedge$ operator.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Punctuation as Conjunction",
+    "body": "Let R = The alarm rang. Let W = I woke up.",
+    "examples": [
+      { "text": "\"The alarm rang; I woke up.\" -> R ∧ W", "valid": true },
+      { "text": "\"The alarm rang, but I woke up.\" -> R ∧ W", "valid": true }
+    ],
+    "note": "Punctuation alone implies a conjunction if two standalone facts are asserted together."
+  },
+  {
+    "type": "summary",
+    "heading": "Key Takeaway",
+    "body": "Translate \"and\", \"but\", \"yet\", \"however\", \"although\", and implicit punctuation joins using the conjunction operator $\\wedge$. Logic only evaluates whether both connected statements are asserted as true.",
+    "examples": null,
+    "note": null
+  }
+]

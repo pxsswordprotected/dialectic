@@ -2,6 +2,7 @@
 
 import { Fragment, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { InlineMarkdown } from "@/components/inline-markdown";
 
 type Blank = { acceptable_answers: string[] };
 
@@ -52,7 +53,7 @@ export function FillIn({
           const size = Math.max(first.length, value.length, 4);
           return (
             <Fragment key={i}>
-              {seg}
+              <InlineMarkdown text={seg} />
               {i < blanks.length &&
                 (answered ? (
                   <span

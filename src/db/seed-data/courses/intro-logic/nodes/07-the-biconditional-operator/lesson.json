@@ -1,0 +1,79 @@
+[
+  {
+    "type": "concept",
+    "heading": "Mutual Dependence",
+    "body": "Sometimes two statements depend entirely on each other. One cannot be true while the other is false. Consider a light bulb connected to a working switch. The bulb is on if the switch is in the up position. The switch is in the up position if the bulb is on. These statements always share a truth value.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "The Biconditional Operator",
+    "body": "A **biconditional** is a logical operator that connects two propositions using the phrase \"if and only if\". It asserts that both propositions always possess the exact same truth value. In symbolic logic, this operator is often represented by a triple bar or a double-headed arrow.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Recognizing the Phrasing",
+    "body": "English sentences use specific phrasing to express this two-way logical relationship.",
+    "examples": [
+      {
+        "text": "The alarm sounds if and only if the glass breaks.",
+        "valid": true
+      },
+      {
+        "text": "The heater runs if and only if the room is cold.",
+        "valid": true
+      },
+      { "text": "If the room is cold, the heater runs.", "valid": false },
+      { "text": "The heater runs because the room is cold.", "valid": false }
+    ],
+    "note": "A simple \"if\" creates a one-way relationship. A biconditional requires \"if and only if\" to make it a two-way relationship."
+  },
+  {
+    "type": "rule",
+    "heading": "The Truth Matching Rule",
+    "body": "A biconditional statement evaluates to true strictly when both connected propositions share the same truth value. If both propositions are true, the biconditional is true. If both propositions are false, the biconditional is also true. Any mismatch results in a false biconditional.",
+    "examples": null,
+    "note": "This relies on evaluating individual propositions first, a skill established in earlier modules."
+  },
+  {
+    "type": "example",
+    "heading": "Evaluating Combinations",
+    "body": "Apply the matching rule to the four possible truth value combinations of two connected propositions.",
+    "examples": [
+      {
+        "text": "The door is open (True) if and only if the lock is disengaged (True).",
+        "valid": true
+      },
+      {
+        "text": "The door is open (False) if and only if the lock is disengaged (False).",
+        "valid": true
+      },
+      {
+        "text": "The door is open (True) if and only if the lock is disengaged (False).",
+        "valid": false
+      },
+      {
+        "text": "The door is open (False) if and only if the lock is disengaged (True).",
+        "valid": false
+      }
+    ],
+    "note": "The biconditional statement itself is true when the examples marked valid occur."
+  },
+  {
+    "type": "warning",
+    "heading": "The Double False Case",
+    "body": "A common mistake is assuming a biconditional is false when both propositions are false. The operator measures whether the statements agree, not whether they are positive facts. If the first proposition is false and the second is false, they match perfectly. Therefore, the biconditional connecting them is true.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "summary",
+    "heading": "Key Takeaway",
+    "body": "The biconditional operator connects two propositions with \"if and only if\". The resulting combined statement is true strictly when both internal propositions share the exact same truth value, whether both are true or both are false.",
+    "examples": null,
+    "note": null
+  }
+]

@@ -1,0 +1,89 @@
+[
+  {
+    "type": "concept",
+    "heading": "Always True",
+    "body": "A **tautology** is a formula whose main operator column is true in every row of its truth table. Its truth does not depend on any particular assignment of values.",
+    "examples": [
+      {
+        "text": "If the final column is `T T T T`, the formula is a tautology.",
+        "valid": true
+      },
+      {
+        "text": "If the final column is `T F T T`, the formula is a tautology.",
+        "valid": false
+      }
+    ],
+    "note": "The decision is based on the final column only."
+  },
+  {
+    "type": "rule",
+    "heading": "Check Final Column",
+    "body": "To classify a formula as a tautology, inspect the main operator column after the truth table is complete. Every entry must be T. One F is enough to block the classification.",
+    "examples": [
+      {
+        "text": "`T T T T` passes the test.",
+        "valid": true
+      },
+      {
+        "text": "`T T F T` passes the test.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "Why Main Matters",
+    "body": "The **main operator column** gives the truth value of the whole formula in each row. Other columns show only parts of the formula, so they cannot by themselves determine whether the whole formula is a tautology.",
+    "examples": [
+      {
+        "text": "An inner column may contain F values while the final column is all T.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Simple Cases",
+    "body": "Read only the final column when classifying the whole statement.",
+    "examples": [
+      {
+        "text": "Final column `T T T T` means tautology.",
+        "valid": true
+      },
+      {
+        "text": "Final column `T T T T T T T T` means tautology.",
+        "valid": true
+      },
+      {
+        "text": "Final column `T T F F` means tautology.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Do Not Count Mostly",
+    "body": "A common mistake is calling a formula a tautology when most rows are true. That is not enough. The final column must be true in every row, with no exceptions.",
+    "examples": [
+      {
+        "text": "`T T T F` is not a tautology.",
+        "valid": true
+      },
+      {
+        "text": "`T T T T` is a tautology.",
+        "valid": true
+      }
+    ],
+    "note": "The standard is all T, not almost all T."
+  },
+  {
+    "type": "summary",
+    "heading": "Core Test",
+    "body": "Complete the truth table, then inspect the main operator column. If every row is T, the formula is a tautology.",
+    "examples": null,
+    "note": null
+  }
+]

@@ -1,0 +1,89 @@
+[
+  {
+    "type": "concept",
+    "heading": "What This Column Does",
+    "body": "**Negation** flips a truth value. If a base variable is true, its negation is false. If a base variable is false, its negation is true.",
+    "examples": [
+      {
+        "text": "If $P$ is T, then $\\sim P$ is F.",
+        "valid": true
+      },
+      {
+        "text": "If $P$ is F, then $\\sim P$ is T.",
+        "valid": true
+      }
+    ],
+    "note": "This lesson covers only direct negation of a single base variable."
+  },
+  {
+    "type": "rule",
+    "heading": "Copy Then Flip",
+    "body": "To build the column for **direct negation**, copy the rows of the base variable and reverse each value one by one. Do not change the row order.",
+    "examples": [
+      {
+        "text": "From $P$: `T T F F`, build $\\sim P$: `F F T T`.",
+        "valid": true
+      },
+      {
+        "text": "From $P$: `T T F F`, build $\\sim P$: `T T F F`.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Single Column Example",
+    "body": "Place the $\\sim P$ column next to the $P$ column. Then flip each row directly across.",
+    "examples": [
+      {
+        "text": "$P$: `T T F F`",
+        "valid": true
+      },
+      {
+        "text": "$\\sim P$: `F F T T`",
+        "valid": true
+      }
+    ],
+    "note": "Each row in $\\sim P$ depends only on the matching row in $P$."
+  },
+  {
+    "type": "concept",
+    "heading": "Use Base Rows Only",
+    "body": "**Base variable** means an original propositional letter such as $P$ or $Q$. When a formula contains $\\sim P$, first build the base column for $P$, then derive $\\sim P$ from it.",
+    "examples": [
+      {
+        "text": "To evaluate $(\\sim P \\vee Q)$, first write columns for $P$ and $Q$.",
+        "valid": true
+      },
+      {
+        "text": "To evaluate $(\\sim P \\vee Q)$, build $\\sim P$ before writing $P$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Do Not Reorder",
+    "body": "A common mistake is rearranging rows while filling the negation column. The truth table order stays fixed. Only the truth values flip.",
+    "examples": [
+      {
+        "text": "If $P$ is `T F T F`, then $\\sim P$ is `F T F T`.",
+        "valid": true
+      },
+      {
+        "text": "If $P$ is `T F T F`, then $\\sim P$ is `T F F T`.",
+        "valid": false
+      }
+    ],
+    "note": "Negation changes values, not row positions."
+  },
+  {
+    "type": "summary",
+    "heading": "Core Method",
+    "body": "Build the base-variable column first. Then make the negated column by flipping each truth value in the same row: T becomes F, and F becomes T.",
+    "examples": null,
+    "note": null
+  }
+]

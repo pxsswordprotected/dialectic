@@ -1,0 +1,146 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Which sentence has standard conditional form?",
+    "options": [
+      {
+        "text": "\"If the lamp is on, then the desk is bright.\"",
+        "correct": true
+      },
+      {
+        "text": "\"The lamp is on and the desk is bright.\"",
+        "correct": false
+      },
+      {
+        "text": "\"Is the lamp on?\"",
+        "correct": false
+      }
+    ],
+    "explanation": "A standard conditional uses the pattern \"if ... then ...\".",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "fill_in",
+    "prompt": "In $P \\rightarrow Q$, $P$ is the ___ and $Q$ is the ___.",
+    "blanks": [
+      {
+        "acceptable_answers": ["antecedent"]
+      },
+      {
+        "acceptable_answers": ["consequent"]
+      }
+    ],
+    "explanation": "The antecedent is the if-part. The consequent is the then-part.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "In a standard conditional, the statement after \"if\" goes on the left side of $\\rightarrow$.",
+    "answer": true,
+    "explanation": "The antecedent comes after \"if,\" and it is written on the left.",
+    "difficulty": 1,
+    "targets_slide": 3
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $W$ = The window is open, and $F$ = The fan is on. Which is the correct translation of \"If the window is open, then the fan is on\"?",
+    "options": [
+      {
+        "text": "$W \\rightarrow F$",
+        "correct": true
+      },
+      {
+        "text": "$F \\rightarrow W$",
+        "correct": false
+      },
+      {
+        "text": "$W \\wedge F$",
+        "correct": false
+      },
+      {
+        "text": "$W \\vee F$",
+        "correct": false
+      }
+    ],
+    "explanation": "Write the if-part first, then $\\rightarrow$, then the then-part.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "classify",
+    "prompt": "Place each item in the correct category for the sentence \"If the key is in the drawer, then the desk is clear.\"",
+    "categories": ["Antecedent", "Consequent"],
+    "items": [
+      {
+        "text": "\"The key is in the drawer\"",
+        "category": "Antecedent"
+      },
+      {
+        "text": "\"The desk is clear\"",
+        "category": "Consequent"
+      }
+    ],
+    "explanation": "The antecedent is the if-part. The consequent is the then-part.",
+    "difficulty": 1,
+    "targets_slide": 2
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "\"If $R$, then $S$\" should be translated as $S \\rightarrow R$.",
+    "answer": false,
+    "explanation": "That reverses the parts. The correct form is $R \\rightarrow S$.",
+    "difficulty": 2,
+    "targets_slide": 5
+  },
+  {
+    "type": "fill_in",
+    "prompt": "Complete the translation pattern: \"If the cup is full, then the lid is on\" becomes $C$ ___ $L$.",
+    "blanks": [
+      {
+        "acceptable_answers": ["\\rightarrow", "rightarrow"]
+      }
+    ],
+    "explanation": "Standard conditionals use the conditional operator $\\rightarrow$.",
+    "difficulty": 1,
+    "targets_slide": 3
+  },
+  {
+    "type": "order",
+    "prompt": "Arrange the translation steps in the correct order.",
+    "items": [
+      "Identify the antecedent.",
+      "Identify the consequent.",
+      "Write the antecedent letter.",
+      "Insert $\\rightarrow$.",
+      "Write the consequent letter."
+    ],
+    "explanation": "A standard conditional keeps the English order: if-part first, then then-part.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $H$ = The oven is hot, and $P$ = The pan is warm. Which translation is wrong?",
+    "options": [
+      {
+        "text": "$P \\rightarrow H$",
+        "correct": true
+      },
+      {
+        "text": "$H \\rightarrow P$",
+        "correct": false
+      },
+      {
+        "text": "\"If the oven is hot, then the pan is warm\" uses $\\rightarrow$.",
+        "correct": false
+      }
+    ],
+    "explanation": "The wrong choice reverses the antecedent and consequent.",
+    "difficulty": 3,
+    "targets_slide": 5
+  }
+]

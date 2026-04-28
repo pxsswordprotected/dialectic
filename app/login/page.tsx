@@ -2,8 +2,8 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import Image from "next/image";
 import Link from "next/link";
-import { Check } from "@phosphor-icons/react/dist/ssr";
 import { PasswordInput } from "../(auth)/_components/password-input";
+import { MessageToast } from "./_components/message-toast";
 
 export default async function LoginPage(props: {
   searchParams: Promise<{ error?: string; message?: string }>;
@@ -30,8 +30,8 @@ export default async function LoginPage(props: {
   }
 
   return (
-    <div className="flex flex-1 items-center justify-center p-6">
-      <div className="flex w-full max-w-[1256px] h-[750px] overflow-hidden rounded-sm border border-neutral-300 bg-white">
+    <div className="flex min-h-screen items-center justify-center p-6">
+      <div className="flex w-full max-w-[1256px] h-[min(750px,calc(100dvh-48px))] overflow-hidden rounded-sm border border-neutral-300 bg-white">
         <div className="relative hidden md:block flex-1">
           <Image
             src="/images/The_School_of_Athens__by_Raffaello_Sanzio_da_Urbino-scaled (1).jpg"
@@ -46,7 +46,7 @@ export default async function LoginPage(props: {
         <div className="flex flex-1 items-center justify-center bg-white">
           <div className="flex flex-col items-center gap-16 w-[339px]">
             <header className="flex flex-col items-center gap-[18px] text-center">
-              <h1 className="font-heading text-primary-400 text-2xl">
+              <h1 className="font-heading text-primary-400 text-2xl select-none">
                 Dialectic
               </h1>
               <p className="text-neutral-800 text-lg">
@@ -98,12 +98,7 @@ export default async function LoginPage(props: {
               </p>
 
               {searchParams.message && (
-                <div className="absolute left-1/2 top-full mt-64 -translate-x-1/2 inline-flex items-center justify-center gap-[10px] rounded-sm border border-neutral-300 bg-neutral-50 px-[16px] py-[10px] shadow-[0px_2px_3.5px_0px_rgba(0,0,0,0.1)] whitespace-nowrap select-none">
-                  <Check size={22} weight="bold" className="text-primary-400" />
-                  <p className="text-base text-neutral-800">
-                    {searchParams.message}
-                  </p>
-                </div>
+                <MessageToast message={searchParams.message} />
               )}
             </form>
           </div>

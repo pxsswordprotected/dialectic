@@ -1,0 +1,68 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "What is the defining characteristic of a simple statement?",
+    "options": [
+      { "text": "It is always true.", "correct": false },
+      { "text": "It contains no logical operators.", "correct": true },
+      { "text": "It contains at least two variables.", "correct": false },
+      { "text": "It uses parentheses.", "correct": false }
+    ],
+    "explanation": "A simple statement is atomic, meaning it makes a single claim without using operators like 'and', 'or', or 'not'.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Which symbol indicates that a logical string is a compound statement?",
+    "options": [
+      { "text": "A capital letter like $P$", "correct": false },
+      { "text": "A period", "correct": false },
+      { "text": "A negation sign ($\\sim$)", "correct": true },
+      { "text": "A comma", "correct": false }
+    ],
+    "explanation": "The negation sign ($\\sim$) is one of the five logical operators. Its presence automatically makes a statement compound.",
+    "difficulty": 1,
+    "targets_slide": 4
+  },
+  {
+    "type": "classify",
+    "prompt": "Categorize each logical string.",
+    "categories": ["Simple", "Compound"],
+    "items": [
+      { "text": "$Q$", "category": "Simple" },
+      { "text": "$\\sim P$", "category": "Compound" },
+      { "text": "$P \\vee Q$", "category": "Compound" },
+      { "text": "The light is on.", "category": "Simple" },
+      { "text": "If it rains, the ground is wet.", "category": "Compound" }
+    ],
+    "explanation": "Strings with operators ($\\sim$, $\\vee$, if...then) are compound. Single variables or declarative sentences without connectors are simple.",
+    "difficulty": 2,
+    "targets_slide": 6
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "The string $\\sim (P)$ is a simple statement because it only contains one variable.",
+    "answer": false,
+    "explanation": "Negation is an operator. Even if there is only one variable, the presence of the $\\sim$ symbol makes the statement compound.",
+    "difficulty": 2,
+    "targets_slide": 5
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Why is 'The cat is not on the mat' categorized as a compound statement?",
+    "options": [
+      { "text": "It contains two different subjects.", "correct": false },
+      { "text": "It uses the negation operator 'not'.", "correct": true },
+      { "text": "It is a false statement.", "correct": false },
+      {
+        "text": "It can be broken into two simple sentences.",
+        "correct": false
+      }
+    ],
+    "explanation": "In logic, 'not' modifies a simple statement ('The cat is on the mat'). This modification via an operator creates a compound statement.",
+    "difficulty": 3,
+    "targets_slide": 5
+  }
+]

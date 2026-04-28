@@ -54,7 +54,7 @@ export default async function DashboardPage({
           />
         </div>
         <div className="mx-auto flex w-[1050px] flex-1 items-center justify-center pt-[100px] pb-32">
-          <p className="text-base text-neutral-800 select-none">
+          <p className="text-lg text-neutral-800 select-none">
             Pick a course from{" "}
             <Link
               href="/courses"
@@ -151,9 +151,7 @@ export default async function DashboardPage({
           dailyXpEarned={streak.dailyXpEarned}
           dailyXpGoal={streak.dailyXpGoal}
           accountName={
-            data.profile?.displayName ??
-            user.email?.split("@")[0] ??
-            "Account"
+            data.profile?.displayName ?? user.email?.split("@")[0] ?? "Account"
           }
         />
       </div>

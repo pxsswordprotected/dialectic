@@ -1,0 +1,95 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $G$ = The game will be played and $R$ = It rains. Which is the correct conditional translation of \"The game will be played unless it rains\"?",
+    "options": [
+      {
+        "text": "$\\sim R \\rightarrow G$",
+        "correct": true
+      },
+      {
+        "text": "$R \\rightarrow G$",
+        "correct": false
+      },
+      {
+        "text": "$G \\rightarrow \\sim R$",
+        "correct": false
+      },
+      {
+        "text": "$G \\vee R$",
+        "correct": false
+      }
+    ],
+    "explanation": "The conditional method translates \"$P$ unless $Q$\" as $\\sim Q \\rightarrow P$.",
+    "difficulty": 1,
+    "targets_slide": 2
+  },
+  {
+    "type": "fill_in",
+    "prompt": "Complete the pattern: \"$P$ unless $Q$\" becomes ___ $\\rightarrow$ $P$.",
+    "blanks": [
+      {
+        "acceptable_answers": ["\\sim Q", "$\\sim Q$"]
+      }
+    ],
+    "explanation": "The statement after \"unless\" is negated and placed on the left side of the conditional.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "\"Unless it rains, the game will be played\" can be translated by the conditional method as $\\sim R \\rightarrow G$.",
+    "answer": true,
+    "explanation": "The unless-part is \"it rains,\" so the conditional form is \"if not rain, then game.\"",
+    "difficulty": 1,
+    "targets_slide": 3
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each formula by whether it correctly uses the conditional method for translating \"unless.\"",
+    "categories": ["Correct method", "Incorrect method"],
+    "items": [
+      {
+        "text": "$\\sim P \\rightarrow L$",
+        "category": "Correct method"
+      },
+      {
+        "text": "$\\sim S \\rightarrow B$",
+        "category": "Correct method"
+      },
+      {
+        "text": "$B \\rightarrow \\sim S$",
+        "category": "Incorrect method"
+      },
+      {
+        "text": "$R \\rightarrow G$",
+        "category": "Incorrect method"
+      }
+    ],
+    "explanation": "The correct form negates the unless-part and places it before $\\rightarrow$.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $S$ = The store opens and $R$ = The road is closed. Which translation is wrong for \"The store opens unless the road is closed\"?",
+    "options": [
+      {
+        "text": "$S \\rightarrow \\sim R$",
+        "correct": true
+      },
+      {
+        "text": "$\\sim R \\rightarrow S$",
+        "correct": false
+      },
+      {
+        "text": "The negated unless-part must be the antecedent.",
+        "correct": false
+      }
+    ],
+    "explanation": "$S \\rightarrow \\sim R$ reverses the correct order. The form must be $\\sim R \\rightarrow S$.",
+    "difficulty": 2,
+    "targets_slide": 4
+  }
+]

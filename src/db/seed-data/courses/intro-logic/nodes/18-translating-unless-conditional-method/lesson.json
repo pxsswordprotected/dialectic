@@ -1,0 +1,85 @@
+[
+  {
+    "type": "concept",
+    "heading": "Conditional Reading",
+    "body": "**Conditional method** translates an \"unless\" sentence as an if-then statement. Instead of replacing \"unless\" with $\\vee$, this method builds a conditional structure.",
+    "examples": [
+      {
+        "text": "\"The game will be played unless it rains\" can be read as an if-then statement.",
+        "valid": true
+      }
+    ],
+    "note": "This lesson uses the conditional method only."
+  },
+  {
+    "type": "concept",
+    "heading": "Negate The Exception",
+    "body": "In this method, the clause after \"unless\" is denied first. That negated clause becomes the left side of the conditional.",
+    "examples": [
+      {
+        "text": "In \"The game will be played unless it rains,\" the clause after \"unless\" is \"it rains.\"",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Translation Pattern",
+    "body": "Translate \"$P$ unless $Q$\" as $\\sim Q \\rightarrow P$. Negate the statement after \"unless,\" then use $\\rightarrow$, then write the other statement.",
+    "examples": [
+      {
+        "text": "\"The game will be played unless it rains\" becomes $\\sim R \\rightarrow G$.",
+        "valid": true
+      },
+      {
+        "text": "\"The game will be played unless it rains\" becomes $R \\rightarrow G$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Simple Cases",
+    "body": "Choose a letter for each statement. Then negate the unless-part and place the other statement after $\\rightarrow$.",
+    "examples": [
+      {
+        "text": "Let $L$ = The lamp is on, $P$ = The power fails. \"The lamp is on unless the power fails\" becomes $\\sim P \\rightarrow L$.",
+        "valid": true
+      },
+      {
+        "text": "Let $B$ = The bus arrives, $S$ = The street is blocked. \"The bus arrives unless the street is blocked\" becomes $\\sim S \\rightarrow B$.",
+        "valid": true
+      },
+      {
+        "text": "Let $D$ = The door opens, $K$ = The key is lost. \"The door opens unless the key is lost\" becomes $\\sim D \\rightarrow K$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Do Not Reverse",
+    "body": "A common mistake is putting the main statement on the left and the negated unless-part on the right. The negated unless-part must be the antecedent.",
+    "examples": [
+      {
+        "text": "\"The store opens unless the road is closed\" becomes $\\sim R \\rightarrow S$.",
+        "valid": true
+      },
+      {
+        "text": "\"The store opens unless the road is closed\" becomes $S \\rightarrow \\sim R$.",
+        "valid": false
+      }
+    ],
+    "note": "Read the pattern as \"if not $Q$, then $P$.\""
+  },
+  {
+    "type": "summary",
+    "heading": "Core Pattern",
+    "body": "Translate \"$P$ unless $Q$\" by the conditional method as $\\sim Q \\rightarrow P$. Negate the unless-part, then write the other statement as the consequent.",
+    "examples": null,
+    "note": null
+  }
+]

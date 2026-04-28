@@ -1,0 +1,89 @@
+[
+  {
+    "type": "concept",
+    "heading": "Same Truth Conditions",
+    "body": "**Logical equivalence** means that two formulas have the same truth value in every row of a truth table. If one is true exactly when the other is true, they are logically equivalent.",
+    "examples": [
+      {
+        "text": "If two final columns are both `T F F T`, the formulas are logically equivalent.",
+        "valid": true
+      },
+      {
+        "text": "If one final column is `T F F T` and the other is `T T F T`, the formulas are logically equivalent.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Compare Final Columns",
+    "body": "To test equivalence, compare the final main-operator columns row by row. If every row matches, the formulas are equivalent. If even one row differs, they are not equivalent.",
+    "examples": [
+      {
+        "text": "`T F T F` and `T F T F` match in every row.",
+        "valid": true
+      },
+      {
+        "text": "`T F T F` and `T F F F` match in every row.",
+        "valid": false
+      }
+    ],
+    "note": "Only the final columns decide the result."
+  },
+  {
+    "type": "example",
+    "heading": "A Standard Pair",
+    "body": "Some different formulas produce the same final column. That is enough for equivalence.",
+    "examples": [
+      {
+        "text": "$\\sim (P \\vee Q)$ and $(\\sim P \\wedge \\sim Q)$ are equivalent if their final columns match row for row.",
+        "valid": true
+      },
+      {
+        "text": "Different symbol shapes always mean different truth conditions.",
+        "valid": false
+      }
+    ],
+    "note": "Equivalent formulas can look very different."
+  },
+  {
+    "type": "warning",
+    "heading": "One Mismatch Fails",
+    "body": "A common mistake is calling two formulas equivalent because most rows match. That is not enough. Equivalence requires a perfect row-by-row match in the final columns.",
+    "examples": [
+      {
+        "text": "`T T F T` and `T T F T` are equivalent.",
+        "valid": true
+      },
+      {
+        "text": "`T T F T` and `T F F T` are equivalent because only one row differs.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "Meaning Over Appearance",
+    "body": "**Truth conditions** are the circumstances under which a formula is true or false. Logical equivalence depends on truth conditions, not on word order, symbol count, or visual similarity.",
+    "examples": [
+      {
+        "text": "Two formulas may be equivalent even if one uses negation and the other does not.",
+        "valid": true
+      },
+      {
+        "text": "Two formulas are equivalent only when they are written in exactly the same way.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "summary",
+    "heading": "Core Test",
+    "body": "Build the truth tables, then compare the final columns row by row. If every row matches, the formulas are logically equivalent. If any row differs, they are not.",
+    "examples": null,
+    "note": null
+  }
+]

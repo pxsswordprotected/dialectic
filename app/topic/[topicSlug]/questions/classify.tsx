@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { X } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "@/components/ui/button";
+import { InlineMarkdown } from "@/components/inline-markdown";
 
 type Item = { text: string; category: string };
 
@@ -87,7 +88,7 @@ export function Classify({
                         : "border-neutral-300"
                     }`}
                   >
-                    {it.text}
+                    <InlineMarkdown text={it.text} />
                   </button>
                 </li>
               );
@@ -145,7 +146,7 @@ export function Classify({
                                   : ""
                             }
                           >
-                            {it.text}
+                            <InlineMarkdown text={it.text} />
                           </span>
                         </div>
                         {!answered && (

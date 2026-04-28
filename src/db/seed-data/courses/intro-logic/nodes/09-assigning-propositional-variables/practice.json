@@ -1,0 +1,81 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "What does a propositional variable represent in logic?",
+    "options": [
+      { "text": "A single, positive claim.", "correct": true },
+      { "text": "A complete compound sentence.", "correct": false },
+      {
+        "text": "A logical connector like \"and\" or \"or\".",
+        "correct": false
+      }
+    ],
+    "explanation": "A propositional variable uses a single capital letter to represent one standalone, positive statement without any operators.",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "Variable definitions should include words like \"not\" to ensure the translation is accurate.",
+    "answer": false,
+    "explanation": "Variables must be defined strictly as positive statements. Negative words are removed during assignment because they are represented by logical operators later.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "classify",
+    "prompt": "Sort these assignments into valid and invalid variable definitions.",
+    "categories": ["Valid Definition", "Invalid Definition"],
+    "items": [
+      { "text": "D = The dog is barking.", "category": "Valid Definition" },
+      { "text": "S = The oven is hot.", "category": "Valid Definition" },
+      {
+        "text": "C = but the cat is asleep.",
+        "category": "Invalid Definition"
+      },
+      { "text": "R = If it rains.", "category": "Invalid Definition" },
+      { "text": "H = hungry.", "category": "Invalid Definition" }
+    ],
+    "explanation": "Valid variables must be complete, standalone propositions. They cannot contain logical connectors like \"but\" or \"if\", and they cannot be missing a subject.",
+    "difficulty": 2,
+    "targets_slide": 3
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Extract the variables for the sentence: \"The movie is long but fascinating.\"",
+    "options": [
+      { "text": "M = The movie is long, F = fascinating.", "correct": false },
+      {
+        "text": "M = The movie is long but, F = fascinating.",
+        "correct": false
+      },
+      {
+        "text": "M = The movie is long, F = The movie is fascinating.",
+        "correct": true
+      },
+      { "text": "M = The movie is long but fascinating.", "correct": false }
+    ],
+    "explanation": "Variables must be complete sentences. English often drops the subject in the second half of a sentence, so \"The movie is\" must be restored for the second variable.",
+    "difficulty": 2,
+    "targets_slide": 5
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Assign variables to this sentence: \"The package is heavy and not fragile.\"",
+    "options": [
+      {
+        "text": "H = The package is heavy, F = The package is not fragile.",
+        "correct": false
+      },
+      {
+        "text": "H = The package is heavy, F = The package is fragile.",
+        "correct": true
+      },
+      { "text": "H = The package is heavy, F = not fragile.", "correct": false }
+    ],
+    "explanation": "This requires applying two rules at once: restoring the missing subject (\"The package is\") and removing the negation (\"not\") to ensure the variable is a positive claim.",
+    "difficulty": 3,
+    "targets_slide": 5
+  }
+]

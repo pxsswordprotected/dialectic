@@ -1,0 +1,91 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Which final column shows that a formula is a tautology?",
+    "options": [
+      {
+        "text": "`T T T T`",
+        "correct": true
+      },
+      {
+        "text": "`T F T T`",
+        "correct": false
+      },
+      {
+        "text": "`F F F F`",
+        "correct": false
+      }
+    ],
+    "explanation": "A tautology is true in every row, so its final column must contain only T values.",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "If the main operator column contains even one F, the formula is not a tautology.",
+    "answer": true,
+    "explanation": "A tautology requires every row in the final column to be T. One F is enough to fail the test.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "fill_in",
+    "prompt": "A formula is a tautology only if the main operator column is ___ in every row.",
+    "blanks": [
+      {
+        "acceptable_answers": ["true", "T"]
+      }
+    ],
+    "explanation": "The defining mark of a tautology is a final column made entirely of true values.",
+    "difficulty": 1,
+    "targets_slide": 5
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each final column.",
+    "categories": ["Tautology", "Not a tautology"],
+    "items": [
+      {
+        "text": "`T T T T`",
+        "category": "Tautology"
+      },
+      {
+        "text": "`T T F T`",
+        "category": "Not a tautology"
+      },
+      {
+        "text": "`T T T T T T T T`",
+        "category": "Tautology"
+      },
+      {
+        "text": "`F T T T`",
+        "category": "Not a tautology"
+      }
+    ],
+    "explanation": "Only columns with T in every row count as tautologies. Any F in the final column blocks that classification.",
+    "difficulty": 2,
+    "targets_slide": 3
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Which column should be checked to decide whether a whole formula is a tautology?",
+    "options": [
+      {
+        "text": "The main operator column",
+        "correct": true
+      },
+      {
+        "text": "Any inner parenthesis column",
+        "correct": false
+      },
+      {
+        "text": "Only the leftmost base-variable column",
+        "correct": false
+      }
+    ],
+    "explanation": "The main operator column gives the truth value of the whole formula. Inner columns show only parts of the formula.",
+    "difficulty": 2,
+    "targets_slide": 2
+  }
+]

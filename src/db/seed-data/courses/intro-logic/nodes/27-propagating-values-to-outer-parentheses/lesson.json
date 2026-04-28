@@ -1,0 +1,89 @@
+[
+  {
+    "type": "concept",
+    "heading": "Move One Level Out",
+    "body": "An **outer expression** is a larger formula built from a smaller part that has already been evaluated. In a truth table, once the inner part is finished, the next step is to use that finished column to compute the next larger part.",
+    "examples": [
+      {
+        "text": "In $\\sim (P \\wedge Q)$, the outer expression uses the finished column for $(P \\wedge Q)$.",
+        "valid": true
+      },
+      {
+        "text": "In $((P \\vee Q) \\rightarrow R)$, the conditional is outer to $(P \\vee Q)$.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Use The Finished Column",
+    "body": "A **derived column** is a new column built from a column already completed. To evaluate an outer expression, use the truth values from the inner column directly, row by row.",
+    "examples": [
+      {
+        "text": "To compute $\\sim (P \\wedge Q)$, use the finished values of $(P \\wedge Q)$.",
+        "valid": true
+      },
+      {
+        "text": "To compute $\\sim (P \\wedge Q)$, ignore $(P \\wedge Q)$ and start again from $P$ and $Q$ only.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Negation Example",
+    "body": "When the outer operator is negation, flip each truth value in the finished inner column.",
+    "examples": [
+      {
+        "text": "If $(P \\wedge Q)$ is `T F F F`, then $\\sim (P \\wedge Q)$ is `F T T T`.",
+        "valid": true
+      },
+      {
+        "text": "If $(P \\wedge Q)$ is `T F F F`, then $\\sim (P \\wedge Q)$ is `T F F F`.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Keep Row Alignment",
+    "body": "**Row alignment** means each new truth value must stay in the same row as the value it comes from. Outer evaluation never changes the row order.",
+    "examples": [
+      {
+        "text": "If row 3 of $(P \\wedge Q)$ is F, then row 3 of $\\sim (P \\wedge Q)$ must be T.",
+        "valid": true
+      },
+      {
+        "text": "When building $\\sim (P \\wedge Q)$, values may be rearranged if the final pattern looks simpler.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Do Not Skip Structure",
+    "body": "A common mistake is jumping from base columns straight to the whole formula. Outer evaluation must follow the syntax one level at a time.",
+    "examples": [
+      {
+        "text": "In $\\sim (P \\wedge Q) \\vee R$, compute $\\sim (P \\wedge Q)$ before the final disjunction.",
+        "valid": true
+      },
+      {
+        "text": "In $\\sim (P \\wedge Q) \\vee R$, compute the final disjunction before $\\sim (P \\wedge Q)$.",
+        "valid": false
+      }
+    ],
+    "note": "Truth-table order follows grouping, not convenience."
+  },
+  {
+    "type": "summary",
+    "heading": "Core Method",
+    "body": "After an inner parenthesized part is complete, use that finished column to evaluate the next outer level. Work outward one operation at a time, keeping every row in place.",
+    "examples": null,
+    "note": null
+  }
+]

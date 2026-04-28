@@ -1,0 +1,87 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $G$ = Will graduate and $P$ = Pass the final exam. Which is the correct translation of \"Will graduate only if pass the final exam\"?",
+    "options": [
+      {
+        "text": "$G \\rightarrow P$",
+        "correct": true
+      },
+      {
+        "text": "$P \\rightarrow G$",
+        "correct": false
+      },
+      {
+        "text": "$G \\wedge P$",
+        "correct": false
+      },
+      {
+        "text": "$G \\vee P$",
+        "correct": false
+      }
+    ],
+    "explanation": "In \"$P$ only if $Q$,\" the phrase after \"only if\" is the necessary condition, so the form is $P \\rightarrow Q$.",
+    "difficulty": 1,
+    "targets_slide": 2
+  },
+  {
+    "type": "fill_in",
+    "prompt": "Complete the pattern: \"$P$ only if $Q$\" becomes $P$ ___ $Q$.",
+    "blanks": [
+      {
+        "acceptable_answers": ["\\rightarrow", "rightarrow"]
+      }
+    ],
+    "explanation": "\"Only if\" is translated as a conditional with the second statement as the consequent.",
+    "difficulty": 1,
+    "targets_slide": 2
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "In an \"only if\" sentence, the phrase after \"only if\" is the necessary condition.",
+    "answer": true,
+    "explanation": "The phrase after \"only if\" names what must be true, so it is the necessary condition.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each part of the sentence \"The store opens only if the truck arrives.\"",
+    "categories": ["Antecedent", "Consequent"],
+    "items": [
+      {
+        "text": "\"The store opens\"",
+        "category": "Antecedent"
+      },
+      {
+        "text": "\"The truck arrives\"",
+        "category": "Consequent"
+      }
+    ],
+    "explanation": "The statement before \"only if\" goes on the left of $\\rightarrow$. The statement after it goes on the right.",
+    "difficulty": 2,
+    "targets_slide": 3
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $B$ = The bus leaves and $D$ = The driver arrives. Which translation is wrong for \"The bus leaves only if the driver arrives\"?",
+    "options": [
+      {
+        "text": "$D \\rightarrow B$",
+        "correct": true
+      },
+      {
+        "text": "$B \\rightarrow D$",
+        "correct": false
+      },
+      {
+        "text": "The necessary condition must be the consequent.",
+        "correct": false
+      }
+    ],
+    "explanation": "$D \\rightarrow B$ reverses the sentence. The correct form is $B \\rightarrow D$.",
+    "difficulty": 2,
+    "targets_slide": 4
+  }
+]

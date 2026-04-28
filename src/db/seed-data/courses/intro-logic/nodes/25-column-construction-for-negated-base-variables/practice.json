@@ -1,0 +1,79 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Given the base column $P$: `T T F F`, which column correctly gives $\\sim P$?",
+    "options": [
+      {
+        "text": "`F F T T`",
+        "correct": true
+      },
+      {
+        "text": "`T T F F`",
+        "correct": false
+      },
+      {
+        "text": "`F T F T`",
+        "correct": false
+      }
+    ],
+    "explanation": "A direct negation flips each row of the base column without changing the row order.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "If a row in $P$ is F, then the matching row in $\\sim P$ is T.",
+    "answer": true,
+    "explanation": "Negation reverses the truth value in the same row.",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "fill_in",
+    "prompt": "If $P$ has the pattern `T F T F`, then $\\sim P$ has the pattern `___`.",
+    "blanks": [
+      {
+        "acceptable_answers": ["F T F T", "`F T F T`"]
+      }
+    ],
+    "explanation": "Each truth value is flipped in place, so T becomes F and F becomes T.",
+    "difficulty": 1,
+    "targets_slide": 4
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each proposed $\\sim P$ column for the base column $P$: `T T F F`.",
+    "categories": ["Correct $\\sim P$", "Incorrect $\\sim P$"],
+    "items": [
+      {
+        "text": "`F F T T`",
+        "category": "Correct $\\sim P$"
+      },
+      {
+        "text": "`T T F F`",
+        "category": "Incorrect $\\sim P$"
+      },
+      {
+        "text": "`F T F T`",
+        "category": "Incorrect $\\sim P$"
+      }
+    ],
+    "explanation": "The correct negation column flips every row of $P$ and keeps the original row order.",
+    "difficulty": 2,
+    "targets_slide": 2
+  },
+  {
+    "type": "order",
+    "prompt": "Arrange the steps for building a column for $\\sim P$.",
+    "items": [
+      "Write the base column for $P$.",
+      "Look at one row of $P$ at a time.",
+      "Flip T to F and F to T.",
+      "Write the new value in the matching row of $\\sim P$."
+    ],
+    "explanation": "The negated column is built from the base column row by row.",
+    "difficulty": 2,
+    "targets_slide": 5
+  }
+]

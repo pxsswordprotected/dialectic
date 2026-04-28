@@ -1,12 +1,10 @@
 "use client";
 
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
-import ReactMarkdown from "react-markdown";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
 import { Button } from "@/components/ui/button";
 import { SlideCounter } from "@/components/slide-counter";
 import type { BarState } from "@/components/slide-counter-helpers";
+import { InlineMarkdown } from "@/components/inline-markdown";
 
 export type LessonSlideType =
   | "concept"
@@ -30,23 +28,6 @@ const labelForType: Record<LessonSlideType, string> = {
   warning: "Warning",
   summary: "Summary",
 };
-
-function InlineMarkdown({ text }: { text: string }) {
-  return (
-    <ReactMarkdown
-      remarkPlugins={[remarkMath]}
-      rehypePlugins={[rehypeKatex]}
-      components={{
-        p: ({ children }) => <>{children}</>,
-        strong: ({ children }) => (
-          <strong className="font-semibold">{children}</strong>
-        ),
-      }}
-    >
-      {text}
-    </ReactMarkdown>
-  );
-}
 
 type LessonSlideProps = {
   slide: LessonSlideData;
@@ -102,7 +83,7 @@ export function LessonSlide({
                   <span
                     className={ex.valid ? "highlight-true" : "highlight-false"}
                   >
-                    {ex.text}
+                    <InlineMarkdown text={ex.text} />
                   </span>
                 </li>
               ))}
@@ -112,7 +93,7 @@ export function LessonSlide({
 
         {slide.note && (
           <p className="mt-16 text-lg italic leading-[1.4] text-neutral-500">
-            {slide.note}
+            <InlineMarkdown text={slide.note} />
           </p>
         )}
 

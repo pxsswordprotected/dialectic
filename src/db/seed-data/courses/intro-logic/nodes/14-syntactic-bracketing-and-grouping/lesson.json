@@ -1,0 +1,101 @@
+[
+  {
+    "type": "concept",
+    "heading": "Why Brackets Matter",
+    "body": "**Parentheses** show which parts of a symbolic sentence belong together. They make the grouping visible, so the translation matches the English structure.",
+    "examples": [
+      {
+        "text": "\"If it rains and it freezes, then the roads are dangerous\" needs grouping inside the if-part.",
+        "valid": true
+      },
+      {
+        "text": "\"It rains and if it freezes, then the roads are dangerous\" has a different grouping.",
+        "valid": false
+      }
+    ],
+    "note": "This lesson builds on the earlier idea of the main operator."
+  },
+  {
+    "type": "concept",
+    "heading": "Group Inner Parts",
+    "body": "**Grouping** follows the structure marked by English punctuation and connective words. First find the smaller unit, then place parentheses around that unit before attaching it to the rest of the sentence.",
+    "examples": [
+      {
+        "text": "\"If Alice goes and Bob goes, then Charlie stays\" groups \"Alice goes and Bob goes\" as one part.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Conditional Pattern",
+    "body": "When a conditional contains a compound antecedent or consequent, bracket that compound part. Then place $\\rightarrow$ between the two larger parts.",
+    "examples": [
+      {
+        "text": "\"If it rains and it freezes, then the roads are dangerous\" becomes $(R \\wedge F) \\rightarrow D$.",
+        "valid": true
+      },
+      {
+        "text": "\"If it rains and it freezes, then the roads are dangerous\" becomes $R \\wedge (F \\rightarrow D)$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Bracketed Translations",
+    "body": "Read the English sentence in parts. Then mirror those parts with parentheses.",
+    "examples": [
+      {
+        "text": "\"If the lamp is on or the window is open, then the room is bright\" becomes $(L \\vee W) \\rightarrow B$.",
+        "valid": true
+      },
+      {
+        "text": "\"If the key is lost, then the door is shut and the alarm is on\" becomes $K \\rightarrow (D \\wedge A)$.",
+        "valid": true
+      },
+      {
+        "text": "\"If the key is lost, then the door is shut and the alarm is on\" becomes $(K \\rightarrow D) \\wedge A$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Do Not Flatten",
+    "body": "A common mistake is writing all operators in one line without brackets. That hides the hierarchy and can change the sentence's meaning.",
+    "examples": [
+      {
+        "text": "$(R \\wedge F) \\rightarrow D$ and $R \\wedge (F \\rightarrow D)$ do not say the same thing.",
+        "valid": true
+      },
+      {
+        "text": "If two translations use the same letters and operators, they always mean the same thing.",
+        "valid": false
+      }
+    ],
+    "note": "Brackets are not decoration. They mark structure."
+  },
+  {
+    "type": "rule",
+    "heading": "Outer Operator Last",
+    "body": "Find the main operator last. Everything it governs should appear as the largest bracketed parts of the symbolic translation.",
+    "examples": [
+      {
+        "text": "In $(R \\wedge F) \\rightarrow D$, the inner conjunction is grouped first, and the outer conditional governs the whole formula.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "summary",
+    "heading": "Core Method",
+    "body": "Use parentheses to mirror English grouping. Build the inner parts first, then connect the larger parts with the main operator.",
+    "examples": null,
+    "note": null
+  }
+]

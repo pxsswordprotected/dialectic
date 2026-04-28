@@ -1,0 +1,71 @@
+[
+  {
+    "type": "concept",
+    "heading": "Logical Building Blocks",
+    "body": "Logic distinguishes between statements that stand alone and those constructed from multiple parts. This distinction depends entirely on the presence of logical operators. Identifying whether a statement is simple or compound is the first step in evaluating its truth value.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "Simple Statements",
+    "body": "A **simple statement** is a proposition that contains no logical operators. It makes a single, atomic claim about the world. In symbolic logic, a simple statement is represented by a single constant or variable, such as $P$ or $Q$. It cannot be broken down into smaller logical units.",
+    "examples": null,
+    "note": "Simple statements are also known as atomic statements."
+  },
+  {
+    "type": "example",
+    "heading": "Examples of Simple Statements",
+    "body": "These sentences contain no connectors or modifiers.",
+    "examples": [
+      { "text": "The sky is blue.", "valid": true },
+      { "text": "7 is a prime number.", "valid": true },
+      { "text": "$P$", "valid": true },
+      { "text": "The sky is blue and the grass is green.", "valid": false }
+    ],
+    "note": "The final example contains 'and', which makes it non-simple."
+  },
+  {
+    "type": "concept",
+    "heading": "Compound Statements",
+    "body": "A **compound statement** is a proposition that contains at least one logical operator. It uses operators like 'and', 'or', 'if...then', or 'if and only if' to connect simple statements. A compound statement can also be a single statement modified by a negation.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "The Operator Test",
+    "body": "To identify a compound statement, look for any of the five logical operators: negation ($\\sim$), conjunction ($\\wedge$), disjunction ($\\vee$), conditional ($\\rightarrow$), or biconditional ($\\leftrightarrow$). If a logical string contains even one of these symbols, it is a compound statement. If it contains none, it is simple.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Negation is an Operator",
+    "body": "Beginners often mistake negated statements for simple ones because they only involve one subject. However, 'not' is a logical operator. Therefore, any statement containing a negation is compound. $\\sim P$ is a compound statement even though it only contains one variable.",
+    "examples": [
+      { "text": "It is not raining.", "valid": true },
+      { "text": "$\\sim P$", "valid": true }
+    ],
+    "note": "Both are compound because they contain the negation operator."
+  },
+  {
+    "type": "example",
+    "heading": "Symbolic Identification",
+    "body": "Apply the rule to symbolic strings to categorize them quickly.",
+    "examples": [
+      { "text": "$P \\wedge Q$", "valid": true },
+      { "text": "$\\sim (P \\vee Q)$", "valid": true },
+      { "text": "$R$", "valid": false },
+      { "text": "$P \\rightarrow Q$", "valid": true }
+    ],
+    "note": "$P$, $Q$, and $R$ alone are simple. Any additions make them compound."
+  },
+  {
+    "type": "summary",
+    "heading": "Key Takeaway",
+    "body": "Simple statements contain no operators and represent a single claim. Compound statements contain one or more operators that connect or modify propositions.",
+    "examples": null,
+    "note": null
+  }
+]

@@ -1,0 +1,101 @@
+[
+  {
+    "type": "concept",
+    "heading": "If Then Form",
+    "body": "**Conditional** is a compound statement that says one statement follows from another. Standard English usually marks it with \"if ... then ...\".",
+    "examples": [
+      {
+        "text": "\"If the light is on, then the room is bright.\"",
+        "valid": true
+      },
+      {
+        "text": "\"If the key is in the drawer, then the drawer is unlocked.\"",
+        "valid": true
+      }
+    ],
+    "note": "Use the statement-letter method from earlier translation lessons."
+  },
+  {
+    "type": "concept",
+    "heading": "First Part",
+    "body": "**Antecedent** is the statement immediately after \"if.\" It names the condition that starts the conditional.",
+    "examples": [
+      {
+        "text": "In \"If the window is open, then the fan is on,\" the antecedent is \"the window is open.\"",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "Second Part",
+    "body": "**Consequent** is the statement after \"then.\" It names what follows if the antecedent holds.",
+    "examples": [
+      {
+        "text": "In \"If the window is open, then the fan is on,\" the consequent is \"the fan is on.\"",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Symbol Rule",
+    "body": "The **conditional operator** is $\\rightarrow$. Translate the antecedent first, place $\\rightarrow$, then translate the consequent. Standard English order matches symbol order.",
+    "examples": [
+      {
+        "text": "\"If it rains, then the grass is wet\" becomes $R \\rightarrow W$.",
+        "valid": true
+      },
+      {
+        "text": "\"If it rains, then the grass is wet\" becomes $W \\rightarrow R$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Simple Translations",
+    "body": "Pick a letter for each simple statement. Then write the if-part on the left and the then-part on the right.",
+    "examples": [
+      {
+        "text": "Let $S$ = Study, $P$ = Pass. \"If study, then will pass\" becomes $S \\rightarrow P$.",
+        "valid": true
+      },
+      {
+        "text": "Let $D$ = The door is shut, $L$ = The lock is engaged. \"If the door is shut, then the lock is engaged\" becomes $D \\rightarrow L$.",
+        "valid": true
+      },
+      {
+        "text": "Let $B$ = The battery is charged, $F$ = The flashlight works. \"If the battery is charged, then the flashlight works\" becomes $B \\wedge F$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Do Not Reverse",
+    "body": "A common mistake is reversing the two parts. In a standard conditional, the antecedent goes on the left of $\\rightarrow$, and the consequent goes on the right.",
+    "examples": [
+      {
+        "text": "\"If the oven is hot, then the pan is warm\" should not become $W \\rightarrow H$.",
+        "valid": false
+      },
+      {
+        "text": "\"If the oven is hot, then the pan is warm\" becomes $H \\rightarrow W$.",
+        "valid": true
+      }
+    ],
+    "note": "Read the sentence in order. The if-part comes first."
+  },
+  {
+    "type": "summary",
+    "heading": "Core Pattern",
+    "body": "Translate standard \"if ... then ...\" statements with $\\rightarrow$. Write the antecedent first, then the consequent: $P \\rightarrow Q$.",
+    "examples": null,
+    "note": null
+  }
+]

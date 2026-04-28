@@ -1,0 +1,95 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $C$ = The car is working and $T$ = The truck is working. Which is a correct translation of \"Neither the car nor the truck is working\"?",
+    "options": [
+      {
+        "text": "$\\sim (C \\vee T)$",
+        "correct": true
+      },
+      {
+        "text": "$C \\vee T$",
+        "correct": false
+      },
+      {
+        "text": "$\\sim C \\vee T$",
+        "correct": false
+      },
+      {
+        "text": "$C \\wedge T$",
+        "correct": false
+      }
+    ],
+    "explanation": "\"Neither ... nor\" is standardly translated as a negated disjunction.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "$\\sim (P \\vee Q)$ and $\\sim P \\wedge \\sim Q$ are both correct translations of \"neither $P$ nor $Q$.\"",
+    "answer": true,
+    "explanation": "These two formulas are equivalent. Both say that neither statement is true.",
+    "difficulty": 2,
+    "targets_slide": 2
+  },
+  {
+    "type": "fill_in",
+    "prompt": "Complete the standard pattern: \"Neither $P$ nor $Q$\" becomes $\\sim$ ___ .",
+    "blanks": [
+      {
+        "acceptable_answers": ["(P \\vee Q)", "($P \\vee Q$)"]
+      }
+    ],
+    "explanation": "First build the disjunction, then negate the whole group.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each formula by whether it correctly matches \"neither $P$ nor $Q$.\"",
+    "categories": ["Correct translation", "Incorrect translation"],
+    "items": [
+      {
+        "text": "$\\sim (P \\vee Q)$",
+        "category": "Correct translation"
+      },
+      {
+        "text": "$\\sim P \\wedge \\sim Q$",
+        "category": "Correct translation"
+      },
+      {
+        "text": "$\\sim P \\vee Q$",
+        "category": "Incorrect translation"
+      },
+      {
+        "text": "$P \\vee Q$",
+        "category": "Incorrect translation"
+      }
+    ],
+    "explanation": "A correct translation must deny both statements, either by negating the whole disjunction or by negating each part and joining them with conjunction.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $L$ = The lamp is on and $F$ = The fan is on. Which formula shows the second correct form of \"Neither the lamp nor the fan is on\"?",
+    "options": [
+      {
+        "text": "$\\sim L \\wedge \\sim F$",
+        "correct": true
+      },
+      {
+        "text": "$\\sim (L \\wedge F)$",
+        "correct": false
+      },
+      {
+        "text": "$L \\wedge F$",
+        "correct": false
+      }
+    ],
+    "explanation": "The second correct form writes two separate negations joined by conjunction.",
+    "difficulty": 2,
+    "targets_slide": 2
+  }
+]

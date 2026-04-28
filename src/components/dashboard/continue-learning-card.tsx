@@ -41,17 +41,15 @@ export function ContinueLearningCard({
           <div className="absolute inset-0 transition-colors group-hover:bg-neutral-100" />
         )}
         <div className="relative flex h-full flex-col justify-center p-16">
-          <div className="flex items-center gap-12">
-            <span className="font-heading text-xl text-neutral-800">
-              {title}
-            </span>
+          <span className="self-start font-heading text-xl text-neutral-800 [box-decoration-break:clone] [-webkit-box-decoration-break:clone] -mx-[4px] rounded-sm px-[4px] transition-colors duration-200 group-hover:bg-neutral-50/20 group-hover:backdrop-blur-sm">
+            {title}
             <ArrowRight
               size={20}
               weight="bold"
-              className="text-neutral-800 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+              className="ml-[6px] inline-block align-[-2px] text-neutral-800 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
             />
-          </div>
-          <span className="mt-12 font-sans text-base text-neutral-800">
+          </span>
+          <span className="mt-12 self-start font-sans text-base text-neutral-800 [box-decoration-break:clone] [-webkit-box-decoration-break:clone] -mx-[4px] rounded-sm px-[4px] transition-colors duration-200 group-hover:bg-neutral-50/20 group-hover:backdrop-blur-md">
             {progressPercent}% Complete
           </span>
         </div>

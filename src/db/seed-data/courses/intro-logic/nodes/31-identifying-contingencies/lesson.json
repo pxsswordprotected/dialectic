@@ -1,0 +1,93 @@
+[
+  {
+    "type": "concept",
+    "heading": "Mixed Final Column",
+    "body": "A **contingency** is a formula whose main operator column contains both T and F. The formula is true in some rows and false in others.",
+    "examples": [
+      {
+        "text": "If the final column is `T F T T`, the formula is a contingency.",
+        "valid": true
+      },
+      {
+        "text": "If the final column is `T T T T`, the formula is a contingency.",
+        "valid": false
+      }
+    ],
+    "note": "The classification depends on the final column only."
+  },
+  {
+    "type": "rule",
+    "heading": "Check The Mix",
+    "body": "To classify a formula as a contingency, inspect the main operator column after the truth table is complete. There must be at least one T and at least one F.",
+    "examples": [
+      {
+        "text": "`T F T F` passes the test.",
+        "valid": true
+      },
+      {
+        "text": "`F F F F` passes the test.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "Not Always One Value",
+    "body": "A contingency is neither always true nor always false. Its truth depends on which row, and therefore which assignment of base variables, is being considered.",
+    "examples": [
+      {
+        "text": "A formula with final column `T T T T` is always true, so it is not a contingency.",
+        "valid": true
+      },
+      {
+        "text": "A formula with final column `F F F F` is always false, so it is not a contingency.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Simple Cases",
+    "body": "Read only the final column when classifying the whole statement.",
+    "examples": [
+      {
+        "text": "Final column `T F T T` means contingency.",
+        "valid": true
+      },
+      {
+        "text": "Final column `F T F T` means contingency.",
+        "valid": true
+      },
+      {
+        "text": "Final column `T T T T` means contingency.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Do Not Guess",
+    "body": "A common mistake is calling any nonuniform-looking formula a contingency before checking the final column. Only the main operator column determines the classification.",
+    "examples": [
+      {
+        "text": "Inner columns may vary even when the final column is all T or all F.",
+        "valid": true
+      },
+      {
+        "text": "If any inner column has both T and F, the whole formula must be a contingency.",
+        "valid": false
+      }
+    ],
+    "note": "Check the whole formula, not one part of it."
+  },
+  {
+    "type": "summary",
+    "heading": "Core Test",
+    "body": "Complete the truth table, then inspect the main operator column. If it contains both T and F, the formula is a contingency.",
+    "examples": null,
+    "note": null
+  }
+]

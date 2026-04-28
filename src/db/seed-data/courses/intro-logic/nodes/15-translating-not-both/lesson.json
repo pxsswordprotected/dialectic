@@ -1,0 +1,89 @@
+[
+  {
+    "type": "concept",
+    "heading": "What \"Not Both\" Says",
+    "body": "The phrase **not both** says that two statements are not true together. It does not deny each statement by itself. It denies their joint truth.",
+    "examples": [
+      {
+        "text": "\"Not both the window is open and the fan is on\" denies the combination.",
+        "valid": true
+      },
+      {
+        "text": "\"Not both the mug is full and the lid is loose\" denies the combination.",
+        "valid": true
+      }
+    ],
+    "note": "This uses the earlier ideas of negation and conjunction."
+  },
+  {
+    "type": "concept",
+    "heading": "Negated Conjunction",
+    "body": "**Negated conjunction** is a conjunction placed inside a negation. It is the standard symbolic form for \"not both.\"",
+    "examples": [
+      {
+        "text": "\"Not both $P$ and $Q$\" matches a negation wrapped around a conjunction.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Translation Rule",
+    "body": "Translate \"not both $P$ and $Q$\" as $\\sim (P \\wedge Q)$. Put the conjunction inside parentheses, then place the negation outside the whole group.",
+    "examples": [
+      {
+        "text": "\"Not both $R$ and $S$\" becomes $\\sim (R \\wedge S)$.",
+        "valid": true
+      },
+      {
+        "text": "\"Not both $R$ and $S$\" becomes $\\sim R \\wedge S$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Everyday Cases",
+    "body": "Choose letters for the two simple statements. Then write the conjunction, bracket it, and negate the whole bracketed part.",
+    "examples": [
+      {
+        "text": "Let $C$ = Have cake, $I$ = Have ice cream. \"Cannot have both cake and ice cream\" becomes $\\sim (C \\wedge I)$.",
+        "valid": true
+      },
+      {
+        "text": "Let $L$ = The lamp is on, $W$ = The window is open. \"Not both the lamp is on and the window is open\" becomes $\\sim (L \\wedge W)$.",
+        "valid": true
+      },
+      {
+        "text": "Let $B$ = The box is heavy, $S$ = The shelf is full. \"Not both the box is heavy and the shelf is full\" becomes $B \\wedge S$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Bracket The Whole",
+    "body": "A common mistake is attaching the negation to only one statement. In \"not both,\" the negation applies to the entire conjunction, not to just the first part.",
+    "examples": [
+      {
+        "text": "$\\sim (P \\wedge Q)$ matches \"not both $P$ and $Q$.\"",
+        "valid": true
+      },
+      {
+        "text": "$\\sim P \\wedge Q$ matches \"not both $P$ and $Q$.\"",
+        "valid": false
+      }
+    ],
+    "note": "Parentheses show that the negation reaches the full conjunction."
+  },
+  {
+    "type": "summary",
+    "heading": "Core Pattern",
+    "body": "Translate \"not both\" with a negated conjunction: $\\sim (P \\wedge Q)$. First build the conjunction, then negate the whole group.",
+    "examples": null,
+    "note": null
+  }
+]

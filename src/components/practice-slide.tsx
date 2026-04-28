@@ -5,6 +5,7 @@ import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "@/components/ui/button";
 import { SlideCounter } from "@/components/slide-counter";
 import type { BarState } from "@/components/slide-counter-helpers";
+import { InlineMarkdown } from "@/components/inline-markdown";
 import { MultipleChoice } from "@/app/topic/[topicSlug]/questions/multiple-choice";
 import { TrueFalse } from "@/app/topic/[topicSlug]/questions/true-false";
 import { FillIn } from "@/app/topic/[topicSlug]/questions/fill-in";
@@ -95,7 +96,7 @@ export function PracticeSlide({
 
         {question.type !== "fill_in" && (
           <p className="mt-[28px] text-lg leading-[1.4] text-neutral-800">
-            {question.prompt}
+            <InlineMarkdown text={question.prompt} />
           </p>
         )}
 
@@ -147,7 +148,7 @@ export function PracticeSlide({
 
         {answered && (
           <p className="mt-20 text-lg font-medium leading-[1.4] text-neutral-800">
-            {question.explanation}
+            <InlineMarkdown text={question.explanation} />
           </p>
         )}
 

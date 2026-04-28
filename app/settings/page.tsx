@@ -3,14 +3,12 @@ import { eq } from "drizzle-orm";
 import { createClient } from "@/lib/supabase/server";
 import { db } from "@/db";
 import { profiles } from "@/db/schema";
-import {
-  ensureProfile,
-  getDashboardData,
-} from "@/db/queries/dashboard";
+import { ensureProfile, getDashboardData } from "@/db/queries/dashboard";
 import { getStreakDisplayData } from "@/db/queries/streak";
 import { Navbar } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { signOut } from "@/db/actions/auth";
+import { DeleteAccountButton } from "./_components/delete-account-button";
 
 export default async function SettingsPage() {
   const supabase = await createClient();
@@ -40,10 +38,7 @@ export default async function SettingsPage() {
     const raw = (formData.get("displayName") as string) ?? "";
     const displayName = raw.trim();
     const goalRaw = Number(formData.get("dailyXpGoal"));
-    const dailyXpGoal = Math.max(
-      20,
-      Math.min(100, Math.round(goalRaw || 100)),
-    );
+    const dailyXpGoal = Math.max(20, Math.min(100, Math.round(goalRaw || 100)));
 
     await db
       .update(profiles)
@@ -80,10 +75,7 @@ export default async function SettingsPage() {
 
         <form action={updateProfile}>
           <div className="mt-32 flex items-center justify-between">
-            <label
-              htmlFor="displayName"
-              className="text-lg text-neutral-800"
-            >
+            <label htmlFor="displayName" className="text-lg text-neutral-800">
               Display Name
             </label>
             <input
@@ -101,10 +93,7 @@ export default async function SettingsPage() {
 
           <div className="mt-16">
             <div className="flex items-center justify-between">
-              <label
-                htmlFor="dailyXpGoal"
-                className="text-lg text-neutral-800"
-              >
+              <label htmlFor="dailyXpGoal" className="text-lg text-neutral-800">
                 Daily XP Goal
               </label>
               <input
@@ -141,13 +130,19 @@ export default async function SettingsPage() {
           <span className="text-lg text-neutral-800">{email}</span>
         </div>
 
-        <div aria-hidden className="mt-16 h-px w-full bg-black/10" />
+        <div aria-hidden className="mt-16 h-px w-full bg-neutral-50" />
 
         <form action={signOut} className="mt-16">
           <Button type="submit" variant="secondary">
             Log out
           </Button>
         </form>
+
+        <div aria-hidden className="mt-16 h-px w-full bg-black/10" />
+
+        <div className="mt-16">
+          <DeleteAccountButton />
+        </div>
       </div>
     </>
   );

@@ -1,0 +1,109 @@
+[
+  {
+    "type": "concept",
+    "heading": "Why Order Matters",
+    "body": "**Lexicographic ordering** is a fixed pattern for filling the base-variable columns of a truth table. It guarantees that every possible truth-value assignment appears exactly once.",
+    "examples": [
+      {
+        "text": "For $P$, $Q$, and $R$, the table must include all 8 possible combinations of T and F.",
+        "valid": true
+      },
+      {
+        "text": "Making up values row by row can miss a combination or repeat one.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Left Column First",
+    "body": "The **leftmost variable** changes slowest. In an 8-row table, its values come in one block of 4 T values, then one block of 4 F values.",
+    "examples": [
+      {
+        "text": "For $P$, use `T T T T F F F F`.",
+        "valid": true
+      },
+      {
+        "text": "For $P$, use `T F T F T F T F`.",
+        "valid": false
+      }
+    ],
+    "note": "This rule assumes $P$ is the leftmost base variable."
+  },
+  {
+    "type": "rule",
+    "heading": "Halve The Block",
+    "body": "Each new variable to the right changes twice as fast as the one before it. Its block size is half the previous block size.",
+    "examples": [
+      {
+        "text": "If $P$ uses blocks of 4, then $Q$ uses blocks of 2: `T T F F T T F F`.",
+        "valid": true
+      },
+      {
+        "text": "If $P$ uses blocks of 4, then $Q$ should also use blocks of 4.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Right Column Fastest",
+    "body": "The **rightmost variable** changes every row. In an 8-row table, it alternates T and F from top to bottom.",
+    "examples": [
+      {
+        "text": "For $R$, use `T F T F T F T F`.",
+        "valid": true
+      },
+      {
+        "text": "For $R$, use `T T F F T T F F`.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Three Variable Setup",
+    "body": "For a truth table with $P$, $Q$, and $R$, fill the base columns before evaluating any compound parts.",
+    "examples": [
+      {
+        "text": "$P$: `T T T T F F F F`",
+        "valid": true
+      },
+      {
+        "text": "$Q$: `T T F F T T F F`",
+        "valid": true
+      },
+      {
+        "text": "$R$: `T F T F T F T F`",
+        "valid": true
+      }
+    ],
+    "note": "This pattern lists all 8 combinations once each."
+  },
+  {
+    "type": "warning",
+    "heading": "Do Not Mix Speeds",
+    "body": "A common mistake is giving two variables the same switching pattern. Each column must have its own rate of change, from slowest on the left to fastest on the right.",
+    "examples": [
+      {
+        "text": "If both $Q$ and $R$ are `T F T F T F T F`, the table is wrong.",
+        "valid": true
+      },
+      {
+        "text": "If $P$, $Q$, and $R$ all alternate every row, the table still covers every combination.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "summary",
+    "heading": "Core Pattern",
+    "body": "Fill base-variable columns from left to right with blocks that keep halving. The leftmost variable changes slowest, and the rightmost changes every row.",
+    "examples": null,
+    "note": null
+  }
+]

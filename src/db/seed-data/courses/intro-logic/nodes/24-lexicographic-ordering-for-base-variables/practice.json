@@ -1,0 +1,91 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "In an 8-row truth table with base variables $P$, $Q$, and $R$, which column is correct for $P$?",
+    "options": [
+      {
+        "text": "`T T T T F F F F`",
+        "correct": true
+      },
+      {
+        "text": "`T T F F T T F F`",
+        "correct": false
+      },
+      {
+        "text": "`T F T F T F T F`",
+        "correct": false
+      }
+    ],
+    "explanation": "The leftmost variable changes slowest. In 8 rows, it stays true for 4 rows and false for 4 rows.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "In an 8-row truth table with base variables $P$, $Q$, and $R$, which column is correct for $Q$?",
+    "options": [
+      {
+        "text": "`T F T F T F T F`",
+        "correct": false
+      },
+      {
+        "text": "`T T F F T T F F`",
+        "correct": true
+      },
+      {
+        "text": "`T T T T F F F F`",
+        "correct": false
+      }
+    ],
+    "explanation": "$Q$ is the middle variable, so its block size is 2. It changes twice as fast as $P$ and half as fast as $R$.",
+    "difficulty": 1,
+    "targets_slide": 2
+  },
+  {
+    "type": "fill_in",
+    "prompt": "In an 8-row truth table with $P$, $Q$, and $R$, the rightmost variable changes every ___ row.",
+    "blanks": [
+      {
+        "acceptable_answers": ["1", "one"]
+      }
+    ],
+    "explanation": "The rightmost base variable alternates T and F on every row.",
+    "difficulty": 1,
+    "targets_slide": 3
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each pattern by the variable it matches in a standard 8-row table for $P$, $Q$, and $R$.",
+    "categories": ["$P$", "$R$"],
+    "items": [
+      {
+        "text": "`T T T T F F F F`",
+        "category": "$P$"
+      },
+      {
+        "text": "`T F T F T F T F`",
+        "category": "$R$"
+      },
+      {
+        "text": "`T T T T F F F F`",
+        "category": "$P$"
+      },
+      {
+        "text": "`T F T F T F T F`",
+        "category": "$R$"
+      }
+    ],
+    "explanation": "$P$ is the slowest-changing column, and $R$ is the fastest-changing column.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "If both $Q$ and $R$ use the pattern `T F T F T F T F`, the base-variable setup is correct.",
+    "answer": false,
+    "explanation": "Each variable needs a different switching rate. If $Q$ and $R$ have the same pattern, some combinations will be repeated and others missed.",
+    "difficulty": 2,
+    "targets_slide": 5
+  }
+]

@@ -1,0 +1,95 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $C$ = Have cake and $I$ = Have ice cream. Which is the correct translation of \"Cannot have both cake and ice cream\"?",
+    "options": [
+      {
+        "text": "$\\sim (C \\wedge I)$",
+        "correct": true
+      },
+      {
+        "text": "$\\sim C \\wedge I$",
+        "correct": false
+      },
+      {
+        "text": "$C \\wedge I$",
+        "correct": false
+      },
+      {
+        "text": "$\\sim (C \\vee I)$",
+        "correct": false
+      }
+    ],
+    "explanation": "\"Not both\" is translated as a negated conjunction, so the conjunction goes inside parentheses and the negation goes outside.",
+    "difficulty": 1,
+    "targets_slide": 2
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "\"Not both $P$ and $Q$\" should be translated as $\\sim (P \\wedge Q)$.",
+    "answer": true,
+    "explanation": "That is the standard form of a negated conjunction.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "fill_in",
+    "prompt": "Complete the pattern: \"Not both $P$ and $Q$\" becomes $\\sim$ ___ .",
+    "blanks": [
+      {
+        "acceptable_answers": ["(P \\wedge Q)", "($P \\wedge Q$)"]
+      }
+    ],
+    "explanation": "The conjunction must be grouped first, so the correct bracketed part is $(P \\wedge Q)$.",
+    "difficulty": 2,
+    "targets_slide": 2
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each formula by whether it correctly matches the form \"not both $P$ and $Q$.\"",
+    "categories": ["Correct form", "Incorrect form"],
+    "items": [
+      {
+        "text": "$\\sim (P \\wedge Q)$",
+        "category": "Correct form"
+      },
+      {
+        "text": "$\\sim P \\wedge Q$",
+        "category": "Incorrect form"
+      },
+      {
+        "text": "$P \\wedge Q$",
+        "category": "Incorrect form"
+      },
+      {
+        "text": "$\\sim (R \\wedge S)$",
+        "category": "Correct form"
+      }
+    ],
+    "explanation": "The correct form negates the whole conjunction, not just one side and not the unnegated conjunction.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $L$ = The lamp is on and $W$ = The window is open. Which translation is wrong for \"Not both the lamp is on and the window is open\"?",
+    "options": [
+      {
+        "text": "$\\sim L \\wedge W$",
+        "correct": true
+      },
+      {
+        "text": "$\\sim (L \\wedge W)$",
+        "correct": false
+      },
+      {
+        "text": "The negation must apply to the full conjunction.",
+        "correct": false
+      }
+    ],
+    "explanation": "$\\sim L \\wedge W$ negates only the first statement. \"Not both\" requires the full conjunction to be grouped and negated.",
+    "difficulty": 2,
+    "targets_slide": 4
+  }
+]

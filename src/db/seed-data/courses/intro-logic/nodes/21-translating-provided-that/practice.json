@@ -1,0 +1,87 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $H$ = Finish homework and $P$ = May go to the party. Which is the correct translation of \"May go to the party provided that finish homework\"?",
+    "options": [
+      {
+        "text": "$H \\rightarrow P$",
+        "correct": true
+      },
+      {
+        "text": "$P \\rightarrow H$",
+        "correct": false
+      },
+      {
+        "text": "$H \\wedge P$",
+        "correct": false
+      },
+      {
+        "text": "$H \\vee P$",
+        "correct": false
+      }
+    ],
+    "explanation": "In \"$P$ provided that $Q$,\" the provided-that clause is the antecedent, so the form is $Q \\rightarrow P$.",
+    "difficulty": 1,
+    "targets_slide": 2
+  },
+  {
+    "type": "fill_in",
+    "prompt": "Complete the pattern: \"$P$ provided that $Q$\" becomes ___ $\\rightarrow$ $P$.",
+    "blanks": [
+      {
+        "acceptable_answers": ["Q", "$Q$"]
+      }
+    ],
+    "explanation": "The phrase after \"provided that\" gives the sufficient condition, so it goes on the left side of the conditional.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "In \"The store opens provided that the truck arrives,\" the correct translation is $S \\rightarrow T$.",
+    "answer": false,
+    "explanation": "That reverses the relation. The provided-that clause is the antecedent, so the correct form is $T \\rightarrow S$.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each part of the sentence \"May open the door provided that have the key.\"",
+    "categories": ["Antecedent", "Consequent"],
+    "items": [
+      {
+        "text": "\"Have the key\"",
+        "category": "Antecedent"
+      },
+      {
+        "text": "\"May open the door\"",
+        "category": "Consequent"
+      }
+    ],
+    "explanation": "The statement after \"provided that\" becomes the antecedent, and the other statement becomes the consequent.",
+    "difficulty": 1,
+    "targets_slide": 3
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Which sentence most clearly requires a biconditional rather than a one-way conditional?",
+    "options": [
+      {
+        "text": "\"Entry is allowed provided that you have a ticket, and only if you have a ticket.\"",
+        "correct": true
+      },
+      {
+        "text": "\"Entry is allowed provided that you have a ticket.\"",
+        "correct": false
+      },
+      {
+        "text": "\"You have a ticket.\"",
+        "correct": false
+      }
+    ],
+    "explanation": "A biconditional is justified only when the context states both directions. The phrase \"and only if\" supplies the missing necessary-condition direction.",
+    "difficulty": 3,
+    "targets_slide": 5
+  }
+]

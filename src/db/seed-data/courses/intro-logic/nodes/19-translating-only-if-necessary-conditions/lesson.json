@@ -1,0 +1,89 @@
+[
+  {
+    "type": "concept",
+    "heading": "What \"Only If\" Means",
+    "body": "The phrase **only if** introduces a condition that must be met. In translation, it signals a conditional statement, not a conjunction or a disjunction.",
+    "examples": [
+      {
+        "text": "\"Will graduate only if pass the final exam\" has conditional form.",
+        "valid": true
+      },
+      {
+        "text": "\"The lamp is on only if the power works\" has conditional form.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "Necessary Condition",
+    "body": "A **necessary condition** is a condition that must be true for something else to happen. In an \"only if\" sentence, the phrase after \"only if\" names the necessary condition.",
+    "examples": [
+      {
+        "text": "In \"Will graduate only if pass the final exam,\" \"pass the final exam\" is the necessary condition.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Translation Pattern",
+    "body": "Translate \"$P$ only if $Q$\" as $P \\rightarrow Q$. The statement before \"only if\" is the antecedent. The statement after \"only if\" is the consequent.",
+    "examples": [
+      {
+        "text": "\"Will graduate only if pass the final exam\" becomes $G \\rightarrow P$.",
+        "valid": true
+      },
+      {
+        "text": "\"Will graduate only if pass the final exam\" becomes $P \\rightarrow G$.",
+        "valid": false
+      }
+    ],
+    "note": "The necessary condition goes on the right side of $\\rightarrow$."
+  },
+  {
+    "type": "example",
+    "heading": "Simple Translations",
+    "body": "Pick a letter for each simple statement. Then write the statement before \"only if,\" followed by $\\rightarrow$, then the statement after \"only if.\"",
+    "examples": [
+      {
+        "text": "Let $L$ = The door is locked, $K$ = The key works. \"The door is locked only if the key works\" becomes $L \\rightarrow K$.",
+        "valid": true
+      },
+      {
+        "text": "Let $S$ = The store opens, $T$ = The truck arrives. \"The store opens only if the truck arrives\" becomes $S \\rightarrow T$.",
+        "valid": true
+      },
+      {
+        "text": "Let $B$ = The bus leaves, $D$ = The driver arrives. \"The bus leaves only if the driver arrives\" becomes $D \\rightarrow B$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Do Not Reverse",
+    "body": "A common mistake is treating \"only if\" like ordinary \"if.\" That reverses the translation. In \"$P$ only if $Q$,\" $Q$ is required, so $Q$ must be the consequent.",
+    "examples": [
+      {
+        "text": "\"The game starts only if the referee arrives\" becomes $G \\rightarrow R$.",
+        "valid": true
+      },
+      {
+        "text": "\"The game starts only if the referee arrives\" becomes $R \\rightarrow G$.",
+        "valid": false
+      }
+    ],
+    "note": "Read it as: if $P$, then $Q$ must be true."
+  },
+  {
+    "type": "summary",
+    "heading": "Core Pattern",
+    "body": "Translate \"$P$ only if $Q$\" as $P \\rightarrow Q$. The phrase after \"only if\" gives the necessary condition, so it must be the consequent.",
+    "examples": null,
+    "note": null
+  }
+]

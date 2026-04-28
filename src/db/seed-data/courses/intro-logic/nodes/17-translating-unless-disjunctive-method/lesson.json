@@ -1,0 +1,93 @@
+[
+  {
+    "type": "concept",
+    "heading": "What \"Unless\" Does",
+    "body": "**Unless** can be translated by the disjunctive method as a standard disjunction. In this method, the word \"unless\" is replaced with logical \"or.\"",
+    "examples": [
+      {
+        "text": "\"The game will be played unless it rains\" becomes a disjunction.",
+        "valid": true
+      },
+      {
+        "text": "\"The porch light stays on unless the power fails\" becomes a disjunction.",
+        "valid": true
+      }
+    ],
+    "note": "This lesson uses only the disjunctive method."
+  },
+  {
+    "type": "rule",
+    "heading": "Disjunctive Method",
+    "body": "The **disjunctive method** translates \"$P$ unless $Q$\" as $P \\vee Q$. Replace \"unless\" with $\\vee$. Keep the two statement parts.",
+    "examples": [
+      {
+        "text": "\"The game will be played unless it rains\" becomes $G \\vee R$.",
+        "valid": true
+      },
+      {
+        "text": "\"The game will be played unless it rains\" becomes $G \\rightarrow R$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Simple Cases",
+    "body": "Choose a letter for each simple statement. Then replace \"unless\" with $\\vee$.",
+    "examples": [
+      {
+        "text": "Let $L$ = The lamp is on, $P$ = The power fails. \"The lamp is on unless the power fails\" becomes $L \\vee P$.",
+        "valid": true
+      },
+      {
+        "text": "Let $B$ = The bus arrives, $S$ = The street is blocked. \"The bus arrives unless the street is blocked\" becomes $B \\vee S$.",
+        "valid": true
+      },
+      {
+        "text": "Let $D$ = The door opens, $K$ = The key is lost. \"The door opens unless the key is lost\" becomes $D \\wedge K$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "Either Order Works",
+    "body": "\"Unless $Q$, $P$\" and \"$P$ unless $Q$\" express the same disjunction. Since disjunction is symmetric, $P \\vee Q$ and $Q \\vee P$ match the same meaning.",
+    "examples": [
+      {
+        "text": "\"Unless it rains, the game will be played\" can be written as $R \\vee G$.",
+        "valid": true
+      },
+      {
+        "text": "\"The game will be played unless it rains\" can be written as $G \\vee R$.",
+        "valid": true
+      }
+    ],
+    "note": "The order may change, but the connective stays $\\vee$."
+  },
+  {
+    "type": "warning",
+    "heading": "Do Not Overbuild",
+    "body": "A common mistake is adding extra words or operators that are not part of the disjunctive method. In this lesson, \"unless\" is translated directly as $\\vee$.",
+    "examples": [
+      {
+        "text": "\"The store opens unless the road is closed\" becomes $S \\vee R$.",
+        "valid": true
+      },
+      {
+        "text": "\"The store opens unless the road is closed\" becomes $\\sim R \\rightarrow S$.",
+        "valid": false
+      }
+    ],
+    "note": "Use the direct replacement method only."
+  },
+  {
+    "type": "summary",
+    "heading": "Core Pattern",
+    "body": "Translate \"unless\" by the disjunctive method as $\\vee$. Replace the word \"unless\" with logical \"or\" and keep the two statement parts.",
+    "examples": null,
+    "note": null
+  }
+]

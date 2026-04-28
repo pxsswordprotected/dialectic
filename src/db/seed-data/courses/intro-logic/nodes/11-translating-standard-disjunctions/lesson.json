@@ -1,0 +1,93 @@
+[
+  {
+    "type": "concept",
+    "heading": "What \"or\" Means",
+    "body": "**Disjunction** is a compound statement that says at least one of two statements is true. In symbolic logic, the standard form of \"or\" is inclusive. It allows one true or both true.",
+    "examples": [
+      {
+        "text": "\"The porch light is on or the garage light is on.\"",
+        "valid": true
+      },
+      {
+        "text": "\"Either the milk is cold or the juice is cold.\"",
+        "valid": true
+      }
+    ],
+    "note": "Use the same statement-letter key used in earlier translation work."
+  },
+  {
+    "type": "concept",
+    "heading": "Common Wording",
+    "body": "English often signals the same pattern with ordinary \"or\" and with \"either ... or.\" Both usually translate as a standard disjunction.",
+    "examples": [
+      {
+        "text": "\"The light is on or the fan is on.\"",
+        "valid": true
+      },
+      {
+        "text": "\"Either the key is in the drawer or it is on the table.\"",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Symbol Rule",
+    "body": "The **disjunction operator** is $\\vee$. Translate \"... or ...\" as the left statement, then $\\vee$, then the right statement. Translate \"Either ... or ...\" the same way.",
+    "examples": [
+      {
+        "text": "\"It will rain or it will snow\" becomes $R \\vee S$.",
+        "valid": true
+      },
+      {
+        "text": "\"Either the cup is full or the cup is empty\" becomes $C \\wedge E$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Weather Translations",
+    "body": "Use a clear key before writing symbols. Then replace the English connector with $\\vee$.",
+    "examples": [
+      {
+        "text": "Let $R$ = It will rain, $S$ = It will snow. \"Either it will rain or it will snow\" becomes $R \\vee S$.",
+        "valid": true
+      },
+      {
+        "text": "Let $W$ = The window is open, $L$ = The lamp is on. \"The window is open or the lamp is on\" becomes $W \\vee L$.",
+        "valid": true
+      },
+      {
+        "text": "Let $B$ = The bag is heavy, $Z$ = The zipper is broken. \"The bag is heavy or the zipper is broken\" becomes $B \\vee Z$.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Not Exclusive",
+    "body": "A common mistake is reading every English \"or\" as exclusive. Standard disjunction does not mean \"exactly one.\" It means \"at least one.\"",
+    "examples": [
+      {
+        "text": "\"Either the store is open or deliveries are coming\" can still be true if both happen.",
+        "valid": true
+      },
+      {
+        "text": "From \"Either the store is open or deliveries are coming,\" infer that both cannot happen.",
+        "valid": false
+      }
+    ],
+    "note": "Use an exclusive reading only when the sentence or context clearly says not both."
+  },
+  {
+    "type": "summary",
+    "heading": "Core Pattern",
+    "body": "Translate standard \"or\" and \"either ... or\" with $\\vee$. A disjunction is true when at least one part is true, including the case where both are true.",
+    "examples": null,
+    "note": null
+  }
+]

@@ -1,0 +1,95 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $G$ = The game will be played and $R$ = It rains. Which is the correct disjunctive translation of \"The game will be played unless it rains\"?",
+    "options": [
+      {
+        "text": "$G \\vee R$",
+        "correct": true
+      },
+      {
+        "text": "$G \\wedge R$",
+        "correct": false
+      },
+      {
+        "text": "$G \\rightarrow R$",
+        "correct": false
+      },
+      {
+        "text": "$\\sim G \\vee R$",
+        "correct": false
+      }
+    ],
+    "explanation": "In the disjunctive method, \"unless\" is replaced directly with $\\vee$.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "In the disjunctive method, \"$P$ unless $Q$\" is translated as $P \\vee Q$.",
+    "answer": true,
+    "explanation": "That is the standard rule for this method.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "fill_in",
+    "prompt": "Complete the translation pattern: \"$P$ unless $Q$\" becomes $P$ ___ $Q$.",
+    "blanks": [
+      {
+        "acceptable_answers": ["\\vee", "vee"]
+      }
+    ],
+    "explanation": "The word \"unless\" is replaced with the disjunction operator $\\vee$.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each formula by whether it correctly uses the disjunctive method for translating \"unless.\"",
+    "categories": ["Correct method", "Incorrect method"],
+    "items": [
+      {
+        "text": "$L \\vee P$",
+        "category": "Correct method"
+      },
+      {
+        "text": "$B \\vee S$",
+        "category": "Correct method"
+      },
+      {
+        "text": "$D \\wedge K$",
+        "category": "Incorrect method"
+      },
+      {
+        "text": "$\\sim R \\rightarrow S$",
+        "category": "Incorrect method"
+      }
+    ],
+    "explanation": "This lesson's method uses $\\vee$, not conjunction or conditional.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $R$ = It rains and $G$ = The game will be played. Which translation correctly matches \"Unless it rains, the game will be played\"?",
+    "options": [
+      {
+        "text": "$R \\vee G$",
+        "correct": true
+      },
+      {
+        "text": "$R \\wedge G$",
+        "correct": false
+      },
+      {
+        "text": "$R \\rightarrow G$",
+        "correct": false
+      }
+    ],
+    "explanation": "When the sentence begins with \"unless,\" the disjunctive method still uses $\\vee$. Here the order is $R \\vee G$.",
+    "difficulty": 2,
+    "targets_slide": 3
+  }
+]

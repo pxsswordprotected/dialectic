@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { InlineMarkdown } from "@/components/inline-markdown";
 
 export function TrueFalse({
   statement,
@@ -39,7 +40,7 @@ export function TrueFalse({
   return (
     <div className="flex flex-col gap-16">
       <blockquote className="border-l-2 border-neutral-300 pl-12 text-lg italic leading-[1.4] text-neutral-800">
-        {statement}
+        <InlineMarkdown text={statement} />
       </blockquote>
       <ul className="flex flex-col gap-12">
         {[true, false].map((value) => {

@@ -1,0 +1,91 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Which final column shows that a formula is a contradiction?",
+    "options": [
+      {
+        "text": "`F F F F`",
+        "correct": true
+      },
+      {
+        "text": "`F T F F`",
+        "correct": false
+      },
+      {
+        "text": "`T T T T`",
+        "correct": false
+      }
+    ],
+    "explanation": "A contradiction is false in every row, so its final column must contain only F values.",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "If the main operator column contains even one T, the formula is not a contradiction.",
+    "answer": true,
+    "explanation": "A contradiction requires every row in the final column to be F. One T is enough to fail the test.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "fill_in",
+    "prompt": "A formula is a contradiction only if the main operator column is ___ in every row.",
+    "blanks": [
+      {
+        "acceptable_answers": ["false", "F"]
+      }
+    ],
+    "explanation": "The defining mark of a contradiction is a final column made entirely of false values.",
+    "difficulty": 1,
+    "targets_slide": 5
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each final column.",
+    "categories": ["Contradiction", "Not a contradiction"],
+    "items": [
+      {
+        "text": "`F F F F`",
+        "category": "Contradiction"
+      },
+      {
+        "text": "`F F T F`",
+        "category": "Not a contradiction"
+      },
+      {
+        "text": "`F F F F F F F F`",
+        "category": "Contradiction"
+      },
+      {
+        "text": "`T F F F`",
+        "category": "Not a contradiction"
+      }
+    ],
+    "explanation": "Only columns with F in every row count as contradictions. Any T in the final column blocks that classification.",
+    "difficulty": 2,
+    "targets_slide": 3
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Which column should be checked to decide whether a whole formula is a contradiction?",
+    "options": [
+      {
+        "text": "The main operator column",
+        "correct": true
+      },
+      {
+        "text": "Any inner parenthesis column",
+        "correct": false
+      },
+      {
+        "text": "Only the leftmost base-variable column",
+        "correct": false
+      }
+    ],
+    "explanation": "The main operator column gives the truth value of the whole formula. Inner columns show only parts of the formula.",
+    "difficulty": 2,
+    "targets_slide": 2
+  }
+]

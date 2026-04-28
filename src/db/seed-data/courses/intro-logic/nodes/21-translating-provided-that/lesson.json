@@ -1,0 +1,105 @@
+[
+  {
+    "type": "concept",
+    "heading": "What It Signals",
+    "body": "\"Provided that\" usually introduces a conditional statement. It marks a condition under which another statement holds.",
+    "examples": [
+      {
+        "text": "\"May go to the party provided that finish homework\" has conditional form.",
+        "valid": true
+      },
+      {
+        "text": "\"The lamp is on provided that the switch works\" has conditional form.",
+        "valid": true
+      }
+    ],
+    "note": "This lesson builds on the earlier lesson on standard conditionals."
+  },
+  {
+    "type": "concept",
+    "heading": "Sufficient Condition",
+    "body": "A **sufficient condition** is a condition that guarantees another statement. In \"$P$ provided that $Q$,\" the phrase after \"provided that\" gives the sufficient condition.",
+    "examples": [
+      {
+        "text": "In \"May go to the party provided that finish homework,\" \"finish homework\" is sufficient for \"may go to the party.\"",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Translation Pattern",
+    "body": "Translate \"$P$ provided that $Q$\" as $Q \\rightarrow P$. Write the statement after \"provided that\" as the antecedent, then write the other statement as the consequent.",
+    "examples": [
+      {
+        "text": "\"May go to the party provided that finish homework\" becomes $H \\rightarrow P$.",
+        "valid": true
+      },
+      {
+        "text": "\"May go to the party provided that finish homework\" becomes $P \\rightarrow H$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Simple Translations",
+    "body": "Choose a letter for each simple statement. Then place the provided-that clause on the left of $\\rightarrow$.",
+    "examples": [
+      {
+        "text": "Let $H$ = Finish homework, $P$ = May go to the party. \"May go to the party provided that finish homework\" becomes $H \\rightarrow P$.",
+        "valid": true
+      },
+      {
+        "text": "Let $K$ = Have the key, $D$ = Open the door. \"May open the door provided that have the key\" becomes $K \\rightarrow D$.",
+        "valid": true
+      },
+      {
+        "text": "Let $R$ = It rains, $G$ = The game is canceled. \"The game is canceled provided that it rains\" becomes $G \\rightarrow R$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Do Not Reverse",
+    "body": "A common mistake is putting the main statement first in symbols because it appears first in English. With \"provided that,\" the phrase after it becomes the antecedent.",
+    "examples": [
+      {
+        "text": "\"The store opens provided that the truck arrives\" becomes $T \\rightarrow S$.",
+        "valid": true
+      },
+      {
+        "text": "\"The store opens provided that the truck arrives\" becomes $S \\rightarrow T$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "When It Becomes Both Ways",
+    "body": "A **biconditional** is a two-way statement. \"Provided that\" alone gives one direction, but if the context also says the condition is necessary, the full translation becomes a biconditional.",
+    "examples": [
+      {
+        "text": "\"Entry is allowed provided that you have a ticket, and only if you have a ticket\" supports $E \\leftrightarrow T$.",
+        "valid": true
+      },
+      {
+        "text": "\"Entry is allowed provided that you have a ticket\" by itself supports $E \\leftrightarrow T$.",
+        "valid": false
+      }
+    ],
+    "note": "Look for added wording such as \"only if,\" \"if and only if,\" or a definition that states both directions."
+  },
+  {
+    "type": "summary",
+    "heading": "Core Pattern",
+    "body": "Translate \"$P$ provided that $Q$\" as $Q \\rightarrow P$. Use a biconditional only when the context clearly states both directions.",
+    "examples": null,
+    "note": null
+  }
+]

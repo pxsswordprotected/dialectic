@@ -1,0 +1,83 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "In the formula $\\sim (P \\wedge Q) \\vee R$, which operator determines the final column?",
+    "options": [
+      {
+        "text": "$\\vee$",
+        "correct": true
+      },
+      {
+        "text": "$\\wedge$",
+        "correct": false
+      },
+      {
+        "text": "$\\sim$",
+        "correct": false
+      }
+    ],
+    "explanation": "The final column is determined by the main operator, which is the outermost connective. In this formula, that connective is $\\vee$.",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "To compute the final column of $\\sim (P \\wedge Q) \\vee R$, you should use the completed column for $\\sim (P \\wedge Q)$ and the column for $R$.",
+    "answer": true,
+    "explanation": "The main operator is $\\vee$, so the last step uses the two columns directly joined by that operator.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "fill_in",
+    "prompt": "If one row has $\\sim (P \\wedge Q)$ = F and $R$ = F, then the final value of $\\sim (P \\wedge Q) \\vee R$ in that row is ___.",
+    "blanks": [
+      {
+        "acceptable_answers": ["F", "false"]
+      }
+    ],
+    "explanation": "A disjunction is false only when both sides are false.",
+    "difficulty": 1,
+    "targets_slide": 2
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each row result for the formula $\\sim (P \\wedge Q) \\vee R$.",
+    "categories": ["Final value T", "Final value F"],
+    "items": [
+      {
+        "text": "$\\sim (P \\wedge Q)$ = T, $R$ = F",
+        "category": "Final value T"
+      },
+      {
+        "text": "$\\sim (P \\wedge Q)$ = F, $R$ = T",
+        "category": "Final value T"
+      },
+      {
+        "text": "$\\sim (P \\wedge Q)$ = F, $R$ = F",
+        "category": "Final value F"
+      },
+      {
+        "text": "$\\sim (P \\wedge Q)$ = T, $R$ = T",
+        "category": "Final value T"
+      }
+    ],
+    "explanation": "For a disjunction, any row with at least one true side gets T. Only the row with two false sides gets F.",
+    "difficulty": 2,
+    "targets_slide": 2
+  },
+  {
+    "type": "order",
+    "prompt": "Arrange the steps for evaluating the final column of $\\sim (P \\wedge Q) \\vee R$.",
+    "items": [
+      "Identify the main operator.",
+      "Locate the two completed columns it directly connects.",
+      "Apply the rule for $\\vee$ row by row.",
+      "Write the final column for the whole formula."
+    ],
+    "explanation": "The last stage of a truth table starts with the main operator and uses the two columns directly governed by it.",
+    "difficulty": 2,
+    "targets_slide": 5
+  }
+]

@@ -1,0 +1,89 @@
+[
+  {
+    "type": "concept",
+    "heading": "One But Not Both",
+    "body": "**Exclusive or** means exactly one of two statements is true. It allows the left statement alone or the right statement alone, but it rejects the case where both are true.",
+    "examples": [
+      {
+        "text": "\"With dinner, may have soup or salad\" can mean one choice, not both.",
+        "valid": true
+      },
+      {
+        "text": "\"The porch light is on or the garage light is on\" is exclusive in every context.",
+        "valid": false
+      }
+    ],
+    "note": "Context must show that \"or\" excludes the both-true case."
+  },
+  {
+    "type": "concept",
+    "heading": "Context Shows Exclusivity",
+    "body": "English \"or\" is not always exclusive. Choice rules, menus, and either-one-only instructions often signal exclusivity. Ordinary factual claims often do not.",
+    "examples": [
+      {
+        "text": "\"Choose tea or coffee\" often means one drink only.",
+        "valid": true
+      },
+      {
+        "text": "\"The package is in the hall or the kitchen\" does not usually mean exactly one by rule.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Translation Pattern",
+    "body": "The **exclusive disjunction form** is $(P \\vee Q) \\wedge \\sim (P \\wedge Q)$. The first part allows at least one. The second part blocks both together.",
+    "examples": [
+      {
+        "text": "\"$P$ or $Q$, but not both\" becomes $(P \\vee Q) \\wedge \\sim (P \\wedge Q)$.",
+        "valid": true
+      },
+      {
+        "text": "\"$P$ or $Q$, but not both\" becomes $P \\vee Q$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Meal Choice Example",
+    "body": "Translate the ordinary disjunction first. Then add the negated conjunction to exclude the both-true case.",
+    "examples": [
+      {
+        "text": "Let $S$ = Have soup, $L$ = Have salad. \"With dinner, may have soup or salad\" becomes $(S \\vee L) \\wedge \\sim (S \\wedge L)$.",
+        "valid": true
+      },
+      {
+        "text": "Let $T$ = Have tea, $C$ = Have coffee. \"Choose tea or coffee\" becomes $(T \\vee C) \\wedge \\sim (T \\wedge C)$.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Plain Or Is Too Weak",
+    "body": "A common mistake is translating exclusive or as a plain disjunction. But $P \\vee Q$ still allows both $P$ and $Q$ to be true together.",
+    "examples": [
+      {
+        "text": "$P \\vee Q$ is enough for exclusive or.",
+        "valid": false
+      },
+      {
+        "text": "$(P \\vee Q) \\wedge \\sim (P \\wedge Q)$ excludes the both-true case.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "summary",
+    "heading": "Core Pattern",
+    "body": "Use exclusive or only when context means one or the other, but not both. Translate it as $(P \\vee Q) \\wedge \\sim (P \\wedge Q)$.",
+    "examples": null,
+    "note": null
+  }
+]

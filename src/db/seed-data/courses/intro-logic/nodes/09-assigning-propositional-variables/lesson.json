@@ -1,0 +1,76 @@
+[
+  {
+    "type": "concept",
+    "heading": "Propositional Variables",
+    "body": "Logic translates English sentences into symbols. The first step is assigning a **propositional variable** to each simple statement. A propositional variable is a single capital letter that represents one standalone claim. Select letters that match the keywords in the sentence for easier reading.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Extract Positive Claims",
+    "body": "Always define variables as positive statements. Remove any negative words like \"not\" or \"never\" when creating the definition. The variable represents the core factual claim. The negation is handled later by adding logical operators.",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Positive Assignments",
+    "body": "Notice how the negative words are excluded from the variable definitions.",
+    "examples": [
+      {
+        "text": "\"The train is not late.\" -> T = The train is late.",
+        "valid": true
+      },
+      {
+        "text": "\"The train is not late.\" -> T = The train is not late.",
+        "valid": false
+      },
+      {
+        "text": "\"It never snows in July.\" -> S = It snows in July.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Strip the Connectors",
+    "body": "Exclude connecting words like \"and\", \"but\", \"or\", or \"if\" from the variable definition. Variables only capture the simple statements. The connectors become logical operators later. Treat \"but\" and \"however\" exactly like \"and\".",
+    "examples": null,
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Removing Connectors",
+    "body": "Extract the standalone claims without their joining words.",
+    "examples": [
+      {
+        "text": "\"The sun is shining, but it is cold.\" -> S = The sun is shining, C = It is cold.",
+        "valid": true
+      },
+      {
+        "text": "\"The sun is shining, but it is cold.\" -> S = The sun is shining, C = but it is cold.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Restore Missing Subjects",
+    "body": "English sentences often drop subjects to save time. \"The car is fast and loud\" contains two claims, but the second claim drops the subject. A variable must be a complete proposition. Restore the missing subject when defining the variable.",
+    "examples": [
+      { "text": "L = The car is loud.", "valid": true },
+      { "text": "L = loud.", "valid": false }
+    ],
+    "note": null
+  },
+  {
+    "type": "summary",
+    "heading": "Key Takeaway",
+    "body": "Assign single capital letters to represent simple statements. Ensure each defined variable is a complete, positive sentence stripped of any logical connectors or negative words.",
+    "examples": null,
+    "note": null
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "If the completed column for $(P \\wedge Q)$ is `T F F F`, which column correctly gives $\\sim (P \\wedge Q)$?",
+    "options": [
+      {
+        "text": "`F T T T`",
+        "correct": true
+      },
+      {
+        "text": "`T F F F`",
+        "correct": false
+      },
+      {
+        "text": "`F F T T`",
+        "correct": false
+      }
+    ],
+    "explanation": "The outer operator is negation, so each truth value in the finished inner column must be flipped row by row.",
+    "difficulty": 1,
+    "targets_slide": 2
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "To evaluate an outer expression, use the completed inner column directly.",
+    "answer": true,
+    "explanation": "Outer evaluation is built from the finished inner result. That is how truth-table construction moves outward through the formula.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "fill_in",
+    "prompt": "If row 2 of $(P \\wedge Q)$ is F, then row 2 of $\\sim (P \\wedge Q)$ is ___.",
+    "blanks": [
+      {
+        "acceptable_answers": ["T", "true"]
+      }
+    ],
+    "explanation": "Negation flips the value in the same row. An F in the inner column becomes T in the outer negated column.",
+    "difficulty": 1,
+    "targets_slide": 3
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each step for the formula $\\sim (P \\wedge Q) \\vee R$.",
+    "categories": ["Correct next step", "Incorrect next step"],
+    "items": [
+      {
+        "text": "After $(P \\wedge Q)$, compute $\\sim (P \\wedge Q)$.",
+        "category": "Correct next step"
+      },
+      {
+        "text": "After $(P \\wedge Q)$, compute the final disjunction immediately.",
+        "category": "Incorrect next step"
+      },
+      {
+        "text": "Use the completed column for $(P \\wedge Q)$ to build the negated column.",
+        "category": "Correct next step"
+      },
+      {
+        "text": "Rearrange the rows before computing $\\sim (P \\wedge Q)$.",
+        "category": "Incorrect next step"
+      }
+    ],
+    "explanation": "Truth-table construction follows the syntax outward one level at a time. The next step after an inner expression is the immediate outer expression, with row order unchanged.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "order",
+    "prompt": "Arrange the evaluation steps for $\\sim (P \\wedge Q) \\vee R$ after the base columns are already filled.",
+    "items": [
+      "Compute the column for $(P \\wedge Q)$.",
+      "Compute the column for $\\sim (P \\wedge Q)$.",
+      "Compute the final column for $\\sim (P \\wedge Q) \\vee R$."
+    ],
+    "explanation": "The formula must be evaluated from the inside out. Each outer step uses the result of the step just before it.",
+    "difficulty": 2,
+    "targets_slide": 5
+  }
+]

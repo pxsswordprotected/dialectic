@@ -1,0 +1,109 @@
+[
+  {
+    "type": "concept",
+    "heading": "What A WFF Is",
+    "body": "A **Well-Formed Formula** is a string of symbols that follows the grammar rules of propositional logic. A WFF is syntactically correct, even before any question about truth or meaning.",
+    "examples": [
+      {
+        "text": "$P$",
+        "valid": true
+      },
+      {
+        "text": "$\\sim (P \\wedge Q)$",
+        "valid": true
+      },
+      {
+        "text": "$\\wedge P Q$",
+        "valid": false
+      }
+    ],
+    "note": "This lesson is about form, not truth value."
+  },
+  {
+    "type": "rule",
+    "heading": "Single Letters Count",
+    "body": "A single statement letter is a WFF. If the string is just one letter such as $P$, $Q$, or $R$, it is grammatically complete.",
+    "examples": [
+      {
+        "text": "$P$",
+        "valid": true
+      },
+      {
+        "text": "$Q$",
+        "valid": true
+      },
+      {
+        "text": "$PQ$",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Negation Rule",
+    "body": "A **negation** is formed by placing $\\sim$ directly before a WFF. If the negation applies to a compound formula, the compound part must stay grouped.",
+    "examples": [
+      {
+        "text": "$\\sim P$",
+        "valid": true
+      },
+      {
+        "text": "$\\sim (P \\vee Q)$",
+        "valid": true
+      },
+      {
+        "text": "$\\sim \\vee P$",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Binary Rule",
+    "body": "A **binary connective** joins two WFFs into one larger WFF. Standard binary forms use parentheses around the whole combination: $(P \\wedge Q)$, $(P \\vee Q)$, $(P \\rightarrow Q)$, $(P \\leftrightarrow Q)$.",
+    "examples": [
+      {
+        "text": "$(P \\wedge Q)$",
+        "valid": true
+      },
+      {
+        "text": "$((P \\rightarrow Q) \\vee R)$",
+        "valid": true
+      },
+      {
+        "text": "$P \\wedge Q$",
+        "valid": false
+      }
+    ],
+    "note": "In this app, full parentheses are required for binary compounds."
+  },
+  {
+    "type": "warning",
+    "heading": "Common Syntax Errors",
+    "body": "Most bad strings break one of three rules: missing parentheses, an operator in the wrong place, or a connective without a complete formula on each side.",
+    "examples": [
+      {
+        "text": "$(P \\wedge)$",
+        "valid": false
+      },
+      {
+        "text": "$(\\rightarrow P Q)$",
+        "valid": false
+      },
+      {
+        "text": "$((P \\wedge Q) \\rightarrow \\sim R)$",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "summary",
+    "heading": "Grammar Check",
+    "body": "To test for a WFF, check whether the string can be built from single letters by the negation rule and the parenthesized binary rule. If any symbol is left hanging or ungrouped, the string is not a WFF.",
+    "examples": null,
+    "note": null
+  }
+]

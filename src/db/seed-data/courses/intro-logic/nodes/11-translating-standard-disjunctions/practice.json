@@ -1,0 +1,151 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Which sentence is a standard disjunction?",
+    "options": [
+      {
+        "text": "\"The mug is blue or the mug is chipped.\"",
+        "correct": true
+      },
+      {
+        "text": "\"Close the window.\"",
+        "correct": false
+      },
+      {
+        "text": "\"Is the window open?\"",
+        "correct": false
+      }
+    ],
+    "explanation": "A standard disjunction joins two statements with ordinary \"or.\"",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "A standard disjunction can be true when both parts are true.",
+    "answer": true,
+    "explanation": "Inclusive disjunction means at least one part is true, so the both-true case is allowed.",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "fill_in",
+    "prompt": "A standard disjunction is false only when both parts are ___.",
+    "blanks": [
+      {
+        "acceptable_answers": ["false"]
+      }
+    ],
+    "explanation": "If even one part is true, the disjunction is true.",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $R$ = \"It is raining\" and $S$ = \"It is snowing.\" Which is the correct translation of \"Either it is raining or it is snowing\"?",
+    "options": [
+      {
+        "text": "$R \\vee S$",
+        "correct": true
+      },
+      {
+        "text": "$R \\wedge S$",
+        "correct": false
+      },
+      {
+        "text": "$\\sim R \\vee S$",
+        "correct": false
+      },
+      {
+        "text": "$R \\rightarrow S$",
+        "correct": false
+      }
+    ],
+    "explanation": "Both ordinary \"or\" and \"either ... or\" translate with $\\vee$ in standard disjunction.",
+    "difficulty": 2,
+    "targets_slide": 2
+  },
+  {
+    "type": "classify",
+    "prompt": "Place each sentence in the correct category.",
+    "categories": ["Translate with $\\vee$", "Not a standard disjunction"],
+    "items": [
+      {
+        "text": "\"The porch is wet or the sidewalk is wet.\"",
+        "category": "Translate with $\\vee$"
+      },
+      {
+        "text": "\"Either the book is on the desk or it is in the bag.\"",
+        "category": "Translate with $\\vee$"
+      },
+      {
+        "text": "\"Open the bag.\"",
+        "category": "Not a standard disjunction"
+      },
+      {
+        "text": "\"The bag is on the chair.\"",
+        "category": "Not a standard disjunction"
+      }
+    ],
+    "explanation": "A standard disjunction has two statements joined by \"or\" or \"either ... or.\"",
+    "difficulty": 2,
+    "targets_slide": 1
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "\"Either $P$ or $Q$\" always means exactly one of $P$ and $Q$ is true.",
+    "answer": false,
+    "explanation": "In standard translation, \"either ... or\" is inclusive unless the context clearly excludes the both-true case.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "fill_in",
+    "prompt": "Translate the connector in this pattern: \"The lamp is on or the door is open\" becomes $L$ ___ $D$.",
+    "blanks": [
+      {
+        "acceptable_answers": ["\\vee", "vee"]
+      }
+    ],
+    "explanation": "The standard connector for disjunction is $\\vee$.",
+    "difficulty": 1,
+    "targets_slide": 2
+  },
+  {
+    "type": "order",
+    "prompt": "Arrange the translation steps in the correct order.",
+    "items": [
+      "Choose a statement letter for the left statement.",
+      "Choose a statement letter for the right statement.",
+      "Write the left statement letter.",
+      "Insert $\\vee$.",
+      "Write the right statement letter."
+    ],
+    "explanation": "A standard disjunction is built by writing the left statement, then $\\vee$, then the right statement.",
+    "difficulty": 2,
+    "targets_slide": 3
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $C$ = \"The cup is clean\" and $D$ = \"The dish is dry.\" Which claim matches the standard meaning of $C \\vee D$?",
+    "options": [
+      {
+        "text": "At least one of $C$ or $D$ is true.",
+        "correct": true
+      },
+      {
+        "text": "Exactly one of $C$ or $D$ is true.",
+        "correct": false
+      },
+      {
+        "text": "If $C$ is true, then $D$ is true.",
+        "correct": false
+      }
+    ],
+    "explanation": "$C \\vee D$ means one or both are true, not exactly one.",
+    "difficulty": 3,
+    "targets_slide": 5
+  }
+]

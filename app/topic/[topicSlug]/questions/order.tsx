@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { X } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "@/components/ui/button";
+import { InlineMarkdown } from "@/components/inline-markdown";
 
 function shuffle<T>(arr: T[]): T[] {
   const copy = [...arr];
@@ -80,7 +81,7 @@ export function Order({
                             : ""
                       }
                     >
-                      {item}
+                      <InlineMarkdown text={item} />
                     </span>
                   </div>
                   {!answered && (
@@ -113,7 +114,7 @@ export function Order({
                   onClick={() => handleAdd(item)}
                   className="w-full cursor-pointer rounded-sm border border-dashed border-neutral-300 bg-neutral-50 px-12 py-8 text-left text-lg leading-[1.4] text-neutral-800 hover:bg-neutral-100"
                 >
-                  {item}
+                  <InlineMarkdown text={item} />
                 </button>
               </li>
             ))}
@@ -135,7 +136,9 @@ export function Order({
                 <span className="w-16 text-right text-neutral-400">
                   {i + 1}.
                 </span>
-                <span className="highlight-true">{item}</span>
+                <span className="highlight-true">
+                  <InlineMarkdown text={item} />
+                </span>
               </li>
             ))}
           </ol>

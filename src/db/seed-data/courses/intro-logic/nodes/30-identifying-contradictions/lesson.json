@@ -1,0 +1,89 @@
+[
+  {
+    "type": "concept",
+    "heading": "Always False",
+    "body": "A **contradiction** is a formula whose main operator column is false in every row of its truth table. Its falsity does not depend on any particular assignment of values.",
+    "examples": [
+      {
+        "text": "If the final column is `F F F F`, the formula is a contradiction.",
+        "valid": true
+      },
+      {
+        "text": "If the final column is `F T F F`, the formula is a contradiction.",
+        "valid": false
+      }
+    ],
+    "note": "The decision is based on the final column only."
+  },
+  {
+    "type": "rule",
+    "heading": "Check Final Column",
+    "body": "To classify a formula as a contradiction, inspect the main operator column after the truth table is complete. Every entry must be F. One T is enough to block the classification.",
+    "examples": [
+      {
+        "text": "`F F F F` passes the test.",
+        "valid": true
+      },
+      {
+        "text": "`F F T F` passes the test.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "Why Main Matters",
+    "body": "The **main operator column** gives the truth value of the whole formula in each row. Other columns show only parts of the formula, so they cannot by themselves determine whether the whole formula is a contradiction.",
+    "examples": [
+      {
+        "text": "An inner column may contain T values while the final column is all F.",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Simple Cases",
+    "body": "Read only the final column when classifying the whole statement.",
+    "examples": [
+      {
+        "text": "Final column `F F F F` means contradiction.",
+        "valid": true
+      },
+      {
+        "text": "Final column `F F F F F F F F` means contradiction.",
+        "valid": true
+      },
+      {
+        "text": "Final column `F F T F` means contradiction.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Do Not Count Mostly",
+    "body": "A common mistake is calling a formula a contradiction when most rows are false. That is not enough. The final column must be false in every row, with no exceptions.",
+    "examples": [
+      {
+        "text": "`F F F T` is not a contradiction.",
+        "valid": true
+      },
+      {
+        "text": "`F F F F` is a contradiction.",
+        "valid": true
+      }
+    ],
+    "note": "The standard is all F, not almost all F."
+  },
+  {
+    "type": "summary",
+    "heading": "Core Test",
+    "body": "Complete the truth table, then inspect the main operator column. If every row is F, the formula is a contradiction.",
+    "examples": null,
+    "note": null
+  }
+]

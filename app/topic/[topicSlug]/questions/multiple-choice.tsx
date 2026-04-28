@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { InlineMarkdown } from "@/components/inline-markdown";
 
 type Option = { text: string; correct: boolean };
 
@@ -67,7 +68,9 @@ export function MultipleChoice({
                     <span className="size-[10px] rounded-full bg-primary-400" />
                   )}
                 </span>
-                <span className={highlight}>{opt.text}</span>
+                <span className={highlight}>
+                  <InlineMarkdown text={opt.text} />
+                </span>
               </button>
             </li>
           );

@@ -1,0 +1,149 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "What is the main operator in \"If Alice goes, and Bob goes, then Charlie stays\"?",
+    "options": [
+      {
+        "text": "Conditional",
+        "correct": true
+      },
+      {
+        "text": "Conjunction",
+        "correct": false
+      },
+      {
+        "text": "Disjunction",
+        "correct": false
+      }
+    ],
+    "explanation": "The sentence has an inner conjunction, but the whole sentence is an if-then statement, so the main operator is conditional.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "A comma always marks the main operator.",
+    "answer": false,
+    "explanation": "A comma may only mark a pause or an inner grouping. It does not by itself identify the main operator.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "What is the main operator in \"Alice packs, and Bob cooks; or Charlie orders takeout\"?",
+    "options": [
+      {
+        "text": "Disjunction",
+        "correct": true
+      },
+      {
+        "text": "Conjunction",
+        "correct": false
+      },
+      {
+        "text": "Conditional",
+        "correct": false
+      }
+    ],
+    "explanation": "The semicolon helps separate the larger blocks. The left block is joined to the right block by \"or,\" so the main operator is disjunction.",
+    "difficulty": 2,
+    "targets_slide": 3
+  },
+  {
+    "type": "fill_in",
+    "prompt": "In \"If the lamp is on, and the door is shut, then the room is ready,\" the main operator is ___.",
+    "blanks": [
+      {
+        "acceptable_answers": ["conditional"]
+      }
+    ],
+    "explanation": "The entire sentence is controlled by the if-then structure.",
+    "difficulty": 1,
+    "targets_slide": 2
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each sentence by its main operator.",
+    "categories": ["Conditional", "Not Conditional"],
+    "items": [
+      {
+        "text": "\"If the cup is full, and the lid is tight, then the drink is safe\"",
+        "category": "Conditional"
+      },
+      {
+        "text": "\"The cup is full, and the lid is tight\"",
+        "category": "Not Conditional"
+      },
+      {
+        "text": "\"If the window is open, then the fan is on\"",
+        "category": "Conditional"
+      },
+      {
+        "text": "\"The window is open; or the fan is on\"",
+        "category": "Not Conditional"
+      }
+    ],
+    "explanation": "Look for the outer if-then structure. If it governs the whole sentence, the main operator is conditional.",
+    "difficulty": 2,
+    "targets_slide": 2
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "In \"Alice goes, and Bob goes, or Charlie stays,\" the main operator is conjunction.",
+    "answer": false,
+    "explanation": "The sentence is read as a conjunction inside a larger disjunction, so the outermost operator is disjunction.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Which sentence has conjunction as its main operator?",
+    "options": [
+      {
+        "text": "\"Alice goes; and Bob stays\"",
+        "correct": true
+      },
+      {
+        "text": "\"If Alice goes, and Bob stays, then Charlie leaves\"",
+        "correct": false
+      },
+      {
+        "text": "\"Alice goes, and Bob stays; or Charlie leaves\"",
+        "correct": false
+      }
+    ],
+    "explanation": "The first sentence is joined at the top level by \"and.\" The others have a larger outer structure.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "order",
+    "prompt": "Arrange the steps for identifying the main operator with punctuation clues.",
+    "items": [
+      "Notice commas or semicolons that suggest grouping.",
+      "Read the smallest grouped parts first.",
+      "Compare the larger blocks on each side.",
+      "Find the connector that joins the largest parts."
+    ],
+    "explanation": "Punctuation suggests structure, but the main operator is the connector governing the largest blocks.",
+    "difficulty": 2,
+    "targets_slide": 5
+  },
+  {
+    "type": "fill_in",
+    "prompt": "The connector that governs the whole sentence is the ___ ___.",
+    "blanks": [
+      {
+        "acceptable_answers": ["main"]
+      },
+      {
+        "acceptable_answers": ["operator"]
+      }
+    ],
+    "explanation": "The main operator is the outermost logical connector in the sentence.",
+    "difficulty": 1,
+    "targets_slide": 0
+  }
+]

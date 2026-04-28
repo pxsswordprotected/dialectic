@@ -1,0 +1,93 @@
+[
+  {
+    "type": "concept",
+    "heading": "Rows Come From Cases",
+    "body": "A **truth table** lists the possible truth-value assignments for the variables in a formula. Each row represents one possible assignment. [page:1]",
+    "examples": [
+      {
+        "text": "If a formula uses only $P$, the table must cover the cases where $P$ is true and where $P$ is false. [page:1]",
+        "valid": true
+      },
+      {
+        "text": "If a formula uses $P$ and $Q$, the table must cover all combinations of truth values for $P$ and $Q$. [page:1]",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Use $2^n$",
+    "body": "The **row formula** is $2^n$, where $n$ is the number of unique propositional variables. This works because each variable has two possible truth values. [page:1]",
+    "examples": [
+      {
+        "text": "If $n = 1$, then $2^1 = 2$ rows. [page:1]",
+        "valid": true
+      },
+      {
+        "text": "If $n = 3$, then $2^3 = 8$ rows. [page:1]",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "Count Unique Letters",
+    "body": "**Unique variables** are distinct statement letters, counted once each. Repeated letters do not increase the number of rows.",
+    "examples": [
+      {
+        "text": "In $(P \\vee Q) \\rightarrow R$, the unique variables are $P$, $Q$, and $R$.",
+        "valid": true
+      },
+      {
+        "text": "In $(P \\wedge P) \\rightarrow Q$, the unique variables are $P$ and $Q$, not three variables.",
+        "valid": true
+      }
+    ],
+    "note": "Only distinct letters matter."
+  },
+  {
+    "type": "example",
+    "heading": "Counting Examples",
+    "body": "Count letters first. Then apply $2^n$.",
+    "examples": [
+      {
+        "text": "$\\sim P$ has 1 unique variable, so it needs 2 rows. [page:1]",
+        "valid": true
+      },
+      {
+        "text": "$(P \\wedge Q)$ has 2 unique variables, so it needs 4 rows. [page:1]",
+        "valid": true
+      },
+      {
+        "text": "$((P \\vee Q) \\rightarrow R)$ has 3 unique variables, so it needs 8 rows. [page:1]",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Do Not Overcount",
+    "body": "A common mistake is counting operators or repeated letters as new variables. Only distinct propositional letters determine $n$.",
+    "examples": [
+      {
+        "text": "$(P \\wedge Q) \\vee P$ has 3 variables because it has three letters written.",
+        "valid": false
+      },
+      {
+        "text": "$(P \\wedge Q) \\vee P$ has 2 unique variables, so it needs 4 rows. [page:1]",
+        "valid": true
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "summary",
+    "heading": "Core Method",
+    "body": "Find the number of unique propositional variables. Then compute $2^n$ to get the required number of truth-table rows. [page:1]",
+    "examples": null,
+    "note": null
+  }
+]

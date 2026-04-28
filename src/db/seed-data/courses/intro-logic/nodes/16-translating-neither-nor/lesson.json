@@ -1,0 +1,93 @@
+[
+  {
+    "type": "concept",
+    "heading": "What \"Neither Nor\" Means",
+    "body": "The phrase **neither ... nor** says that both statements are false. It denies each option. It does not say that one of them is true.",
+    "examples": [
+      {
+        "text": "\"Neither the lamp nor the fan is on\" says the lamp is not on and the fan is not on.",
+        "valid": true
+      },
+      {
+        "text": "\"Neither the mug nor the bowl is clean\" says both are unclean.",
+        "valid": true
+      }
+    ],
+    "note": "This lesson uses earlier ideas about disjunction and negation."
+  },
+  {
+    "type": "rule",
+    "heading": "Negated Disjunction",
+    "body": "A standard translation of \"neither $P$ nor $Q$\" is $\\sim (P \\vee Q)$. First build the disjunction, then negate the whole group.",
+    "examples": [
+      {
+        "text": "\"Neither $R$ nor $S$\" becomes $\\sim (R \\vee S)$.",
+        "valid": true
+      },
+      {
+        "text": "\"Neither $R$ nor $S$\" becomes $\\sim R \\vee S$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "concept",
+    "heading": "Equivalent Form",
+    "body": "An **equivalent form** is a different formula with the same meaning. \"Neither $P$ nor $Q$\" can also be written as $\\sim P \\wedge \\sim Q$.",
+    "examples": [
+      {
+        "text": "$\\sim (P \\vee Q)$ and $\\sim P \\wedge \\sim Q$ say the same thing.",
+        "valid": true
+      }
+    ],
+    "note": "Either form is correct unless one form is specifically required."
+  },
+  {
+    "type": "example",
+    "heading": "Everyday Translations",
+    "body": "Both standard forms work. Use clear statement letters and keep the negation attached to the right part.",
+    "examples": [
+      {
+        "text": "Let $C$ = The car is working, $T$ = The truck is working. \"Neither the car nor the truck is working\" becomes $\\sim (C \\vee T)$.",
+        "valid": true
+      },
+      {
+        "text": "The same sentence can also be written as $\\sim C \\wedge \\sim T$.",
+        "valid": true
+      },
+      {
+        "text": "\"Neither the car nor the truck is working\" becomes $C \\vee T$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Do Not Drop Negation",
+    "body": "A common mistake is keeping the disjunction but losing the negation. Another mistake is negating only one side. \"Neither ... nor\" denies both statements.",
+    "examples": [
+      {
+        "text": "$\\sim (P \\vee Q)$ matches \"neither $P$ nor $Q$.\"",
+        "valid": true
+      },
+      {
+        "text": "$\\sim P \\vee Q$ matches \"neither $P$ nor $Q$.\"",
+        "valid": false
+      },
+      {
+        "text": "$P \\wedge Q$ matches \"neither $P$ nor $Q$.\"",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "summary",
+    "heading": "Core Pattern",
+    "body": "Translate \"neither $P$ nor $Q$\" as $\\sim (P \\vee Q)$ or as $\\sim P \\wedge \\sim Q$. Both forms say that $P$ is false and $Q$ is false.",
+    "examples": null,
+    "note": null
+  }
+]

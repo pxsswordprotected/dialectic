@@ -1,0 +1,78 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Which phrase connects two propositions to form a biconditional statement?",
+    "options": [
+      { "text": "if then", "correct": false },
+      { "text": "and", "correct": false },
+      { "text": "if and only if", "correct": true },
+      { "text": "because", "correct": false }
+    ],
+    "explanation": "The phrase \"if and only if\" creates a two-way logical relationship where both statements must share the same truth value.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "In a mutually dependent relationship, it is possible for one statement to be true while the other is false.",
+    "answer": false,
+    "explanation": "Mutual dependence means the statements are inextricably linked. They cannot have mismatched truth values. They must both be true or both be false.",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "A biconditional statement evaluates to true under which condition?",
+    "options": [
+      {
+        "text": "Only when both internal propositions are true.",
+        "correct": false
+      },
+      {
+        "text": "Strictly when both internal propositions share the exact same truth value.",
+        "correct": true
+      },
+      {
+        "text": "Whenever at least one of the internal propositions is true.",
+        "correct": false
+      }
+    ],
+    "explanation": "The biconditional operator checks for agreement. It is true when both propositions are true, and it is also true when both propositions are false.",
+    "difficulty": 2,
+    "targets_slide": 3
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Proposition P is False. Proposition Q is False. What is the truth value of the biconditional connecting them?",
+    "options": [
+      {
+        "text": "False, because neither proposition is true.",
+        "correct": false
+      },
+      {
+        "text": "False, because two false statements cannot create a true statement.",
+        "correct": false
+      },
+      {
+        "text": "True, because the propositions have matching truth values.",
+        "correct": true
+      }
+    ],
+    "explanation": "The biconditional measures whether the statements agree. Since both propositions are False, they match perfectly, making the combined biconditional statement True.",
+    "difficulty": 2,
+    "targets_slide": 5
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "A biconditional statement evaluates to False. The first proposition inside it is True. What must be the truth value of the second proposition?",
+    "options": [
+      { "text": "True", "correct": false },
+      { "text": "False", "correct": true },
+      { "text": "It is impossible to determine.", "correct": false }
+    ],
+    "explanation": "A biconditional is false strictly when its two propositions have different truth values. Since the overall statement is False and the first proposition is True, the second proposition must be False to cause the mismatch.",
+    "difficulty": 3,
+    "targets_slide": 3
+  }
+]

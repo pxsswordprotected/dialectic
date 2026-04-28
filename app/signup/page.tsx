@@ -34,8 +34,8 @@ export default async function SignupPage(props: {
   }
 
   return (
-    <div className="flex flex-1 items-center justify-center p-6">
-      <div className="flex w-full max-w-[1256px] h-[750px] overflow-hidden rounded-sm border border-neutral-300 bg-white">
+    <div className="flex min-h-screen items-center justify-center p-6">
+      <div className="flex w-full max-w-[1256px] h-[min(750px,calc(100dvh-48px))] overflow-hidden rounded-sm border border-neutral-300 bg-white">
         <div className="relative hidden md:block flex-1">
           <Image
             src="/images/The_School_of_Athens__by_Raffaello_Sanzio_da_Urbino-scaled (1).jpg"
@@ -50,7 +50,7 @@ export default async function SignupPage(props: {
         <div className="flex flex-1 items-center justify-center bg-white">
           <div className="flex flex-col items-center gap-16 w-[339px]">
             <header className="flex flex-col items-center gap-[18px] text-center">
-              <h1 className="font-heading text-primary-400 text-2xl">
+              <h1 className="font-heading text-primary-400 select-none text-2xl">
                 Dialectic
               </h1>
               <p className="text-neutral-800 text-lg">
@@ -81,7 +81,7 @@ export default async function SignupPage(props: {
                     type="email"
                     required
                     placeholder="Email"
-                    className="w-full rounded-sm border border-neutral-300 bg-neutral-100 px-8 py-1.5 text-base text-neutral-800 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-300"
+                    className="w-full rounded-sm select-none border border-neutral-300 bg-neutral-100 px-8 py-1.5 text-base text-neutral-800 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-300"
                   />
 
                   <div className="flex flex-col items-end gap-1.5 w-full">
@@ -94,7 +94,7 @@ export default async function SignupPage(props: {
 
                 <button
                   type="submit"
-                  className="w-full rounded-sm bg-primary-400 px-4 py-1.5 font-medium text-neutral-50 shadow-[0px_4px_10.4px_0px_rgba(0,0,0,0.13),inset_0px_1px_2.9px_0px_rgba(255,255,255,0.55)] transition-colors hover:bg-primary-500"
+                  className="w-full rounded-sm bg-primary-400 px-4 py-1.5 font-medium text-neutral-50 select-none shadow-[0px_4px_10.4px_0px_rgba(0,0,0,0.13),inset_0px_1px_2.9px_0px_rgba(255,255,255,0.55)] transition-colors hover:bg-primary-500"
                 >
                   Create Account
                 </button>

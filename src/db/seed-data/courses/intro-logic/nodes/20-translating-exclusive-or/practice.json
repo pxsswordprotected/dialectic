@@ -1,0 +1,95 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $S$ = Have soup and $L$ = Have salad. Which formula correctly translates the exclusive or in \"With dinner, may have soup or salad\"?",
+    "options": [
+      {
+        "text": "$(S \\vee L) \\wedge \\sim (S \\wedge L)$",
+        "correct": true
+      },
+      {
+        "text": "$S \\vee L$",
+        "correct": false
+      },
+      {
+        "text": "$\\sim (S \\wedge L)$",
+        "correct": false
+      },
+      {
+        "text": "$S \\wedge L$",
+        "correct": false
+      }
+    ],
+    "explanation": "Exclusive or needs two parts: a disjunction to allow one side, and a negated conjunction to forbid both sides together.",
+    "difficulty": 1,
+    "targets_slide": 2
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "An exclusive or allows both statements to be true together.",
+    "answer": false,
+    "explanation": "Exclusive or means exactly one is true. The both-true case is excluded.",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "fill_in",
+    "prompt": "Complete the pattern for exclusive or: $(P \\vee Q) \\wedge \\sim$ ___.",
+    "blanks": [
+      {
+        "acceptable_answers": ["(P \\wedge Q)", "($P \\wedge Q$)"]
+      }
+    ],
+    "explanation": "The negated conjunction is the part that blocks both statements from being true together.",
+    "difficulty": 2,
+    "targets_slide": 2
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each formula by whether it correctly represents exclusive or.",
+    "categories": ["Correct exclusive or", "Incorrect exclusive or"],
+    "items": [
+      {
+        "text": "$(P \\vee Q) \\wedge \\sim (P \\wedge Q)$",
+        "category": "Correct exclusive or"
+      },
+      {
+        "text": "$P \\vee Q$",
+        "category": "Incorrect exclusive or"
+      },
+      {
+        "text": "$(A \\vee B) \\wedge \\sim (A \\wedge B)$",
+        "category": "Correct exclusive or"
+      },
+      {
+        "text": "$\\sim (P \\wedge Q)$",
+        "category": "Incorrect exclusive or"
+      }
+    ],
+    "explanation": "A correct translation must both allow at least one and forbid both. Leaving out either part changes the meaning.",
+    "difficulty": 2,
+    "targets_slide": 4
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Which sentence most clearly suggests an exclusive reading of \"or\"?",
+    "options": [
+      {
+        "text": "\"Choose a window seat or an aisle seat.\"",
+        "correct": true
+      },
+      {
+        "text": "\"The light is on or the fan is on.\"",
+        "correct": false
+      },
+      {
+        "text": "\"The cup is on the table or the shelf.\"",
+        "correct": false
+      }
+    ],
+    "explanation": "Choice instructions often imply one option only. Ordinary factual statements usually do not guarantee an exclusive reading.",
+    "difficulty": 2,
+    "targets_slide": 1
+  }
+]

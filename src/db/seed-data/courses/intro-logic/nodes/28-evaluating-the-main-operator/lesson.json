@@ -1,0 +1,93 @@
+[
+  {
+    "type": "concept",
+    "heading": "Final Column Meaning",
+    "body": "The **main operator** is the outermost connective in a formula. Its truth values form the final column, because that column gives the truth value of the entire sentence.",
+    "examples": [
+      {
+        "text": "In $\\sim (P \\wedge Q) \\vee R$, the main operator is $\\vee$.",
+        "valid": true
+      },
+      {
+        "text": "In $\\sim (P \\wedge Q) \\vee R$, the main operator is $\\wedge$.",
+        "valid": false
+      }
+    ],
+    "note": "The final column always belongs to the whole formula."
+  },
+  {
+    "type": "rule",
+    "heading": "Use Finished Columns",
+    "body": "A **final evaluation** uses the completed columns for the parts directly connected by the main operator. Do not recompute earlier steps from scratch.",
+    "examples": [
+      {
+        "text": "To evaluate $\\sim (P \\wedge Q) \\vee R$, use the finished column for $\\sim (P \\wedge Q)$ and the base column for $R$.",
+        "valid": true
+      },
+      {
+        "text": "To evaluate $\\sim (P \\wedge Q) \\vee R$, ignore $\\sim (P \\wedge Q)$ and use only $P$, $Q$, and $R$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Apply Main Rule",
+    "body": "For a final **disjunction**, mark a row true if at least one side is true. Mark it false only when both sides are false.",
+    "examples": [
+      {
+        "text": "If one row has $\\sim (P \\wedge Q)$ = T and $R$ = F, then $\\sim (P \\wedge Q) \\vee R$ = T.",
+        "valid": true
+      },
+      {
+        "text": "If one row has $\\sim (P \\wedge Q)$ = F and $R$ = F, then $\\sim (P \\wedge Q) \\vee R$ = T.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Worked Final Column",
+    "body": "Use the two ready columns row by row. Then write the final result for the whole formula.",
+    "examples": [
+      {
+        "text": "If $\\sim (P \\wedge Q)$ is `F T T T` and $R$ is `T F T F`, then $\\sim (P \\wedge Q) \\vee R$ is `T T T T`.",
+        "valid": true
+      },
+      {
+        "text": "Row 2 is T because $\\sim (P \\wedge Q)$ is T and $R$ is F.",
+        "valid": true
+      },
+      {
+        "text": "Row 1 is F because $\\sim (P \\wedge Q)$ is F and $R$ is T.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Do Not Look Inward",
+    "body": "A common mistake is checking the wrong operator at the last step. Once the needed subcolumns are complete, the final column depends only on the main operator and its two immediate inputs.",
+    "examples": [
+      {
+        "text": "For $\\sim (P \\wedge Q) \\vee R$, the last step uses $\\vee$, not $\\wedge$.",
+        "valid": true
+      },
+      {
+        "text": "For $\\sim (P \\wedge Q) \\vee R$, the last step should recompute $(P \\wedge Q)$ in every row.",
+        "valid": false
+      }
+    ],
+    "note": "The final step is local. It uses the last two relevant columns."
+  },
+  {
+    "type": "summary",
+    "heading": "Core Method",
+    "body": "Find the main operator. Then combine the completed columns it governs, row by row, to produce the final column for the whole formula.",
+    "examples": null,
+    "note": null
+  }
+]

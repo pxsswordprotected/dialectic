@@ -1,0 +1,66 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "What does the conjunction operator assert about two connected statements?",
+    "options": [
+      { "text": "They are both true.", "correct": true },
+      { "text": "At least one of them is true.", "correct": false },
+      { "text": "They have opposite truth values.", "correct": false }
+    ],
+    "explanation": "A conjunction strictly claims that both connected propositions are factual and true at the same time.",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "The word \"but\" translates to a different logical operator than the word \"and\" because it implies a contrast.",
+    "answer": false,
+    "explanation": "Logic ignores emotional narrative or surprise. If a sentence claims two things are true, it is a conjunction. \"But\" and \"and\" translate to the exact same operator.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "classify",
+    "prompt": "Sort these English connecting words based on how they translate into precise logic.",
+    "categories": [
+      "Translates to Conjunction",
+      "Does Not Translate to Conjunction"
+    ],
+    "items": [
+      { "text": "but", "category": "Translates to Conjunction" },
+      { "text": "however", "category": "Translates to Conjunction" },
+      { "text": "yet", "category": "Translates to Conjunction" },
+      { "text": "and", "category": "Translates to Conjunction" },
+      { "text": "or", "category": "Does Not Translate to Conjunction" },
+      { "text": "if", "category": "Does Not Translate to Conjunction" }
+    ],
+    "explanation": "Words that assert two independent facts are both true are conjunctions, regardless of whether they express contrast or agreement in everyday English.",
+    "difficulty": 2,
+    "targets_slide": 1
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $A$ = The engine started. Let $B$ = The car moved. Translate this sentence: \"The engine started; the car moved.\"",
+    "options": [
+      { "text": "$A \\wedge B$", "correct": true },
+      { "text": "$A \\rightarrow B$", "correct": false },
+      { "text": "$A \\vee B$", "correct": false }
+    ],
+    "explanation": "A semicolon joining two independent claims acts as an implicit conjunction. Both statements are being asserted as true facts side-by-side.",
+    "difficulty": 2,
+    "targets_slide": 3
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $H$ = The oven is hot. Let $T$ = The timer is ringing. Let $F$ = The food is done. Translate this sentence: \"The oven is hot, but the timer is ringing and the food is done.\"",
+    "options": [
+      { "text": "$H \\wedge T \\wedge F$", "correct": true },
+      { "text": "$H \\vee T \\wedge F$", "correct": false },
+      { "text": "$H \\rightarrow T \\wedge F$", "correct": false }
+    ],
+    "explanation": "The sentence claims all three facts are true. The word \"but\" and the word \"and\" both translate to the conjunction operator, allowing you to chain them together into a single logical expression.",
+    "difficulty": 3,
+    "targets_slide": 1
+  }
+]

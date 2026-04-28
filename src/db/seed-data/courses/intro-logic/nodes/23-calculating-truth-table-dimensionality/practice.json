@@ -1,0 +1,95 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "How many rows are required for the truth table of $(P \\vee Q) \\rightarrow R$?",
+    "options": [
+      {
+        "text": "4",
+        "correct": false
+      },
+      {
+        "text": "8",
+        "correct": true
+      },
+      {
+        "text": "6",
+        "correct": false
+      },
+      {
+        "text": "16",
+        "correct": false
+      }
+    ],
+    "explanation": "The formula has 3 unique variables: $P$, $Q$, and $R$. A truth table with 3 variables needs $2^3 = 8$ rows. [page:1]",
+    "difficulty": 1,
+    "targets_slide": 3
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "The formula $(P \\wedge P) \\rightarrow Q$ requires 8 rows.",
+    "answer": false,
+    "explanation": "Only unique variables count. This formula uses just $P$ and $Q$, so it needs $2^2 = 4$ rows. [page:1]",
+    "difficulty": 2,
+    "targets_slide": 2
+  },
+  {
+    "type": "fill_in",
+    "prompt": "If a formula has 4 unique propositional variables, then the truth table needs ___ rows.",
+    "blanks": [
+      {
+        "acceptable_answers": ["16"]
+      }
+    ],
+    "explanation": "Use the row formula $2^n$. With 4 unique variables, $2^4 = 16$. [page:1]",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each formula by the number of rows its truth table needs.",
+    "categories": ["2 rows", "4 rows"],
+    "items": [
+      {
+        "text": "$\\sim P$",
+        "category": "2 rows"
+      },
+      {
+        "text": "$(P \\wedge Q)$",
+        "category": "4 rows"
+      },
+      {
+        "text": "$(Q \\vee Q)$",
+        "category": "2 rows"
+      },
+      {
+        "text": "$(P \\rightarrow R)$",
+        "category": "4 rows"
+      }
+    ],
+    "explanation": "A formula with 1 unique variable needs $2^1 = 2$ rows, and a formula with 2 unique variables needs $2^2 = 4$ rows. [page:1]",
+    "difficulty": 2,
+    "targets_slide": 2
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Which formula requires 16 rows in its truth table?",
+    "options": [
+      {
+        "text": "$(P \\vee Q)$",
+        "correct": false
+      },
+      {
+        "text": "$((P \\wedge Q) \\rightarrow R)$",
+        "correct": false
+      },
+      {
+        "text": "$((P \\vee Q) \\leftrightarrow (R \\wedge S))$",
+        "correct": true
+      }
+    ],
+    "explanation": "The correct formula has 4 unique variables: $P$, $Q$, $R$, and $S$. A truth table with 4 variables needs $2^4 = 16$ rows. [page:1]",
+    "difficulty": 2,
+    "targets_slide": 4
+  }
+]

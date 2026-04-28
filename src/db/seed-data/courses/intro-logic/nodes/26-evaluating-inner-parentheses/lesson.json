@@ -1,0 +1,89 @@
+[
+  {
+    "type": "concept",
+    "heading": "Start Inside",
+    "body": "**Inner parentheses** mark the deepest grouped part of a formula. In a truth table, that part is evaluated first and placed in its own operational column.",
+    "examples": [
+      {
+        "text": "In $\\sim (P \\wedge Q) \\vee R$, the inner parenthesis is $(P \\wedge Q)$.",
+        "valid": true
+      },
+      {
+        "text": "In $\\sim (P \\wedge Q) \\vee R$, the first column to compute is the whole formula.",
+        "valid": false
+      }
+    ],
+    "note": "This follows the same grouping rules used in symbolic translation."
+  },
+  {
+    "type": "rule",
+    "heading": "One Column Per Part",
+    "body": "An **operational column** records the truth values of one compound part. Every inner grouped expression gets its own column before larger expressions are evaluated.",
+    "examples": [
+      {
+        "text": "For $\\sim (P \\wedge Q) \\vee R$, make a column for $(P \\wedge Q)$ before making a column for $\\sim (P \\wedge Q)$.",
+        "valid": true
+      },
+      {
+        "text": "For $\\sim (P \\wedge Q) \\vee R$, skip $(P \\wedge Q)$ and jump straight to $\\vee$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "rule",
+    "heading": "Evaluate Deepest First",
+    "body": "To evaluate a **nested expression**, find the deepest parenthesized part and compute it row by row. Use only the columns that already exist for its immediate components.",
+    "examples": [
+      {
+        "text": "In $((P \\vee Q) \\rightarrow R)$, compute $(P \\vee Q)$ before the conditional.",
+        "valid": true
+      },
+      {
+        "text": "In $((P \\vee Q) \\rightarrow R)$, compute the conditional before $(P \\vee Q)$.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "example",
+    "heading": "Conjunction Example",
+    "body": "For $(P \\wedge Q)$, the column is true only when both $P$ and $Q$ are true in the same row.",
+    "examples": [
+      {
+        "text": "If $P$ is `T T F F` and $Q$ is `T F T F`, then $(P \\wedge Q)$ is `T F F F`.",
+        "valid": true
+      },
+      {
+        "text": "If $P$ is `T T F F` and $Q$ is `T F T F`, then $(P \\wedge Q)$ is `T T T F`.",
+        "valid": false
+      }
+    ],
+    "note": null
+  },
+  {
+    "type": "warning",
+    "heading": "Do Not Skip Levels",
+    "body": "A common mistake is mixing several operations into one step. If a formula has an inner grouped part, compute that part first, even if the next operator looks easy.",
+    "examples": [
+      {
+        "text": "In $\\sim (P \\wedge Q) \\vee R$, compute $(P \\wedge Q)$, then $\\sim (P \\wedge Q)$, then the final disjunction.",
+        "valid": true
+      },
+      {
+        "text": "In $\\sim (P \\wedge Q) \\vee R$, combine $Q$ and $R$ first because they are close together.",
+        "valid": false
+      }
+    ],
+    "note": "Truth-table order follows structure, not visual convenience."
+  },
+  {
+    "type": "summary",
+    "heading": "Core Method",
+    "body": "Build truth tables from the inside out. Compute the deepest parenthesized expression first, place it in its own column, then move outward step by step.",
+    "examples": null,
+    "note": null
+  }
+]

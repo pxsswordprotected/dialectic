@@ -1,0 +1,85 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "In the formula $\\sim (P \\wedge Q) \\vee R$, which part should be evaluated first?",
+    "options": [
+      {
+        "text": "$(P \\wedge Q)$",
+        "correct": true
+      },
+      {
+        "text": "$\\sim (P \\wedge Q)$",
+        "correct": false
+      },
+      {
+        "text": "$(\\sim (P \\wedge Q) \\vee R)$",
+        "correct": false
+      }
+    ],
+    "explanation": "The deepest parenthesized expression is evaluated first. Here that expression is $(P \\wedge Q)$.",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "A nested expression should be calculated before the larger expression that contains it.",
+    "answer": true,
+    "explanation": "Truth-table construction works from the inside out. Inner grouped parts must be completed before outer ones.",
+    "difficulty": 1,
+    "targets_slide": 2
+  },
+  {
+    "type": "fill_in",
+    "prompt": "If $P$ is `T T F F` and $Q$ is `T F T F`, then the column for $(P \\wedge Q)$ is `___`.",
+    "blanks": [
+      {
+        "acceptable_answers": ["T F F F", "`T F F F`"]
+      }
+    ],
+    "explanation": "A conjunction is true only when both component statements are true in the same row. That happens only in the first row.",
+    "difficulty": 2,
+    "targets_slide": 3
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each formula by which inner expression must be evaluated first.",
+    "categories": [
+      "First compute $(P \\vee Q)$",
+      "First compute $(P \\wedge Q)$"
+    ],
+    "items": [
+      {
+        "text": "$((P \\vee Q) \\rightarrow R)$",
+        "category": "First compute $(P \\vee Q)$"
+      },
+      {
+        "text": "$\\sim (P \\wedge Q) \\vee R$",
+        "category": "First compute $(P \\wedge Q)$"
+      },
+      {
+        "text": "$((P \\vee Q) \\wedge R)$",
+        "category": "First compute $(P \\vee Q)$"
+      },
+      {
+        "text": "$((P \\wedge Q) \\rightarrow R)$",
+        "category": "First compute $(P \\wedge Q)$"
+      }
+    ],
+    "explanation": "The first operational column comes from the deepest grouped part. The operator inside that deepest pair of parentheses determines the first computation.",
+    "difficulty": 2,
+    "targets_slide": 2
+  },
+  {
+    "type": "order",
+    "prompt": "Arrange the evaluation steps for $\\sim (P \\wedge Q) \\vee R$.",
+    "items": [
+      "Compute the column for $(P \\wedge Q)$.",
+      "Compute the column for $\\sim (P \\wedge Q)$.",
+      "Compute the final column for $\\sim (P \\wedge Q) \\vee R$."
+    ],
+    "explanation": "The formula is evaluated from the deepest inner grouping outward. Each new column depends on the one before it.",
+    "difficulty": 2,
+    "targets_slide": 4
+  }
+]

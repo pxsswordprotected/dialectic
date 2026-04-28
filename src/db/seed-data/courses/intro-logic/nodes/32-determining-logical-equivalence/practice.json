@@ -1,0 +1,91 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "When are two formulas logically equivalent?",
+    "options": [
+      {
+        "text": "When their final truth-table columns match in every row.",
+        "correct": true
+      },
+      {
+        "text": "When they use the same variables in the same order.",
+        "correct": false
+      },
+      {
+        "text": "When they have the same main operator.",
+        "correct": false
+      }
+    ],
+    "explanation": "Logical equivalence depends on identical final columns, not on appearance or shared symbols.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "If two final columns differ in one row, the formulas are not logically equivalent.",
+    "answer": true,
+    "explanation": "Equivalence requires a perfect row-by-row match. One mismatch is enough to break equivalence.",
+    "difficulty": 1,
+    "targets_slide": 3
+  },
+  {
+    "type": "fill_in",
+    "prompt": "Two formulas are logically equivalent only if their final columns are ___ in every row.",
+    "blanks": [
+      {
+        "acceptable_answers": ["identical", "the same", "matching"]
+      }
+    ],
+    "explanation": "The test for equivalence is full agreement in the final columns.",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each pair using the given final columns.",
+    "categories": ["Equivalent", "Not equivalent"],
+    "items": [
+      {
+        "text": "`T F T F` and `T F T F`",
+        "category": "Equivalent"
+      },
+      {
+        "text": "`T T F F` and `T F F F`",
+        "category": "Not equivalent"
+      },
+      {
+        "text": "`F F T T` and `F F T T`",
+        "category": "Equivalent"
+      },
+      {
+        "text": "`T T T F` and `T T F F`",
+        "category": "Not equivalent"
+      }
+    ],
+    "explanation": "Pairs are equivalent only when every row in the two final columns matches exactly.",
+    "difficulty": 2,
+    "targets_slide": 1
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "What should you compare to decide whether $\\sim (P \\vee Q)$ and $(\\sim P \\wedge \\sim Q)$ are logically equivalent?",
+    "options": [
+      {
+        "text": "Their final main-operator columns.",
+        "correct": true
+      },
+      {
+        "text": "Only their first base-variable columns.",
+        "correct": false
+      },
+      {
+        "text": "The number of symbols in each formula.",
+        "correct": false
+      }
+    ],
+    "explanation": "Logical equivalence is determined by comparing the final columns, because those columns give the truth values of the whole formulas.",
+    "difficulty": 2,
+    "targets_slide": 2
+  }
+]

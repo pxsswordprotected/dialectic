@@ -1,0 +1,83 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Let $R$ = It rains, $F$ = It freezes, and $D$ = The roads are dangerous. Which translation correctly brackets the sentence \"If it rains and it freezes, then the roads are dangerous\"?",
+    "options": [
+      {
+        "text": "$(R \\wedge F) \\rightarrow D$",
+        "correct": true
+      },
+      {
+        "text": "$R \\wedge (F \\rightarrow D)$",
+        "correct": false
+      },
+      {
+        "text": "$(R \\rightarrow F) \\wedge D$",
+        "correct": false
+      },
+      {
+        "text": "$R \\rightarrow (F \\wedge D)$",
+        "correct": false
+      }
+    ],
+    "explanation": "The conjunction belongs inside the antecedent, so it must be bracketed before attaching the consequent with $\\rightarrow$.",
+    "difficulty": 2,
+    "targets_slide": 2
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "Parentheses are used to show which parts of a symbolic sentence are grouped together.",
+    "answer": true,
+    "explanation": "Parentheses make the structure visible and keep the symbolic form aligned with the English sentence.",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "fill_in",
+    "prompt": "Complete the translation: \"If the lamp is on or the window is open, then the room is bright\" becomes ___ $\\rightarrow$ $B$.",
+    "blanks": [
+      {
+        "acceptable_answers": ["($L \\vee W$)", "$(L \\vee W)$"]
+      }
+    ],
+    "explanation": "The disjunction forms one grouped antecedent, so it must be bracketed as $(L \\vee W)$.",
+    "difficulty": 2,
+    "targets_slide": 3
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each translation by whether the bracketing matches the English grouping of \"If the key is lost, then the door is shut and the alarm is on.\"",
+    "categories": ["Correct grouping", "Incorrect grouping"],
+    "items": [
+      {
+        "text": "$K \\rightarrow (D \\wedge A)$",
+        "category": "Correct grouping"
+      },
+      {
+        "text": "$(K \\rightarrow D) \\wedge A$",
+        "category": "Incorrect grouping"
+      },
+      {
+        "text": "$K \\rightarrow D \\wedge A$",
+        "category": "Incorrect grouping"
+      }
+    ],
+    "explanation": "The consequent is the compound part, so it must be grouped together as $(D \\wedge A)$.",
+    "difficulty": 3,
+    "targets_slide": 3
+  },
+  {
+    "type": "order",
+    "prompt": "Arrange the steps for bracketed translation in the correct order.",
+    "items": [
+      "Find the smaller grouped part in the English sentence.",
+      "Translate that grouped part with the correct operator.",
+      "Place parentheses around that compound part.",
+      "Connect it to the remaining part with the main operator."
+    ],
+    "explanation": "A good translation starts with inner grouping and ends with the outer structure.",
+    "difficulty": 2,
+    "targets_slide": 5
+  }
+]

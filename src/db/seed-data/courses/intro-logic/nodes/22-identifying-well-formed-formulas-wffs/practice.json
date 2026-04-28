@@ -1,0 +1,102 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Which string is a well-formed formula?",
+    "options": [
+      {
+        "text": "$\\sim (P \\wedge Q)$",
+        "correct": true
+      },
+      {
+        "text": "$\\sim \\wedge P$",
+        "correct": false
+      },
+      {
+        "text": "$(P \\wedge)$",
+        "correct": false
+      },
+      {
+        "text": "$P \\vee Q$",
+        "correct": false
+      }
+    ],
+    "explanation": "A WFF must follow the grammar rules. Here, $\\sim (P \\wedge Q)$ is correctly built from a negation applied to a parenthesized binary formula.",
+    "difficulty": 1,
+    "targets_slide": 0
+  },
+  {
+    "type": "true_false",
+    "prompt": "Evaluate this statement.",
+    "statement": "A single statement letter such as $P$ is a WFF.",
+    "answer": true,
+    "explanation": "A single statement letter is grammatically complete and counts as a WFF.",
+    "difficulty": 1,
+    "targets_slide": 1
+  },
+  {
+    "type": "classify",
+    "prompt": "Classify each string.",
+    "categories": [
+      "WFF",
+      "Not a WFF"
+    ],
+    "items": [
+      {
+        "text": "$\\sim P$",
+        "category": "WFF"
+      },
+      {
+        "text": "$(P \\vee Q)$",
+        "category": "WFF"
+      },
+      {
+        "text": "$\\sim \\vee P$",
+        "category": "Not a WFF"
+      },
+      {
+        "text": "$P \\wedge Q$",
+        "category": "Not a WFF"
+      }
+    ],
+    "explanation": "Negation must apply directly to a formula, and binary compounds must be fully parenthesized in this system.",
+    "difficulty": 2,
+    "targets_slide": 3
+  },
+  {
+    "type": "fill_in",
+    "prompt": "In this system, a binary compound such as $P \\wedge Q$ must be enclosed in ___ to count as a WFF.",
+    "blanks": [
+      {
+        "acceptable_answers": [
+          "parentheses",
+          "parenthesis",
+          "brackets"
+        ]
+      }
+    ],
+    "explanation": "Binary compounds must be grouped as forms like $(P \\wedge Q)$.",
+    "difficulty": 1,
+    "targets_slide": 3
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Which string is not a WFF?",
+    "options": [
+      {
+        "text": "$((P \\rightarrow Q) \\vee R)$",
+        "correct": false
+      },
+      {
+        "text": "$\\sim (P \\leftrightarrow Q)$",
+        "correct": false
+      },
+      {
+        "text": "$(P \\rightarrow)$",
+        "correct": true
+      }
+    ],
+    "explanation": "$(P \\rightarrow)$ is missing a complete formula on the right side of the connective, so the string is incomplete.",
+    "difficulty": 2,
+    "targets_slide": 4
+  }
+]
