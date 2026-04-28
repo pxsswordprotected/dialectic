@@ -8,6 +8,7 @@ import {
   CaretDown,
   Eye,
 } from "@phosphor-icons/react/dist/ssr";
+import { signOut } from "@/db/actions/auth";
 
 type NavbarProps =
   | {
@@ -214,6 +215,14 @@ export function Navbar(props: NavbarProps) {
                   >
                     About
                   </Link>
+                  <form action={signOut}>
+                    <button
+                      type="submit"
+                      className="-mx-4 flex h-[36px] w-[calc(100%+8px)] cursor-pointer items-center rounded-sm px-12 text-base text-error-400 hover:bg-neutral-50"
+                    >
+                      Log out
+                    </button>
+                  </form>
                 </div>
               )}
             </div>

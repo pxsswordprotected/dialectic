@@ -10,6 +10,7 @@ import {
 import { getStreakDisplayData } from "@/db/queries/streak";
 import { Navbar } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
+import { signOut } from "@/db/actions/auth";
 
 export default async function SettingsPage() {
   const supabase = await createClient();
@@ -54,13 +55,6 @@ export default async function SettingsPage() {
       .where(eq(profiles.id, user.id));
 
     redirect("/settings");
-  }
-
-  async function signOut() {
-    "use server";
-    const supabase = await createClient();
-    await supabase.auth.signOut();
-    redirect("/login");
   }
 
   const displayName = profile?.displayName ?? "";
