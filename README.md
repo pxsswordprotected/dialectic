@@ -1,6 +1,6 @@
 # Dialectic
 
-A philosophy learning platform built on first principles from the science of learning. Dialectic applies techniques like spaced repetition, mastery-based progression, knowledge graphs, and active retrieval practice to teach propositional logic.
+A philosophy learning platform built on first principles from the science of learning. Dialectic applies techniques like spaced repetition, mastery-based progression, knowledge graphs, and active retrieval practice to teach different branches of philosophy.
 
 Built as an undergraduate independent study project under Dr. Xing Liu.
 
